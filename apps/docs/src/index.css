@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@import "@nils/ui/styles.css";
+
+@source "../../../packages/ui/src";
+
+/* sugar-high: near-monochrome, the accent only on keywords. */
+:root {
+  --sh-class: var(--ui-ink);
+  --sh-identifier: var(--ui-ink);
+  --sh-sign: var(--ui-ink-3);
+  --sh-property: var(--ui-ink);
+  --sh-entity: var(--ui-ink);
+  --sh-jsxliterals: var(--ui-ink);
+  --sh-string: light-dark(#14883e, #6fcf8e);
+  --sh-keyword: var(--ui-accent);
+  --sh-comment: var(--ui-ink-3);
+}
+
+/* The preview stage: a faint dot grid, the old graph-paper feel. */
+.stage {
+  background-color: var(--ui-surface);
+  background-image: radial-gradient(var(--ui-line-strong) 1px, transparent 1px);
+  background-size: 12px 12px;
+  background-position: -6px -6px;
+}

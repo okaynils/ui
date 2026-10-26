@@ -1,0 +1,178 @@
+/*
+ * @nils/ui — styles.
+ *
+ * Import once, from the CSS file where you `@import "tailwindcss"`:
+ *
+ *   @import "tailwindcss";
+ *   @import "@nils/ui/styles.css";
+ *
+ * This file defines every token the components use (as Tailwind v4 theme
+ * values, so `bg-panel`, `text-ink-2`, `ease-snap` etc. work in your own code
+ * too), the base text texture, and tells Tailwind to scan the compiled
+ * components so their classes are generated. Read DESIGN.md for the rules
+ * behind each value.
+ */
+
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+
+/* Generate the classes used inside the compiled components (and the docs
+   site's source build). */
+@source "../dist";
+@source "./components";
+
+/* Dark mode follows `data-theme="dark"` on any ancestor (usually <html>), so
+   the app decides — not the OS — and tokens and dark: utilities never disagree. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+
+  /* ---- Surfaces: white first, greys recede ---- */
+  --ui-surface: light-dark(#ffffff, #0e0e0f);
+  --ui-panel: light-dark(#fafafa, #141415);
+  --ui-hover: light-dark(#f4f4f5, #1c1c1e);
+  --ui-active: light-dark(#ececee, #242427);
+
+  /* ---- Lines: hairlines, never shadows, separate things ---- */
+  --ui-line: light-dark(#ededef, #222225);
+  --ui-line-strong: light-dark(#dcdcdf, #323236);
+
+  /* ---- Ink: never pure black ---- */
+  --ui-ink: light-dark(#18181a, #ededee);
+  --ui-ink-2: light-dark(#6b6b72, #9a9aa1);
+  --ui-ink-3: light-dark(#a1a1a8, #5e5e65);
+
+  /* ---- Accent: one saturated, neutral blue. Means "do this" / "you are here" ---- */
+  --ui-accent: light-dark(#2457f5, #4d7bff);
+  --ui-accent-hover: light-dark(#1b47d6, #6a91ff);
+  --ui-accent-tint: light-dark(#eef2ff, #131a33);
+  --ui-on-accent: #ffffff;
+
+  /* ---- Status: old-web, plain and saturated. Dots + words, never washes ---- */
+  --ui-ok: light-dark(#14883e, #3fbf6a);
+  --ui-warn: light-dark(#b86e00, #e5a23a);
+  --ui-err: light-dark(#d1281c, #ff6a5c);
+
+  /* ---- Overlay ---- */
+  --ui-scrim: light-dark(rgb(16 16 18 / 0.18), rgb(0 0 0 / 0.55));
+  --ui-shadow-pop:
+    0 0 0 1px var(--ui-line-strong),
+    0 1px 2px light-dark(rgb(16 16 18 / 0.04), rgb(0 0 0 / 0.4)),
+    0 8px 24px -6px light-dark(rgb(16 16 18 / 0.12), rgb(0 0 0 / 0.6));
+  --ui-shadow-modal:
+    0 0 0 1px var(--ui-line-strong),
+    0 2px 4px light-dark(rgb(16 16 18 / 0.05), rgb(0 0 0 / 0.5)),
+    0 24px 64px -16px light-dark(rgb(16 16 18 / 0.24), rgb(0 0 0 / 0.7));
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+@theme inline {
+  --color-surface: var(--ui-surface);
+  --color-panel: var(--ui-panel);
+  --color-hover: var(--ui-hover);
+  --color-active: var(--ui-active);
+  --color-line: var(--ui-line);
+  --color-line-strong: var(--ui-line-strong);
+  --color-ink: var(--ui-ink);
+  --color-ink-2: var(--ui-ink-2);
+  --color-ink-3: var(--ui-ink-3);
+  --color-accent: var(--ui-accent);
+  --color-accent-hover: var(--ui-accent-hover);
+  --color-accent-tint: var(--ui-accent-tint);
+  --color-on-accent: var(--ui-on-accent);
+  --color-ok: var(--ui-ok);
+  --color-warn: var(--ui-warn);
+  --color-err: var(--ui-err);
+  --color-scrim: var(--ui-scrim);
+
+  --shadow-pop: var(--ui-shadow-pop);
+  --shadow-modal: var(--ui-shadow-modal);
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Type: 13px is the control size, 14px body, 12px meta. */
+  --text-ui: 13px;
+  --text-ui--line-height: 20px;
+
+  /* Corners: firm. Controls 4px, floating surfaces 6px. Nothing pill-shaped
+     except dots and switches. */
+  --radius-ui: 4px;
+  --radius-box: 6px;
+
+  /* Motion. One curve for everything that responds to the user: it starts
+     fast and settles, so feedback lands on the frame you act. */
+  --ease-snap: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --default-transition-timing-function: var(--ease-snap);
+  --default-transition-duration: 120ms;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    /* Inter's disambiguation set: tailed l (cv05), serifed I (cv08) — so
+       Il1 never collide in IDs and logs. Tabular numbers stay opt-in. */
+    font-feature-settings: "cv05", "cv08";
+    background: var(--ui-surface);
+    color: var(--ui-ink);
+  }
+
+  body {
+    font-size: 14px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--ui-accent-tint);
+    color: var(--ui-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ui-accent);
+    outline-offset: 2px;
+  }
+
+  code, kbd, samp, pre {
+    font-family: var(--font-mono);
+    font-feature-settings: "zero";
+  }
+}
+
+/*
+ * Press feedback: anything compact gives under the finger. Applied by
+ * components through the `ui-press` class; use it on your own pressables too.
+ * Only `transform` animates on press, and only while pressed — release is
+ * instant-ish (the same curve), so the control never feels sticky.
+ */
+@utility ui-press {
+  transition-property: color, background-color, box-shadow, transform, opacity;
+  transition-duration: 120ms;
+  transition-timing-function: var(--ease-snap);
+  &:active:not(:disabled):not([data-disabled]) {
+    transform: scale(0.97);
+  }
+}
+
+/* Mono label: the console voice. Small caps-ish uppercase, wide tracking. */
+@utility ui-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ui-ink-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
