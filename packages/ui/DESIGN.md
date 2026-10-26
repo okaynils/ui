@@ -88,9 +88,9 @@ Rhythm: 4–8px inside a control group, 12–16px between related blocks, 32–4
 
 | Token | Tailwind | Value | Use |
 | --- | --- | --- | --- |
-| `--radius-ui` | `rounded-ui` | 4px | Buttons, inputs, menu items, chips |
+| `--radius-ui` | `rounded-ui` | 4px | Buttons, inputs, menu items, chips, avatars |
 | `--radius-box` | `rounded-box` | 6px | Popovers, menus, dialogs, panels, code blocks |
-| — | `rounded-full` | — | Only status dots, switch tracks, avatars |
+| — | `rounded-full` | — | Only status dots, switch tracks |
 
 No `rounded-lg`/`rounded-xl`/pill buttons. Nested corners stay concentric: inner radius = outer radius − padding. A highlighted item inside a 6px menu with 4px padding is `rounded-[2px]`.
 

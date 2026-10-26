@@ -16,7 +16,7 @@ export interface AvatarProps extends Omit<BaseAvatar.Root.Props, "className" | "
   src?: string;
   /** The person or thing. Used for the initials and as the image's alt text. */
   name: string;
-  /** Diameter in px. */
+  /** Side length in px. */
   size?: AvatarSize;
   /** Layout classes only. */
   className?: string;
@@ -29,13 +29,13 @@ function initials(name: string): string {
   return parts[0]![0]! + parts[parts.length - 1]![0]!;
 }
 
-/** A round picture of a person or org, with mono initials as the fallback. */
+/** A rounded square picture of a person or org, with mono initials as the fallback. */
 export function Avatar({ src, name, size = 24, className, ...props }: AvatarProps) {
   return (
     <BaseAvatar.Root
       {...props}
       className={cn(
-        "relative inline-flex shrink-0 select-none items-center justify-center overflow-hidden rounded-full bg-active align-middle",
+        "relative inline-flex shrink-0 select-none items-center justify-center overflow-hidden rounded-ui bg-active align-middle",
         SIZE[size],
         className,
       )}
@@ -86,7 +86,7 @@ export function AvatarGroup({ max, size = 24, className, children, ...props }: A
       {rest > 0 ? (
         <span
           className={cn(
-            "inline-flex shrink-0 items-center justify-center rounded-full bg-panel font-mono font-medium text-ink-2 tabular-nums",
+            "inline-flex shrink-0 items-center justify-center rounded-ui bg-panel font-mono font-medium text-ink-2 tabular-nums",
             "shadow-[inset_0_0_0_1px_var(--ui-line-strong)]",
             SIZE[size],
           )}
