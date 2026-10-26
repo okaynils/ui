@@ -163,12 +163,32 @@ The 1s flash is the only duration above 200ms in the library. It's allowed becau
 
 ## Gimmicks
 
-Optional widgets use the same visual contract as the core library. The niche purpose is their personality: a listening badge, local clock, webring or visitor counter needs no second palette, ornamental frame or continuous decorative motion.
+Gimmicks are the widgets that are allowed to play. They keep the core contract — tokens, firm corners, hairlines, swift answers to input — but each one is recognisably *the thing it imitates*: a visitor counter is an odometer, a webring is a ring, a listening badge looks like something is playing. A gimmick that reads as a generic card with a label and a status dot has lost its point.
 
-- Supplied external data stays separate from the widget. Authentication, service requests, storage and moderation belong to the consuming app.
-- Activity intensity is encoded with neutral tone. In an uptime timeline, narrow status marks may carry `ok`/`warn`/`err`; pair them with a text summary and accessible date/status details. This is a compact data visualisation, not a coloured surface.
-- Clocks, countdowns and progress show real supplied or elapsed values. Do not invent listening activity, traffic or live service health.
-- Changing digits may use `NumberRoll`; its motion stops under reduced motion. Ambient clocks and keyboard hints update without choreography.
+Each gimmick gets **one signature move**: a single playful detail that carries its character. The move must show real state.
+
+| Gimmick | Signature move |
+| --- | --- |
+| `VisitorCounter` | Odometer cells; changed digits roll in their cells |
+| `NowPlaying` | Equaliser bars that move only while playing; position advances from the last supplied value |
+| `Countdown` | Digit blocks whose changed digits roll down as time runs out |
+| `Webring` | A ring of member dots marking where you are; Random shuffles through names before it lands |
+| `Receipt` | Feeds out of the printer in stepped jerks when just issued |
+| `Ticket` | The stub tears off along the perforation, following the pointer |
+| `SplitFlap` | Changed cells flip through a few characters before landing |
+| `Waitlist` | When you move up, the number rolls down and the queue steps forward |
+| `Stamp` | Lands with a short thunk when mounted as the result of an action |
+
+Rules:
+
+- **One move each.** If a widget has a signature move, everything else about it stays plain.
+- **Moves encode state.** Equaliser bars mean "playing", a rolling digit means "changed", a dot on the ring means "you are here". Nothing moves just to be looked at.
+- **Ambient motion is allowed only while the state is live** — playing, counting, recording — and stops the moment it isn't. Under `prefers-reduced-motion` it stops entirely and the state is still readable.
+- **Short sequences may exceed 200ms when they *are* the gimmick** (Random shuffling through names before it navigates), as long as they stay under 600ms, can't be repeated faster than they run, and are skipped under reduced motion.
+- **No second palette.** Character comes from shape, mono type and motion, not new colours. Accent still means "you are here" or "do this"; status colours still encode status.
+- **Intensity is neutral tone.** Activity grids use ink steps; only an uptime timeline's narrow marks may carry `ok`/`warn`/`err`, paired with a text summary.
+- **Real data only.** Values come from the app or from the clock. Interpolating playback position between supplied updates is fine; inventing traffic, listening or service health is not.
+- Authentication, service requests, storage and moderation belong to the consuming app.
 
 ## Icons
 

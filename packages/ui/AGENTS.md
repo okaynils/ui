@@ -131,31 +131,36 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | Toolbar | `Toolbar`, `ToolbarGroup`, `ToolbarButton`, `ToolbarToggle`, `ToolbarSeparator` | Related controls with one tab stop and arrow navigation. |
 | Sheet | `Sheet`, `SheetTrigger`, `SheetContent`, `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetBody`, `SheetFooter`, `SheetClose` | Side panel for details or editing; swipe to dismiss. |
 | **Gimmicks** | | |
-| NowPlaying | `NowPlaying` | Track artwork, title, artist and playback state from app-supplied listening data. |
+| NowPlaying | `NowPlaying` | Listening badge: artwork, track, equaliser bars while playing, a playhead that keeps time between updates. |
 | LocalTime | `LocalTime` | A timezone clock with optional working hours and visitor time difference. |
 | Availability | `Availability` | A compact availability status with optional explanation. |
 | ActivityCalendar | `ActivityCalendar` | Daily activity as a contribution-style calendar grid. |
 | CurrentlyReading | `CurrentlyReading` | Book cover, author, progress and a personal note. |
 | WeatherBadge | `WeatherBadge` | A compact weather report from app-supplied conditions. |
 | LinkPreview | `LinkPreview` | A bookmark preview with supplied title, image, favicon and annotation. |
-| Webring | `Webring` | Previous, random and next links through a community of sites. |
+| Webring | `Webring` | A ring of member dots marking this site, prev/next links, and a Random that shuffles before it lands. |
 | UptimeStrip | `UptimeStrip` | Daily service health with incident detail. |
 | ReleaseBadge | `ReleaseBadge` | A version label with release date and change details. |
-| Countdown | `Countdown` | Time remaining until an event, with an explicit finished state. |
+| Countdown | `Countdown` | Departure-board blocks whose digits roll down to an event; `inline` variant for sentences. |
 | FocusTimer | `FocusTimer` | A local focus and break timer with pause and reset. |
 | Waveform | `Waveform` | An audio waveform with elapsed time and seeking. |
 | KeystrokeDisplay | `KeystrokeDisplay` | Keyboard input displayed as shortcut keys for demos and practice. |
 | BeforeAfter | `BeforeAfter` | An accessible draggable divider comparing two images. |
 | Guestbook | `Guestbook` | A message form and supplied entries; the app handles storage and moderation. |
-| VisitorCounter | `VisitorCounter` | A compact counter with optional mechanical digit treatment; the app supplies the count. |
+| VisitorCounter | `VisitorCounter` | An odometer whose changed wheels roll; the app supplies the count. |
 | MiniMap | `MiniMap` | A compact location map with supplied markers; no mapping service required. |
+| Receipt | `Receipt` | Thermal-printer receipt with a torn edge; sums its lines and can feed out of the printer. |
+| Ticket | `Ticket` | Event ticket with a perforated stub and a real Code 128 barcode; tear the stub to check in. |
+| SplitFlap | `SplitFlap` | Departure-board text whose changed cells flip; fixed or rotating through words. |
+| Waitlist | `Waitlist` | Email sign-up that becomes your place in line; the number rolls and the queue steps forward. |
+| Stamp | `Stamp` | Rubber stamp ("Paid", "Shipped") that lands with a thunk when an action completes. |
 <!-- components:end -->
 
 For a complete console screen composed from these parts, read `docs/examples/console.md` ([Console showcase](/examples/console) on the docs site). For a full-window app, use `<AppShell className="h-dvh">`; for a contained preview, give its parent a height.
 
 ## Gimmicks
 
-These optional widgets cover personal sites and specialised screens. Read their component docs before using them. The consuming app supplies service data, authentication, storage and moderation; widgets work with local data in the examples. They follow the same tokens, keyboard access and motion rules as the core components.
+These optional widgets cover personal sites and specialised screens. Read their component docs before using them. The consuming app supplies service data, authentication, storage and moderation; widgets work with local data in the examples. They follow the same tokens and keyboard access as the core components, and each gets one signature move: a playful detail that shows real state, such as the odometer roll or the equaliser. Don't add a second one; see the Gimmicks section of DESIGN.md.
 
 ## Rules
 

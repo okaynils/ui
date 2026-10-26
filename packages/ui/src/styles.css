@@ -190,6 +190,25 @@
   animation: ui-flash 1s var(--ease-snap);
 }
 
+/*
+ * Equaliser bar for NowPlaying. Ambient, so it eases both ways instead of
+ * snapping: it runs only while something is playing, and each bar gets its
+ * own duration so the three never fall into step.
+ */
+@keyframes ui-eq {
+  from { transform: scaleY(0.25); }
+  to { transform: scaleY(1); }
+}
+
+/*
+ * Receipt feeding out of a printer. Stepped, not eased: a thermal printer
+ * advances the paper a line at a time, and the jerk is what sells it.
+ */
+@keyframes ui-print {
+  from { transform: translateY(-100%); }
+  to { transform: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     transition-duration: 0ms !important;

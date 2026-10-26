@@ -12,6 +12,10 @@ export interface NumberRollProps extends Omit<React.ComponentProps<"span">, "chi
   prefix?: React.ReactNode;
   /** Text after the number, e.g. " GPU-h". Doesn't roll. */
   suffix?: React.ReactNode;
+  /** Classes on each digit's clipping box, e.g. to draw odometer cells. Separators are not boxed. */
+  digitClassName?: string;
+  /** Which way digits roll. `auto` follows the change; a countdown wants `down` even when 00 wraps to 59. */
+  direction?: "auto" | "up" | "down";
 }
 
 const DIGIT = /\d/;
@@ -23,7 +27,7 @@ const EASE = "cubic-bezier(0.23, 1, 0.32, 1)";
  * signature "this just changed" moment. Up when the value grows, down when
  * it shrinks. Never animates on first render.
  */
-export function NumberRoll({ value, format, locale, prefix, suffix, className, ...props }: NumberRollProps) {
+export function NumberRoll({ value, format, locale, prefix, suffix, digitClassName, direction: forced = "auto", className, ...props }: NumberRollProps) {
   const formatter = React.useMemo(() => new Intl.NumberFormat(locale, format), [locale, JSON.stringify(format)]);
   const text = formatter.format(value);
 
@@ -47,7 +51,7 @@ export function NumberRoll({ value, format, locale, prefix, suffix, className, .
         {prefix}
         {chars.map((char, i) => (
           // Keyed from the right, so the ones digit stays the ones digit when the length changes.
-          <Reel key={chars.length - i} char={char} direction={direction} />
+          <Reel key={chars.length - i} char={char} direction={forced === "auto" ? direction : forced === "up" ? 1 : -1} className={digitClassName} />
         ))}
         {suffix}
       </span>
@@ -59,7 +63,7 @@ function prefersReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 }
 
-function Reel({ char, direction }: { char: string; direction: 1 | -1 }) {
+function Reel({ char, direction, className }: { char: string; direction: 1 | -1; className?: string }) {
   const ref = React.useRef<HTMLSpanElement>(null);
   const last = React.useRef<string | null>(null);
   const ghost = React.useRef<HTMLSpanElement | null>(null);
@@ -78,7 +82,8 @@ function Reel({ char, direction }: { char: string; direction: 1 | -1 }) {
     const out = document.createElement("span");
     out.textContent = before;
     out.setAttribute("aria-hidden", "true");
-    out.style.cssText = "position:absolute;inset:0;text-align:center;";
+    // Inherit padding so a boxed digit's ghost sits exactly where the digit did.
+    out.style.cssText = "position:absolute;inset:0;text-align:center;padding:inherit;box-sizing:border-box;";
     el.appendChild(out);
     ghost.current = out;
 
@@ -99,7 +104,7 @@ function Reel({ char, direction }: { char: string; direction: 1 | -1 }) {
   return (
     // leading-none: the clip box is one em tall, so a digit travels exactly
     // its own height instead of the whole (often 1.45×) line box.
-    <span ref={ref} className="relative inline-block overflow-hidden leading-none">
+    <span ref={ref} className={cn("relative inline-block overflow-hidden leading-none", className)}>
       <span className="inline-block">{char}</span>
     </span>
   );

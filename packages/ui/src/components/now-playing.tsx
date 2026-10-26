@@ -23,8 +23,13 @@ export interface NowPlayingProps extends Omit<React.ComponentProps<"div">, "chil
   /** Current track, or null when nothing is playing. */
   track: NowPlayingTrack | null;
   state?: NowPlayingState;
-  /** Supplied playback position in seconds. This widget never invents playback progress. */
+  /** Playback position in seconds, as last reported by the player. */
   position?: number;
+  /**
+   * While playing, count the position forward from the last supplied value, so
+   * the bar moves between updates. Set false if your app pushes every second.
+   */
+  advance?: boolean;
   loading?: boolean;
   /** Requests playback to toggle; update `state` once the player confirms it. */
   onPlaybackToggle?: () => void;
@@ -38,11 +43,36 @@ function formatTime(seconds: number): string {
   return hours ? `${hours}:${String(minutes).padStart(2, "0")}:${rest}` : `${minutes}:${rest}`;
 }
 
+/**
+ * Counts forward from the last reported position while playing. Measured
+ * from the wall clock, so a throttled background tab catches up instead of
+ * drifting, and a new report always wins.
+ */
+function useAdvancingPosition(position: number | undefined, running: boolean): number | undefined {
+  const [base, setBase] = React.useState(position);
+  const [offset, setOffset] = React.useState(0);
+  if (!Object.is(base, position)) {
+    setBase(position);
+    setOffset(0);
+  }
+  // Pausing keeps the counted-forward position; resuming continues from it.
+  const held = React.useRef(offset);
+  React.useEffect(() => { held.current = offset; });
+  React.useEffect(() => {
+    if (!running || typeof position !== "number" || !Number.isFinite(position)) return;
+    const start = Date.now() - held.current * 1000;
+    const timer = setInterval(() => setOffset((Date.now() - start) / 1000), 1000);
+    return () => clearInterval(timer);
+  }, [position, running]);
+  return typeof position === "number" ? position + offset : position;
+}
+
 /** A listening badge driven by the app's player or service data. */
 export function NowPlaying({
   track,
   state = "playing",
-  position,
+  position: reported,
+  advance = true,
   loading = false,
   onPlaybackToggle,
   className,
@@ -50,6 +80,8 @@ export function NowPlaying({
 }: NowPlayingProps) {
   const label = state === "offline" ? "Offline" : !track ? "Nothing playing" : state === "paused" ? "Paused" : "Playing";
   const duration = track?.duration;
+  const playing = !loading && Boolean(track) && state === "playing";
+  const position = useAdvancingPosition(reported, advance && playing);
   const hasProgress = !loading && track && state !== "offline" && typeof duration === "number" && Number.isFinite(duration) && duration > 0 && typeof position === "number" && Number.isFinite(position);
   const elapsed = hasProgress ? Math.min(duration, Math.max(0, position)) : 0;
   return (
@@ -63,7 +95,9 @@ export function NowPlaying({
     >
       <div className="mb-3 flex items-center justify-between gap-3">
         <span className="ui-label">Listening</span>
-        {loading ? <span className="text-xs text-ink-2">Loading</span> : <Status tone={track && state === "playing" ? "ok" : "neutral"} className="text-xs">{label}</Status>}
+        {loading ? <span className="text-xs text-ink-2">Loading</span> : track && state !== "offline" ? (
+          <span className="inline-flex items-center gap-1.5 text-xs text-ink"><Equaliser playing={playing} />{label}</span>
+        ) : <Status tone="neutral" className="text-xs">{label}</Status>}
       </div>
       {loading ? (
         <div className="flex items-center gap-3" aria-label="Loading listening activity">
@@ -96,6 +130,31 @@ export function NowPlaying({
         </div>
       ) : null}
     </div>
+  );
+}
+
+// Resting heights double as the paused pose and the reduced-motion pose.
+const BARS = [
+  { duration: "520ms", delay: "-120ms", rest: 0.45 },
+  { duration: "740ms", delay: "-360ms", rest: 0.85 },
+  { duration: "610ms", delay: "-200ms", rest: 0.6 },
+];
+
+/** Three bars that bounce while playing and settle when paused: the badge's one moving part. */
+function Equaliser({ playing }: { playing: boolean }) {
+  return (
+    <span aria-hidden="true" className="inline-flex h-3 items-end gap-[2px]">
+      {BARS.map((bar, i) => (
+        <span
+          key={i}
+          className={cn(
+            "h-full w-[3px] origin-bottom rounded-[1px] transition-colors duration-120",
+            playing ? "animate-[ui-eq_var(--eq-duration)_ease-in-out_var(--eq-delay)_infinite_alternate] bg-ok motion-reduce:animate-none" : "bg-ink-3",
+          )}
+          style={{ transform: `scaleY(${playing ? bar.rest : bar.rest * 0.5})`, "--eq-duration": bar.duration, "--eq-delay": bar.delay } as React.CSSProperties}
+        />
+      ))}
+    </span>
   );
 }
 

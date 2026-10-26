@@ -16,3 +16,8 @@ export * from "./components/before-after";
 export * from "./components/guestbook";
 export * from "./components/visitor-counter";
 export * from "./components/mini-map";
+export * from "./components/receipt";
+export * from "./components/ticket";
+export * from "./components/split-flap";
+export * from "./components/waitlist";
+export * from "./components/stamp";

@@ -1,13 +1,17 @@
 import * as React from "react";
 import { cn } from "../lib/cn";
+import { NumberRoll } from "./number-roll";
 
 export type CountdownPrecision = "minutes" | "seconds";
+export type CountdownVariant = "blocks" | "inline";
 
 export interface CountdownProps extends Omit<React.ComponentProps<"div">, "children"> {
   /** Absolute instant. Strings must include a timezone, such as Z or +02:00. Numbers are Unix milliseconds. */
   target: Date | string | number;
   label?: React.ReactNode;
   precision?: CountdownPrecision;
+  /** `blocks` is the departure-board countdown with rolling digits; `inline` is a line of text for sentences and footers. */
+  variant?: CountdownVariant;
   /** Content shown after the target, replacing the remaining duration. */
   finished?: React.ReactNode;
   /** Freeze at an instant for previews or app-controlled time. No timer runs while supplied. */
@@ -44,6 +48,7 @@ function duration(milliseconds: number, precision: CountdownPrecision) {
   values.push([remainder, "m", "minute"]);
   if (seconds !== null) values.push([seconds, "s", "second"]);
   return {
+    parts: values.map(([value, , long]) => ({ value, unit: long })),
     visual: values.map(([value, short], index) => `${index === 0 ? value : String(value).padStart(2, "0")}${short}`).join(" "),
     spoken: `${values.map(([value, , long]) => `${value} ${long}${value === 1 ? "" : "s"}`).join(", ")} remaining`,
   };
@@ -54,6 +59,7 @@ export function Countdown({
   target,
   label,
   precision = "seconds",
+  variant = "blocks",
   finished = "It's time.",
   now,
   onComplete,
@@ -105,21 +111,53 @@ export function Countdown({
 
   const display = remaining !== null && remaining > 0 ? duration(remaining, precision) : null;
   const state = !valid ? "unavailable" : remaining === null ? "loading" : remaining === 0 ? "complete" : "counting";
+  const time = (children: React.ReactNode, className?: string) => (
+    <time dateTime={new Date(targetTime).toISOString()} className={className}>{children}</time>
+  );
+  const blocks = variant === "blocks";
+
   return (
     <div
       role="timer"
       aria-live="off"
       {...props}
       data-state={state}
-      className={cn("inline-flex max-w-full flex-wrap items-baseline gap-x-2 gap-y-1 text-ui text-ink", className)}
+      data-variant={variant}
+      className={cn(
+        "inline-flex max-w-full text-ui text-ink",
+        blocks ? "flex-col items-start gap-2" : "flex-wrap items-baseline gap-x-2 gap-y-1",
+        className,
+      )}
     >
-      {label ? <span className="text-ink-2">{label}</span> : null}
+      {label ? <span className={blocks ? "ui-label" : "text-ink-2"}>{label}</span> : null}
       {!valid ? <span className="text-ink-3">Countdown unavailable</span> : remaining === null ? (
-        <span className="font-mono text-xs tabular-nums"><span aria-hidden>--:--</span><span className="sr-only">Loading countdown</span></span>
-      ) : remaining === 0 ? <span>{finished}</span> : display ? (
-        <time dateTime={new Date(targetTime).toISOString()} className="font-mono text-xs tabular-nums">
-          <span aria-hidden>{display.visual}</span><span className="sr-only">{display.spoken}</span>
-        </time>
+        <span className={cn("font-mono tabular-nums text-ink-3", blocks ? "text-[26px] leading-8" : "text-xs")}><span aria-hidden>--:--</span><span className="sr-only">Loading countdown</span></span>
+      ) : remaining === 0 ? <span>{finished}</span> : display ? blocks ? time(
+        <>
+          <span className="sr-only">{display.spoken}</span>
+          <span aria-hidden className="flex items-start gap-1.5">
+            {display.parts.map((part, index) => (
+              <React.Fragment key={part.unit}>
+                {index > 0 ? <span className="font-mono text-[26px] leading-[44px] text-ink-3">:</span> : null}
+                <span className="flex flex-col items-center gap-1">
+                  <NumberRoll
+                    value={part.value}
+                    locale="en"
+                    // Wrapping from 00 to 59 is still time running out.
+                    direction="down"
+                    format={{ minimumIntegerDigits: 2, useGrouping: false }}
+                    className="rounded-ui bg-panel px-2 py-1.5 font-mono text-[26px] leading-8 font-medium text-ink shadow-[inset_0_0_0_1px_var(--ui-line-strong)]"
+                  />
+                  <span className="ui-label">{part.unit === "day" ? "days" : part.unit === "hour" ? "hrs" : part.unit === "minute" ? "min" : "sec"}</span>
+                </span>
+              </React.Fragment>
+            ))}
+          </span>
+        </>,
+        "block",
+      ) : time(
+        <><span aria-hidden>{display.visual}</span><span className="sr-only">{display.spoken}</span></>,
+        "font-mono text-xs tabular-nums",
       ) : null}
     </div>
   );

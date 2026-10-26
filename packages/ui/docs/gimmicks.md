@@ -7,7 +7,7 @@ order: 0
 
 # Gimmicks
 
-Small widgets for things a general-purpose interface rarely needs: what you are listening to, the time where you live, a webring, a guestbook, or a tiny map. Use the ones that serve your screen. They share the core library's tokens, flat surfaces, rounded corners and keyboard access.
+Small widgets for things a general-purpose interface rarely needs: what you are listening to, the time where you live, a webring, a guestbook, or a tiny map. They're allowed to play: each one looks like the thing it imitates and has one signature move that shows real state, like an odometer's wheels rolling or a webring shuffling before it lands. Underneath they share the core library's tokens, corners and keyboard access.
 
 ```tsx
 import { Availability, LocalTime, NowPlaying } from "@nils/ui";
@@ -28,24 +28,29 @@ import { Availability, LocalTime, NowPlaying } from "@nils/ui";
 
 | Component | Use it for |
 | --- | --- |
-| [NowPlaying](/components/now-playing) | Listening activity and supplied playback progress. |
+| [NowPlaying](/components/now-playing) | Listening activity, with equaliser bars while something plays. |
 | [LocalTime](/components/local-time) | A place's clock, working hours and time difference. |
 | [Availability](/components/availability) | Personal availability with optional contact details. |
 | [ActivityCalendar](/components/activity-calendar) | Daily contributions, habits or activity. |
 | [CurrentlyReading](/components/currently-reading) | A book, reading progress and a personal note. |
 | [WeatherBadge](/components/weather-badge) | A compact local weather report. |
 | [LinkPreview](/components/link-preview) | Annotated bookmarks and shared links. |
-| [Webring](/components/webring) | Navigation through a community of sites. |
+| [Webring](/components/webring) | A ring of sites, with a shuffling Random. |
 | [UptimeStrip](/components/uptime-strip) | Daily service health and incidents. |
 | [ReleaseBadge](/components/release-badge) | A version and its release notes. |
-| [Countdown](/components/countdown) | Time until an event, with a finished state. |
+| [Countdown](/components/countdown) | Departure-board time until an event. |
 | [FocusTimer](/components/focus-timer) | Focus sessions and breaks. |
 | [Waveform](/components/waveform) | Audio amplitude, elapsed time and seeking. |
 | [KeystrokeDisplay](/components/keystroke-display) | Keyboard demonstrations and shortcut practice. |
 | [BeforeAfter](/components/before-after) | Image comparisons with a movable divider. |
 | [Guestbook](/components/guestbook) | A message form and list of supplied entries. |
-| [VisitorCounter](/components/visitor-counter) | An old-web visitor counter with an app-supplied count. |
+| [VisitorCounter](/components/visitor-counter) | An old-web odometer for an app-supplied count. |
 | [MiniMap](/components/mini-map) | A location marker on a small map. |
+| [Receipt](/components/receipt) | Order confirmations and itemised summaries, printed. |
+| [Ticket](/components/ticket) | Event tickets and invites with a tear-off stub. |
+| [SplitFlap](/components/split-flap) | A departure-board word or code. |
+| [Waitlist](/components/waitlist) | Launch sign-ups and your place in line. |
+| [Stamp](/components/stamp) | Marking something done: paid, shipped, read. |
 
 ## Rules
 
@@ -53,7 +58,8 @@ import { Availability, LocalTime, NowPlaying } from "@nils/ui";
 - **Do** connect guestbook submissions to your own storage and moderation. Demo entries are local examples.
 - **Do** show unavailable or stale data honestly. A widget's presence does not mean a service is connected.
 - **Do** use one clear purpose per widget. A footer can show a clock without becoming a dashboard.
-- **Don't** use continuous decorative motion to make a quiet widget compete for attention.
+- **Do** let a gimmick be what it is. An odometer should look like an odometer, not a card with a number in it.
+- **Don't** stack gimmicks' moving parts in one view. One equaliser or one countdown per screen; motion that runs only while its state is live, never just to draw the eye.
 
 ## Props
 

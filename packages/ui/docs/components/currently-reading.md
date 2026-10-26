@@ -18,13 +18,19 @@ import type { CurrentlyReadingBook, CurrentlyReadingProps, CurrentlyReadingState
 
 ### On the nightstand
 
-The title can link to your own review. A missing cover becomes a quiet book outline, without losing the title or author.
+Pass a cover image URL from your own library or a book service. The title can link to your own review.
 
 ```tsx live
 <CurrentlyReading
-  book={{ title: "The Shape of Small Things", author: "Alex Rowan", totalPages: 240, href: "https://example.com/books/small-things" }}
-  page={86}
-  note="A few pages with coffee. Mostly underlining things about paying attention."
+  book={{
+    title: "The Design of Everyday Things",
+    author: "Don Norman",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Publication122/v4/c3/e2/a3/c3e2a3ac-a308-18ad-4895-6ce058b56952/9780465072996.jpg/192x288bb.jpg",
+    totalPages: 368,
+    href: "https://example.com/books/everyday-things",
+  }}
+  page={142}
+  note="A few pages with coffee. Mostly underlining things about doors."
 />
 ```
 
@@ -42,13 +48,18 @@ export default function Example() {
   return (
     <div className="flex w-full max-w-sm flex-col items-start gap-3">
       <CurrentlyReading
-        book={{ title: "A Field Guide to Quiet Places", author: "Sam Linden", totalPages: 180 }}
+        book={{
+          title: "Thinking, Fast and Slow",
+          author: "Daniel Kahneman",
+          cover: "https://is1-ssl.mzstatic.com/image/thumb/Publication/v4/49/27/aa/4927aa90-d091-9e76-7518-a81adf07c367/9781429969352.jpg/192x288bb.jpg",
+          totalPages: 499,
+        }}
         page={page}
         state={finished ? "finished" : "reading"}
         note={finished ? "Finished. Keeping this one nearby." : "One chapter at a time."}
       />
       <div className="flex flex-wrap gap-2">
-        <Button size="sm" disabled={finished || page >= 180} onClick={() => setPage((current) => Math.min(180, current + 20))}>Read 20 pages</Button>
+        <Button size="sm" disabled={finished || page >= 499} onClick={() => setPage((current) => Math.min(499, current + 20))}>Read 20 pages</Button>
         <Button size="sm" disabled={finished} onClick={() => setFinished(true)}>Mark finished</Button>
         <Button size="sm" variant="ghost" onClick={() => { setPage(120); setFinished(false); }}>Reset demo</Button>
       </div>
@@ -57,14 +68,24 @@ export default function Example() {
 }
 ```
 
-### Unknown progress and paused reading
+### Unknown progress, paused reading and no cover
 
-Omit page data when it isn't meaningful, such as an audiobook or an unpaginated ebook. A paused book keeps its last known page.
+Omit page data when it isn't meaningful, such as an audiobook or an unpaginated ebook. A paused book keeps its last known page. A missing or broken cover becomes a quiet book outline, without losing the title or author.
 
 ```tsx live
 <div className="flex w-full max-w-sm flex-col gap-3">
   <CurrentlyReading book={{ title: "Notes from the Footpath", author: "Jamie Vale" }} note="Listening on walks; no page count to report." />
-  <CurrentlyReading book={{ title: "The Long Afternoon", author: "Morgan Reed", totalPages: 320 }} page={62} state="paused" note="Saving this for a less busy week." />
+  <CurrentlyReading
+    book={{
+      title: "Gödel, Escher, Bach",
+      author: "Douglas R. Hofstadter",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Publication221/v4/22/b8/54/22b854d1-790c-561f-b5e5-a1a1a8d2d549/6610000727728.jpg/192x288bb.jpg",
+      totalPages: 777,
+    }}
+    page={212}
+    state="paused"
+    note="Saving the rest for a less busy month."
+  />
 </div>
 ```
 

@@ -72,6 +72,8 @@ export default function Example() {
 | `locale` | `Intl.LocalesArgument` | browser | Formatting locale. |
 | `prefix` | `ReactNode` | — | Before the number. Doesn't roll. |
 | `suffix` | `ReactNode` | — | After the number. Doesn't roll. |
+| `digitClassName` | `string` | — | Classes on each digit's clipping box, e.g. odometer cells (`VisitorCounter` uses this). Separators aren't boxed. |
+| `direction` | `"auto" \| "up" \| "down"` | `"auto"` | Roll direction. `auto` rolls up on increase and down on decrease; force one way for clocks and countdowns that wrap. |
 | `...props` | `ComponentProps<"span">` | — | On the outer `<span>`. |
 
 ## Motion
