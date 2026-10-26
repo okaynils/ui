@@ -1,3 +1,4 @@
+import { Toaster, TooltipProvider } from "@nils/ui";
 import { pageFor, pages } from "./lib/pages";
 import { usePath, useLinkInterception } from "./lib/router";
 import { DocView } from "./site/DocView";
@@ -9,6 +10,7 @@ export function App() {
   const path = usePath();
   const page = pageFor(path);
   return (
+    <TooltipProvider>
     <Shell>
       {path === "/" ? (
         <Home />
@@ -23,5 +25,7 @@ export function App() {
         </div>
       )}
     </Shell>
+    <Toaster />
+    </TooltipProvider>
   );
 }

@@ -33,6 +33,10 @@
   --ui-panel: light-dark(#fafafa, #141415);
   --ui-hover: light-dark(#f4f4f5, #1c1c1e);
   --ui-active: light-dark(#ececee, #242427);
+  /* Floating layers (popovers, menus, dialogs, toasts). Same white as the page
+     in light — the shadow ring separates them — but one step up in dark,
+     where a shadow can't read against near-black. */
+  --ui-raised: light-dark(#ffffff, #18181a);
 
   /* ---- Lines: hairlines, never shadows, separate things ---- */
   --ui-line: light-dark(#ededef, #222225);
@@ -74,6 +78,7 @@
   --color-panel: var(--ui-panel);
   --color-hover: var(--ui-hover);
   --color-active: var(--ui-active);
+  --color-raised: var(--ui-raised);
   --color-line: var(--ui-line);
   --color-line-strong: var(--ui-line-strong);
   --color-ink: var(--ui-ink);

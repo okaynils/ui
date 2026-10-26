@@ -60,4 +60,6 @@ export default defineConfig({
     alias: [{ find: /^@nils\/ui$/, replacement: join(UI, "src/index.ts") }],
   },
   server: { port: 5199 },
+  // Live examples import all of Phosphor; the docs bundle is big on purpose.
+  build: { chunkSizeWarningLimit: 4000 },
 });

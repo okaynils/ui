@@ -30,7 +30,18 @@ That one import gives you the fonts, every design token as a Tailwind utility (`
 
 Dark mode: set `data-theme="dark"` (or `"light"`) on `<html>`. Without it, the library is light.
 
-Toasts need one `<Toaster />` near the root of the app. Everything else works standalone.
+Mount these once near the root of the app:
+
+```tsx
+import { Toaster, TooltipProvider } from "@nils/ui";
+
+<TooltipProvider>
+  <App />
+  <Toaster />
+</TooltipProvider>
+```
+
+`Toaster` is required for `toast()` to show anything. `TooltipProvider` makes neighbouring tooltips open instantly once one is showing. Everything else works standalone.
 
 ```tsx
 import { Button } from "@nils/ui";
@@ -59,8 +70,32 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 <!-- components:start -->
 | Component | Import | Use it for |
 | --- | --- | --- |
+| **Controls** | | |
 | Button | `Button`, `buttonClassName` | Every pressable action. One `primary` per view. |
 | Kbd | `Kbd` | Keyboard shortcut hints. |
+| Field | `Field`, `Form`, `FieldRoot`, `FieldLabel`, `FieldDescription`, `FieldError` | Label + control + help/error for every form control; `Form` for native and server validation. |
+| Input | `Input` | Single-line text, three sizes, with leading/trailing icons, units or hints. |
+| Textarea | `Textarea` | Multi-line text; `autoGrow` to grow with content. |
+| Checkbox | `Checkbox` | On/off that applies on save, multi-select, indeterminate parents. |
+| Radio group | `RadioGroup`, `Radio` | One of 2–5 options that should all stay visible. |
+| Switch | `Switch` | A setting that takes effect immediately. |
+| Segmented control | `SegmentedControl` | One of 2–5 short options side by side (view, range); the selection slides. |
+| Select | `Select`, `SelectRoot`, `SelectTrigger`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectSeparator` | Pick one value from a longer list in a popup. |
+| **Overlays** | | |
+| Popover | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`, `PopoverClose` | A small floating panel for extra detail or a few quick controls. |
+| Menu | `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem`, `MenuLinkItem`, `MenuCheckboxItem`, `MenuRadioGroup`, `MenuRadioItem`, `MenuGroup`, `MenuLabel`, `MenuSeparator`, `MenuSub`, `MenuSubTrigger`, `MenuSubContent` | Dropdown lists of actions from a button. Not for picking form values (that's Select). |
+| ContextMenu | `ContextMenu`, `ContextMenuTrigger`, `ContextMenuContent` (+ Menu item parts) | Right-click shortcuts on rows, cards, canvas objects. |
+| Dialog | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose` | Modal panel for one short, focused task. |
+| ConfirmDialog | `ConfirmDialog` | "Are you sure?" before destructive or hard-to-undo actions. Async-aware. |
+| Tooltip | `Tooltip`, `TooltipProvider` | Naming icon-only controls, with an optional shortcut. |
+| Toast | `Toaster`, `toast` | Short notices that something happened; `toast.success/error/warning/promise`. Mount one `<Toaster />`. |
+| **Layout** | | |
+| Panel | `Panel` | Grouping related content with a hairline edge, title row and footer. Use instead of cards. |
+| List | `List`, `ListItem` | Flat hairline-separated rows; whole-row links/buttons, `selected` for the current row. |
+| Status | `Status`, `StatusDot` | Status as dot + word. The only place status colour appears. |
+| Separator | `Separator` | A hairline between groups, optionally labelled; vertical in toolbars. |
+| EmptyState | `EmptyState` | What an empty list/page shows: the fact, one sentence, the next action. |
+| CommandPalette | `CommandPalette`, `useCommandPaletteShortcut` | The ⌘K command list. One per app. |
 <!-- components:end -->
 
 ## Rules
@@ -75,7 +110,7 @@ These are what separates UI that belongs to this library from UI that merely imp
 
 ### Use tokens
 
-4. **Only token colours.** `bg-surface`, `bg-panel`, `bg-hover`, `bg-active`, `border-line`, `border-line-strong`, `text-ink`, `text-ink-2`, `text-ink-3`, `bg-accent`, `text-ok`, `text-warn`, `text-err`. Never `gray-*`, `zinc-*`, `slate-*`, `white`, `black`, or hex values in components.
+4. **Only token colours.** `bg-surface`, `bg-panel`, `bg-raised`, `bg-hover`, `bg-active`, `border-line`, `border-line-strong`, `text-ink`, `text-ink-2`, `text-ink-3`, `bg-accent`, `text-ok`, `text-warn`, `text-err`. Never `gray-*`, `zinc-*`, `slate-*`, `white`, `black`, or hex values in components.
 5. **One accent per view.** At most one `variant="primary"` button visible at a time. Blue also marks the current location and links — nothing else.
 6. **Status is a dot plus a word.** Never a coloured row, coloured badge background, or coloured paragraph.
 7. **Corners:** `rounded-ui` (4px) for controls, `rounded-box` (6px) for floating surfaces and panels. Never `rounded-lg`, `rounded-xl`, `rounded-2xl`, or pill-shaped buttons.

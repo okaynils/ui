@@ -6,7 +6,6 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
-  treeshake: true,
   external: ["react", "react-dom", "@base-ui/react"],
   banner: { js: '"use client";' },
 });

@@ -6,7 +6,7 @@
 
 /** Popover, menu, select list, tooltip-sized surfaces. Grows from its trigger. */
 export const popupSurface = [
-  "rounded-box bg-surface text-ink shadow-pop outline-none",
+  "rounded-box bg-raised text-ink shadow-pop outline-none",
   "origin-(--transform-origin) transition-[opacity,scale] duration-150 ease-snap",
   "data-starting-style:scale-96 data-starting-style:opacity-0",
   "data-ending-style:scale-96 data-ending-style:opacity-0 data-ending-style:duration-100",

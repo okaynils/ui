@@ -30,6 +30,7 @@ White first. Greys recede. One blue means "do this" or "you are here". Status co
 | `--ui-panel` | `bg-panel` | `#fafafa` | `#141415` | Sidebars, recessed areas, code |
 | `--ui-hover` | `bg-hover` | `#f4f4f5` | `#1c1c1e` | Hover fill |
 | `--ui-active` | `bg-active` | `#ececee` | `#242427` | Pressed / selected fill |
+| `--ui-raised` | `bg-raised` | `#ffffff` | `#18181a` | Floating layers: popovers, menus, dialogs, toasts |
 | `--ui-line` | `border-line` | `#ededef` | `#222225` | Row dividers (whisper) |
 | `--ui-line-strong` | `border-line-strong` | `#dcdcdf` | `#323236` | Control outlines, structural edges |
 | `--ui-ink` | `text-ink` | `#18181a` | `#ededee` | Primary text. Never `#000` |
@@ -124,6 +125,8 @@ Motion is a UX aid: it shows where something came from, confirms that something 
 | Popover / menu / select | 150ms in, 100ms out | opacity + `scale(0.96 → 1)` from `--transform-origin` (the trigger) |
 | Dialog | 180ms in, 120ms out | opacity + `scale(0.97 → 1)`; scrim fades |
 | Toast | 200ms in, 150ms out | slide 8px + opacity |
+| Segmented control indicator | 180ms | slides to the chosen segment; no animation on first render |
+| Command palette | none in, 100ms out | opens instantly (⌘K is a high-frequency action) |
 | Switch thumb, checkbox mark | 120–150ms | transform / stroke |
 
 Rules:

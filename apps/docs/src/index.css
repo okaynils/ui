@@ -2,6 +2,8 @@
 @import "@nils/ui/styles.css";
 
 @source "../../../packages/ui/src";
+/* Live examples are compiled at runtime from the markdown, so Tailwind must scan it. */
+@source "../../../packages/ui/docs";
 
 /* sugar-high: near-monochrome, the accent only on keywords. */
 :root {
