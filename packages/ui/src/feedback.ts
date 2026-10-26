@@ -1,2 +1,19 @@
-// Feedback: owned by the feedback work. Re-exported from index.ts.
-export {};
+// Feedback & content. Re-exported from index.ts.
+export { Callout } from "./components/callout";
+export type { CalloutProps, CalloutTone } from "./components/callout";
+export { Badge } from "./components/badge";
+export type { BadgeProps } from "./components/badge";
+export { Avatar, AvatarGroup } from "./components/avatar";
+export type { AvatarProps, AvatarGroupProps, AvatarSize } from "./components/avatar";
+export { Accordion, AccordionItem } from "./components/accordion";
+export type { AccordionProps, AccordionItemProps } from "./components/accordion";
+export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./components/collapsible";
+export type { CollapsibleProps, CollapsibleTriggerProps, CollapsibleContentProps } from "./components/collapsible";
+export { Spinner } from "./components/spinner";
+export type { SpinnerProps, SpinnerSize } from "./components/spinner";
+export { CopyButton } from "./components/copy-button";
+export type { CopyButtonProps } from "./components/copy-button";
+export { Code, CodeBlock } from "./components/code";
+export type { CodeProps, CodeBlockProps } from "./components/code";
+export { HoverCard, HoverCardTrigger, HoverCardContent } from "./components/hover-card";
+export type { HoverCardProps, HoverCardTriggerProps, HoverCardContentProps } from "./components/hover-card";

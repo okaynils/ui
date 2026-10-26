@@ -2,6 +2,7 @@ import { Button as BaseButton } from "@base-ui/react/button";
 import type * as React from "react";
 import { cn } from "../lib/cn";
 import { Kbd } from "./kbd";
+import { Spinner } from "./spinner";
 
 export type ButtonVariant = "primary" | "solid" | "outline" | "ghost" | "danger";
 export type ButtonSize = "sm" | "md" | "lg";
@@ -86,7 +87,7 @@ export function Button({
       className={(state) =>
         cn(
           buttonClassName({ variant, size, icon }),
-          loading && "pointer-events-none opacity-100",
+          loading && "pointer-events-none opacity-100 disabled:opacity-100 data-disabled:opacity-100",
           typeof className === "function" ? className(state) : className,
         )
       }
@@ -95,7 +96,7 @@ export function Button({
         <>
           <span className="invisible inline-flex items-center gap-[inherit]">{children}</span>
           <span className="absolute inset-0 grid place-items-center">
-            <Spinner />
+            <Spinner label="" />
           </span>
         </>
       ) : (
@@ -105,14 +106,5 @@ export function Button({
         <Kbd className={cn("-mr-1", variant === "primary" && "bg-white/15 text-on-accent/80 shadow-none")}>{shortcut}</Kbd>
       ) : null}
     </BaseButton>
-  );
-}
-
-function Spinner() {
-  return (
-    <svg viewBox="0 0 16 16" className="size-3.5 animate-spin [animation-duration:600ms]" aria-hidden="true">
-      <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" strokeOpacity="0.25" strokeWidth="1.5" />
-      <path d="M14.5 8A6.5 6.5 0 0 0 8 1.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
   );
 }

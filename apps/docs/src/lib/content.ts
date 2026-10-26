@@ -9,6 +9,8 @@ export interface DocMeta {
   description: string;
   group: string;
   order: number;
+  /** "wide" widens the content column (showcases, big tables). */
+  width: "prose" | "wide";
 }
 
 export interface DocPage extends DocMeta {
@@ -50,6 +52,7 @@ export function toPage(file: string, source: string): DocPage {
     description: data.description ?? "",
     group: data.group ?? "Start",
     order: Number(data.order ?? 100),
+    width: data.width === "wide" ? "wide" : "prose",
     body,
     source,
   };

@@ -75,7 +75,7 @@ const components: Components = {
     const lang = classes.find((c) => c.startsWith("language-"))?.slice("language-".length);
     const meta = (code.data as { meta?: string } | undefined)?.meta ?? "";
     const text = code.children.map((c) => ("value" in c ? c.value : "")).join("").replace(/\n$/, "");
-    if (/\blive\b/.test(meta)) return <Example code={text} />;
+    if (/\blive\b/.test(meta)) return <Example code={text} bleed={/\bbleed\b/.test(meta)} />;
     return <CodeBlock code={text} lang={lang} standalone />;
   },
   code: ({ children }) => (

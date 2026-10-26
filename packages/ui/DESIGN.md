@@ -128,11 +128,17 @@ Motion is a UX aid: it shows where something came from, confirms that something 
 | Segmented control indicator | 180ms | slides to the chosen segment; no animation on first render |
 | Command palette | none in, 100ms out | opens instantly (⌘K is a high-frequency action) |
 | Switch thumb, checkbox mark | 120–150ms | transform / stroke |
+| Sheet | 200ms in, 150ms out | slide from edge with `ease-drawer`; scrim fades, follows swipe 1:1 |
+| Accordion / collapsible | 180ms in, 120ms out | content height; caret rotates in 150ms |
+| Tabs indicator | 180ms | slides to the selected tab; panels switch instantly |
+| Number roll | 180ms | changed digits only; direction follows change |
+| Copy confirmation | 150ms | icon crossfade + scale, holds for 1.2s |
+| Indeterminate progress / spinner | continuous | progress segment slides; spinner rotates in 600ms |
 
 Rules:
 
 - **Never longer than 200ms** for anything the user triggered. Exits are faster than entrances.
-- **Never `ease-in`** on something that is appearing — it hesitates exactly when the eye is on it. Never `linear` except for spinners.
+- **Never `ease-in`** on something that is appearing — it hesitates exactly when the eye is on it. Never `linear` except for spinners and indeterminate progress.
 - **Scale from the trigger**, not from the centre: popovers use `origin-(--transform-origin)`.
 - **Don't animate from `scale(0)`.** Start at 0.96–0.97 with opacity; nothing in the real world appears from nothing.
 - **No animation on high-frequency keyboard actions** (opening the command palette with ⌘K, moving through a list with arrows). Speed beats choreography there.

@@ -81,6 +81,13 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | Switch | `Switch` | A setting that takes effect immediately. |
 | Segmented control | `SegmentedControl` | One of 2–5 short options side by side (view, range); the selection slides. |
 | Select | `Select`, `SelectRoot`, `SelectTrigger`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectSeparator` | Pick one value from a longer list in a popup. |
+| Combobox | `Combobox` | Searchable single or multiple selection; `multiple creatable` for tag entry. |
+| NumberField | `NumberField` | Numeric quantities with keyboard stepping, units and a scrubbable label. |
+| Slider | `Slider` | A bounded quantity or range, with one or more thumbs. |
+| Calendar | `Calendar` | Pick a day or date range with keyboard navigation. |
+| DatePicker | `DatePicker` | Type an ISO date or pick one from a calendar. |
+| OTPField | `OTPField` | One-time codes with paste, autofill and visual grouping. |
+| FileDrop | `FileDrop` | Browse or drop files; type, size and count limits with rejection reasons. |
 | **Overlays** | | |
 | Popover | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`, `PopoverClose` | A small floating panel for extra detail or a few quick controls. |
 | Menu | `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem`, `MenuLinkItem`, `MenuCheckboxItem`, `MenuRadioGroup`, `MenuRadioItem`, `MenuGroup`, `MenuLabel`, `MenuSeparator`, `MenuSub`, `MenuSubTrigger`, `MenuSubContent` | Dropdown lists of actions from a button. Not for picking form values (that's Select). |
@@ -96,7 +103,36 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | Separator | `Separator` | A hairline between groups, optionally labelled; vertical in toolbars. |
 | EmptyState | `EmptyState` | What an empty list/page shows: the fact, one sentence, the next action. |
 | CommandPalette | `CommandPalette`, `useCommandPaletteShortcut` | The ⌘K command list. One per app. |
+| **Data** | | |
+| Table | `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell` | Console table parts for custom cells and structure. |
+| DataTable | `DataTable` | Rows and columns with sorting, selection, loading and change flashes. |
+| NumberRoll | `NumberRoll` | Numbers whose changed digits roll when updated. |
+| Stat | `Stat`, `StatGroup` | Dashboard metrics with rolling values and directional deltas. |
+| KeyValue | `KeyValue`, `KeyValueItem` | Properties of one thing as a description list. |
+| Tabs | `Tabs`, `TabsList`, `Tab`, `TabsPanel` | Switch between related views; sliding underline, instant panels. |
+| Progress | `Progress`, `Meter` | Task completion or a measured quantity; optional discrete segments. |
+| Skeleton | `Skeleton` | Loading placeholders delayed 300ms to avoid flashing on fast loads. |
+| **Feedback** | | |
+| Callout | `Callout` | An inline note or page banner; tone colours only the dot. |
+| Badge | `Badge` | Counts, versions and tags as a small hairline label. |
+| Avatar | `Avatar`, `AvatarGroup` | People and organisations with initials fallback. |
+| Accordion | `Accordion`, `AccordionItem` | Stacked sections that expand in place. |
+| Collapsible | `Collapsible`, `CollapsibleTrigger`, `CollapsibleContent` | One region of optional detail, such as advanced settings. |
+| Spinner | `Spinner` | Short waits beside a word. Use `Button loading` for actions. |
+| CopyButton | `CopyButton` | Copy a value with an icon-to-check confirmation. |
+| Code | `Code`, `CodeBlock` | Inline IDs and snippet blocks with filename, line numbers and copy. |
+| HoverCard | `HoverCard`, `HoverCardTrigger`, `HoverCardContent` | Non-essential previews of links, people or IDs. |
+| **Shell** | | |
+| AppShell | `AppShell`, `SidebarTrigger` | Sidebar and main column; navigation becomes a sheet below 576px of shell width. Give it a height. |
+| Sidebar | `Sidebar`, `SidebarHeader`, `SidebarSection`, `SidebarItem`, `SidebarFooter` | App navigation with sections, counts and one active item. |
+| TopBar | `TopBar` | Sticky 48px bar with breadcrumbs and actions. |
+| Breadcrumbs | `Breadcrumbs` | Location trail; long trails fold into a menu. |
+| PageHeader | `PageHeader` | Page title, description, actions and metadata. |
+| Toolbar | `Toolbar`, `ToolbarGroup`, `ToolbarButton`, `ToolbarToggle`, `ToolbarSeparator` | Related controls with one tab stop and arrow navigation. |
+| Sheet | `Sheet`, `SheetTrigger`, `SheetContent`, `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetBody`, `SheetFooter`, `SheetClose` | Side panel for details or editing; swipe to dismiss. |
 <!-- components:end -->
+
+For a complete console screen composed from these parts, read `docs/examples/console.md` ([Console showcase](/examples/console) on the docs site). For a full-window app, use `<AppShell className="h-dvh">`; for a contained preview, give its parent a height.
 
 ## Rules
 
@@ -143,7 +179,7 @@ Check your work against this list:
 - [ ] At most one primary button per view.
 - [ ] Icon-only buttons have `aria-label`.
 - [ ] Inputs have a visible label (`Field`) or an `aria-label`.
-- [ ] Nothing animates longer than 200ms; no custom easing except `ease-snap` / `ease-drawer`.
+- [ ] User-triggered transitions finish within 200ms; the passive change flash fades over 1s (see DESIGN.md).
 - [ ] Both `data-theme="light"` and `"dark"` look right (you used tokens, so they should).
 
 ## Contributing to the library itself

@@ -34,3 +34,17 @@ export type {
   SelectItemProps,
   SelectGroupProps,
 } from "./components/select";
+export { Combobox } from "./components/combobox";
+export type { ComboboxProps, ComboboxSingleProps, ComboboxMultipleProps, ComboboxItem, ComboboxSize } from "./components/combobox";
+export { NumberField } from "./components/number-field";
+export type { NumberFieldProps, NumberFieldSize } from "./components/number-field";
+export { Slider } from "./components/slider";
+export type { SliderProps } from "./components/slider";
+export { Calendar } from "./components/calendar";
+export type { CalendarProps, CalendarSingleProps, CalendarRangeProps, DateRange } from "./components/calendar";
+export { DatePicker, formatISODate, parseISODate } from "./components/date-picker";
+export type { DatePickerProps, DatePickerSize } from "./components/date-picker";
+export { OTPField } from "./components/otp-field";
+export type { OTPFieldProps } from "./components/otp-field";
+export { FileDrop, formatBytes } from "./components/file-drop";
+export type { FileDropProps, FileRejection } from "./components/file-drop";

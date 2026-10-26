@@ -1,4 +1,4 @@
-import { Component, useMemo, type ReactNode } from "react";
+import { Component, useMemo, useState, type ReactNode } from "react";
 import { highlight } from "sugar-high";
 import { compile } from "../lib/live";
 import { CopyButton } from "./CopyButton";
@@ -21,7 +21,7 @@ function ErrorText({ error }: { error: Error }) {
 }
 
 /** A ```tsx live block: the rendered result on a stage, the code under it. */
-export function Example({ code }: { code: string }) {
+export function Example({ code, bleed = false }: { code: string; bleed?: boolean }) {
   const result = useMemo(() => {
     try {
       return { Component: compile(code) };
@@ -32,7 +32,7 @@ export function Example({ code }: { code: string }) {
 
   return (
     <figure className="not-prose my-5 overflow-hidden rounded-box shadow-[0_0_0_1px_var(--ui-line-strong)]">
-      <div className="stage flex min-h-36 flex-wrap items-center justify-center gap-3 px-6 py-10">
+      <div className={bleed ? "bg-surface" : "stage flex min-h-36 flex-wrap items-center justify-center gap-3 px-6 py-10"}>
         {"error" in result && result.error ? (
           <ErrorText error={result.error} />
         ) : (
@@ -44,7 +44,11 @@ export function Example({ code }: { code: string }) {
   );
 }
 
+const COLLAPSE_AFTER = 40;
+
 export function CodeBlock({ code, lang, standalone = false }: { code: string; lang?: string; standalone?: boolean }) {
+  const lines = code.split("\n").length;
+  const [expanded, setExpanded] = useState(lines <= COLLAPSE_AFTER);
   const html = useMemo(() => (lang && /^(tsx?|jsx?|js|ts|css)$/.test(lang) ? highlight(code) : escape(code)), [code, lang]);
   return (
     <div
@@ -56,9 +60,19 @@ export function CodeBlock({ code, lang, standalone = false }: { code: string; la
     >
       {lang ? <span className="ui-label absolute top-2 right-11 select-none opacity-0 transition-opacity group-hover:opacity-100">{lang}</span> : null}
       <CopyButton text={code} label="Copy code" className="absolute top-1.5 right-1.5" />
-      <pre className="overflow-x-auto px-4 py-3.5 text-[12.5px] leading-[20px]">
+      <pre className={"overflow-x-auto px-4 py-3.5 text-[12.5px] leading-[20px]" + (expanded ? "" : " max-h-72 overflow-y-hidden")}>
         <code dangerouslySetInnerHTML={{ __html: html }} />
       </pre>
+      {expanded ? null : (
+        <div className="absolute inset-x-0 bottom-0 flex h-24 items-end justify-center bg-linear-to-t from-panel to-transparent pb-3">
+          <button
+            onClick={() => setExpanded(true)}
+            className="ui-press rounded-ui bg-raised px-2.5 py-1 font-mono text-xs text-ink-2 shadow-pop hover:text-ink"
+          >
+            Show all {lines} lines
+          </button>
+        </div>
+      )}
     </div>
   );
 }

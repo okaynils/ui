@@ -11,7 +11,7 @@ export function App() {
   const page = pageFor(path);
   return (
     <TooltipProvider>
-    <Shell>
+    <Shell wide={page?.width === "wide"}>
       {path === "/" ? (
         <Home />
       ) : page ? (

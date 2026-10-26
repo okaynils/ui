@@ -36,7 +36,7 @@ function useStored(key: string, initial: string) {
   return [value, setValue] as const;
 }
 
-export function Shell({ children }: { children: ReactNode }) {
+export function Shell({ children, wide = false }: { children: ReactNode; wide?: boolean }) {
   const path = usePath();
   const [theme, setTheme] = useStored("theme", document.documentElement.dataset.theme ?? "light");
   const [accent, setAccent] = useStored("accent", "Cobalt");
@@ -123,7 +123,7 @@ export function Shell({ children }: { children: ReactNode }) {
             {theme === "dark" ? <SunIcon /> : <MoonIcon />}
           </Button>
         </header>
-        <main className="mx-auto max-w-[760px] px-5 pt-10 pb-32 md:px-10">{children}</main>
+        <main className={cn("mx-auto px-5 pt-10 pb-32 md:px-10", wide ? "max-w-[1240px]" : "max-w-[760px]")}>{children}</main>
       </div>
     </div>
   );

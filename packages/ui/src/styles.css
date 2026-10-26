@@ -147,6 +147,7 @@
   code, kbd, samp, pre {
     font-family: var(--font-mono);
     font-feature-settings: "zero";
+    font-variant-ligatures: none;
   }
 }
 

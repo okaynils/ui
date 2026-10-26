@@ -35,6 +35,7 @@ function agentDocs(): Plugin {
   };
   return {
     name: "agent-docs",
+    enforce: "post",
     configureServer(server) {
       server.watcher.add([join(UI, "AGENTS.md"), join(UI, "DESIGN.md"), join(UI, "docs")]);
       server.middlewares.use((req, res, next) => {
@@ -45,10 +46,19 @@ function agentDocs(): Plugin {
         res.end(body);
       });
     },
-    generateBundle() {
+    generateBundle(_, bundle) {
       for (const [path, source] of raw()) {
         this.emitFile({ type: "asset", fileName: path.slice(1), source });
       }
+      // Static hosts (GitHub Pages) serve real files only. Give every page its
+      // own index.html so deep links load with a 200, and keep a 404.html
+      // fallback for anything else.
+      const index = bundle["index.html"];
+      if (!index || index.type !== "asset") return;
+      for (const page of collect()) {
+        this.emitFile({ type: "asset", fileName: `${page.route.slice(1)}/index.html`, source: index.source });
+      }
+      this.emitFile({ type: "asset", fileName: "404.html", source: index.source });
     },
   };
 }
