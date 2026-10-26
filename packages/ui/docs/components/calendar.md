@@ -39,12 +39,12 @@ export default function Example() {
 The first click sets the start, the second the end. While choosing the end, the span follows the pointer.
 
 ```tsx live
-import { Calendar } from "@nils/ui";
+import { Calendar, type DateRange } from "@nils/ui";
 import { useState } from "react";
 
 export default function Example() {
-  const [range, setRange] = useState({ from: null, to: null });
-  const fmt = (d) => (d ? d.toLocaleDateString(undefined, { month: "short", day: "numeric" }) : "…");
+  const [range, setRange] = useState<DateRange>({ from: null, to: null });
+  const fmt = (d: Date | null) => (d ? d.toLocaleDateString(undefined, { month: "short", day: "numeric" }) : "…");
   return (
     <div className="flex flex-col items-center gap-3">
       <Calendar mode="range" value={range} onValueChange={setRange} />

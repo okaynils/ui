@@ -130,9 +130,32 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | PageHeader | `PageHeader` | Page title, description, actions and metadata. |
 | Toolbar | `Toolbar`, `ToolbarGroup`, `ToolbarButton`, `ToolbarToggle`, `ToolbarSeparator` | Related controls with one tab stop and arrow navigation. |
 | Sheet | `Sheet`, `SheetTrigger`, `SheetContent`, `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetBody`, `SheetFooter`, `SheetClose` | Side panel for details or editing; swipe to dismiss. |
+| **Gimmicks** | | |
+| NowPlaying | `NowPlaying` | Track artwork, title, artist and playback state from app-supplied listening data. |
+| LocalTime | `LocalTime` | A timezone clock with optional working hours and visitor time difference. |
+| Availability | `Availability` | A compact availability status with optional explanation. |
+| ActivityCalendar | `ActivityCalendar` | Daily activity as a contribution-style calendar grid. |
+| CurrentlyReading | `CurrentlyReading` | Book cover, author, progress and a personal note. |
+| WeatherBadge | `WeatherBadge` | A compact weather report from app-supplied conditions. |
+| LinkPreview | `LinkPreview` | A bookmark preview with supplied title, image, favicon and annotation. |
+| Webring | `Webring` | Previous, random and next links through a community of sites. |
+| UptimeStrip | `UptimeStrip` | Daily service health with incident detail. |
+| ReleaseBadge | `ReleaseBadge` | A version label with release date and change details. |
+| Countdown | `Countdown` | Time remaining until an event, with an explicit finished state. |
+| FocusTimer | `FocusTimer` | A local focus and break timer with pause and reset. |
+| Waveform | `Waveform` | An audio waveform with elapsed time and seeking. |
+| KeystrokeDisplay | `KeystrokeDisplay` | Keyboard input displayed as shortcut keys for demos and practice. |
+| BeforeAfter | `BeforeAfter` | An accessible draggable divider comparing two images. |
+| Guestbook | `Guestbook` | A message form and supplied entries; the app handles storage and moderation. |
+| VisitorCounter | `VisitorCounter` | A compact counter with optional mechanical digit treatment; the app supplies the count. |
+| MiniMap | `MiniMap` | A compact location map with supplied markers; no mapping service required. |
 <!-- components:end -->
 
 For a complete console screen composed from these parts, read `docs/examples/console.md` ([Console showcase](/examples/console) on the docs site). For a full-window app, use `<AppShell className="h-dvh">`; for a contained preview, give its parent a height.
+
+## Gimmicks
+
+These optional widgets cover personal sites and specialised screens. Read their component docs before using them. The consuming app supplies service data, authentication, storage and moderation; widgets work with local data in the examples. They follow the same tokens, keyboard access and motion rules as the core components.
 
 ## Rules
 

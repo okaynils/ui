@@ -92,6 +92,8 @@ Rhythm: 4–8px inside a control group, 12–16px between related blocks, 32–4
 | `--radius-box` | `rounded-box` | 6px | Popovers, menus, dialogs, panels, code blocks |
 | — | `rounded-full` | — | Only status dots, switch tracks |
 
+Avatar and avatar-group overflow chips are rounded squares with `rounded-ui` (4px). Album artwork follows the same corners; book covers may keep their rectangular aspect ratio.
+
 No `rounded-lg`/`rounded-xl`/pill buttons. Nested corners stay concentric: inner radius = outer radius − padding. A highlighted item inside a 6px menu with 4px padding is `rounded-[2px]`.
 
 ## Elevation
@@ -158,6 +160,15 @@ A few small touches carry the library's personality. Each one shows **what chang
 | Scrub | `NumberField` | Drag horizontally on the label to change the value; the cursor becomes `ew-resize`. Direct manipulation, no animation needed. |
 
 The 1s flash is the only duration above 200ms in the library. It's allowed because it fades out *after* the change has already landed, so nothing waits on it.
+
+## Gimmicks
+
+Optional widgets use the same visual contract as the core library. The niche purpose is their personality: a listening badge, local clock, webring or visitor counter needs no second palette, ornamental frame or continuous decorative motion.
+
+- Supplied external data stays separate from the widget. Authentication, service requests, storage and moderation belong to the consuming app.
+- Activity intensity is encoded with neutral tone. In an uptime timeline, narrow status marks may carry `ok`/`warn`/`err`; pair them with a text summary and accessible date/status details. This is a compact data visualisation, not a coloured surface.
+- Clocks, countdowns and progress show real supplied or elapsed values. Do not invent listening activity, traffic or live service health.
+- Changing digits may use `NumberRoll`; its motion stops under reduced motion. Ambient clocks and keyboard hints update without choreography.
 
 ## Icons
 
