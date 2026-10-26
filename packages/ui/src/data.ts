@@ -1,4 +1,3 @@
-// Data: owned by the data work. Re-exported from index.ts.
 export { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell } from "./components/table";
 export type {
   TableProps,

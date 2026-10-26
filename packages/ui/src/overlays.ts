@@ -1,4 +1,3 @@
-// Overlays: owned by the overlays work. Re-exported from index.ts.
 export { Popover, PopoverTrigger, PopoverContent, PopoverTitle, PopoverDescription, PopoverClose } from "./components/popover";
 export type {
   PopoverProps,

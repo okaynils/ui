@@ -1,4 +1,3 @@
-// Layout: owned by the layout work. Re-exported from index.ts.
 export { Panel } from "./components/panel";
 export type { PanelProps } from "./components/panel";
 export { Separator } from "./components/separator";
