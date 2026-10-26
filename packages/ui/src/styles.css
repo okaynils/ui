@@ -175,6 +175,20 @@
   color: var(--ui-ink-3);
 }
 
+/*
+ * Change flash: re-add the class (or re-key the element) when a value updates
+ * in place. The wash is visible on the first frame, then fades — so it marks
+ * the change without ever delaying it.
+ */
+@keyframes ui-flash {
+  from { background-color: var(--ui-accent-tint); }
+  to { background-color: transparent; }
+}
+
+@utility ui-flash {
+  animation: ui-flash 1s var(--ease-snap);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     transition-duration: 0ms !important;

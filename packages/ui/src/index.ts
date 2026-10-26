@@ -8,3 +8,6 @@ export type { KbdProps } from "./components/kbd";
 export * from "./controls";
 export * from "./overlays";
 export * from "./layout";
+export * from "./data";
+export * from "./feedback";
+export * from "./shell";

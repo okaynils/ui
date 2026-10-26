@@ -140,6 +140,19 @@ Rules:
 - **Wide things don't scale.** Rows and panels respond with tone (background), not transform; scaling a 600px row by 3% is a distortion.
 - **Respect `prefers-reduced-motion`.** `styles.css` zeroes durations globally.
 
+### Signature moments
+
+A few small touches carry the library's personality. Each one shows **what changed**, not that something is clever. There are only these, and new ones need a reason as good as theirs.
+
+| Moment | Where | What happens |
+| --- | --- | --- |
+| Rolling numbers | `NumberRoll`, `Stat` | When a value changes, only the digits that changed roll vertically to the new digit (≤ 200ms, `ease-snap`). Direction follows the change: up for increase, down for decrease. |
+| Change flash | `Table` rows, `ui-flash` | Something that updated in place gets a brief `accent-tint` wash that fades out over 1s. It never blocks, never moves layout, and isn't replayed on first render. |
+| Copy confirm | `CopyButton`, `Code` | The copy icon crossfades and scales into a check (150ms), holds for 1.2s, then returns. |
+| Scrub | `NumberField` | Drag horizontally on the label to change the value; the cursor becomes `ew-resize`. Direct manipulation, no animation needed. |
+
+The 1s flash is the only duration above 200ms in the library. It's allowed because it fades out *after* the change has already landed, so nothing waits on it.
+
 ## Icons
 
 [Phosphor](https://phosphoricons.com) (`@phosphor-icons/react`), `regular` weight, 16px (`size-4`) in controls, 14px (`size-3.5`) in dense rows. `bold` only for a check confirming an action. Icons are `text-ink-2` beside text, `text-ink` alone. An icon-only button always has an `aria-label` and usually a `Tooltip`.

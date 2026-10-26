@@ -20,7 +20,7 @@ export interface DocPage extends DocMeta {
   source: string;
 }
 
-export const GROUP_ORDER = ["Start", "Controls", "Overlays", "Layout"];
+export const GROUP_ORDER = ["Start", "Examples", "Controls", "Data", "Feedback", "Overlays", "Layout", "Shell"];
 
 export function parseFrontmatter(source: string): { data: Record<string, string>; body: string } {
   const match = /^---\n([\s\S]*?)\n---\n?/.exec(source);
