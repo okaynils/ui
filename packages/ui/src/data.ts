@@ -21,3 +21,7 @@ export { Progress, Meter } from "./components/progress";
 export type { ProgressProps, MeterProps, BarTone } from "./components/progress";
 export { Skeleton } from "./components/skeleton";
 export type { SkeletonProps } from "./components/skeleton";
+export * from "./components/pagination";
+export * from "./components/tree";
+export * from "./components/sparkline";
+export * from "./components/timeline";

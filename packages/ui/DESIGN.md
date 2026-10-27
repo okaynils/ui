@@ -136,6 +136,8 @@ Motion is a UX aid: it shows where something came from, confirms that something 
 | Number roll | 180ms | changed digits only; direction follows change |
 | Copy confirmation | 150ms | icon crossfade + scale, holds for 1.2s |
 | Indeterminate progress / spinner | continuous | progress segment slides; spinner rotates in 600ms |
+| Banner dismiss | 150ms | height + opacity collapse, then it's gone |
+| Scrollbar | instant in, 150ms out | overlay thumb appears on hover/scroll, fades when idle |
 
 Rules:
 

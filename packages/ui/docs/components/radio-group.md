@@ -82,7 +82,7 @@ Extends Base UI's [RadioGroup](https://base-ui.com/react/components/radio-group)
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `label` | `ReactNode` | — | Group label, rendered as a `ui-label`, linked with `aria-labelledby`. |
+| `label` | `ReactNode` | — | Group label, styled like a `Field` label and linked with `aria-labelledby`. |
 | `value` / `defaultValue` | `Value` | — | Controlled / uncontrolled selection. |
 | `onValueChange` | `(value: Value, details) => void` | — | Fires on change. |
 | `orientation` | `"vertical" \| "horizontal"` | `"vertical"` | Column or wrapping row. |

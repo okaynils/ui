@@ -73,12 +73,17 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | **Controls** | | |
 | Button | `Button`, `buttonClassName` | Every pressable action. One `primary` per view. |
 | Kbd | `Kbd` | Keyboard shortcut hints. |
+| Link | `Link` | Inline text link, always underlined; `quiet` for ink links, `external` adds ↗ and a new tab; `render` for router links. |
 | Field | `Field`, `Form`, `FieldRoot`, `FieldLabel`, `FieldDescription`, `FieldError` | Label + control + help/error for every form control; `Form` for native and server validation. |
 | Input | `Input` | Single-line text, three sizes, with leading/trailing icons, units or hints. |
 | Textarea | `Textarea` | Multi-line text; `autoGrow` to grow with content. |
+| SearchField | `SearchField` | Search input with magnifier, clear button, Escape to clear and an optional page-wide focus shortcut. |
+| PasswordInput | `PasswordInput` | Password field with a show/hide toggle that keeps the cursor, a Caps Lock warning, and current/new autocomplete. |
 | Checkbox | `Checkbox` | On/off that applies on save, multi-select, indeterminate parents. |
 | Radio group | `RadioGroup`, `Radio` | One of 2–5 options that should all stay visible. |
 | Switch | `Switch` | A setting that takes effect immediately. |
+| CheckboxGroup | `CheckboxGroup`, `Fieldset` | Several checkboxes with one array value and optional "select all"; Fieldset names any group of controls. |
+| Toggle | `Toggle`, `ToggleGroup` | A button that stays pressed (bold, pin, mute); ToggleGroup shares one value across several, single or multiple. |
 | Segmented control | `SegmentedControl` | One of 2–5 short options side by side (view, range); the selection slides. |
 | Select | `Select`, `SelectRoot`, `SelectTrigger`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectSeparator` | Pick one value from a longer list in a popup. |
 | Combobox | `Combobox` | Searchable single or multiple selection; `multiple creatable` for tag entry. |
@@ -103,6 +108,7 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | Separator | `Separator` | A hairline between groups, optionally labelled; vertical in toolbars. |
 | EmptyState | `EmptyState` | What an empty list/page shows: the fact, one sentence, the next action. |
 | CommandPalette | `CommandPalette`, `useCommandPaletteShortcut` | The ⌘K command list. One per app. |
+| ScrollArea | `ScrollArea` | Scroll region with thin overlay scrollbars and edge fades where more content is hidden; vertical, horizontal or both. |
 | **Data** | | |
 | Table | `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell` | Console table parts for custom cells and structure. |
 | DataTable | `DataTable` | Rows and columns with sorting, selection, loading and change flashes. |
@@ -112,8 +118,12 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | Tabs | `Tabs`, `TabsList`, `Tab`, `TabsPanel` | Switch between related views; sliding underline, instant panels. |
 | Progress | `Progress`, `Meter` | Task completion or a measured quantity; optional discrete segments. |
 | Skeleton | `Skeleton` | Loading placeholders delayed 300ms to avoid flashing on fast loads. |
+| Pagination | `Pagination` | Page navigation for tables and lists: buttons or real links (`getHref`), ellipses, accent current page; `compact` "Page 3 of 12". |
+| Timeline | `Timeline` | Vertical activity/audit log with mono times, day headers and a change flash on new entries. |
+| Tree | `Tree` | File/resource explorer: expandable branches, single selection, full WAI-ARIA tree keyboard model. |
+| Sparkline | `Sparkline` | Word-sized line, area or bar trend for stats and table cells; gaps stay gaps, hover readout. |
 | **Feedback** | | |
-| Callout | `Callout` | An inline note or page banner; tone colours only the dot. |
+| Callout | `Callout` | An inline note in the page; tone colours only the dot. Page-wide announcements are `Banner`. |
 | Badge | `Badge` | Counts, versions and tags as a small hairline label. |
 | Avatar | `Avatar`, `AvatarGroup` | People and organisations with initials fallback. |
 | Accordion | `Accordion`, `AccordionItem` | Stacked sections that expand in place. |
@@ -122,6 +132,8 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | CopyButton | `CopyButton` | Copy a value with an icon-to-check confirmation. |
 | Code | `Code`, `CodeBlock` | Inline IDs and snippet blocks with filename, line numbers and copy. |
 | HoverCard | `HoverCard`, `HoverCardTrigger`, `HoverCardContent` | Non-essential previews of links, people or IDs. |
+| Steps | `Steps` | Progress through a fixed multi-step flow; completed steps can be revisited, failed steps say why. |
+| Banner | `Banner` | Full-width one-line announcement for the top of a page or app; dot + label tone, one action, dismiss that collapses. |
 | **Shell** | | |
 | AppShell | `AppShell`, `SidebarTrigger` | Sidebar and main column; navigation becomes a sheet below 576px of shell width. Give it a height. |
 | Sidebar | `Sidebar`, `SidebarHeader`, `SidebarSection`, `SidebarItem`, `SidebarFooter` | App navigation with sections, counts and one active item. |

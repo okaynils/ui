@@ -24,8 +24,6 @@ export interface CalloutProps extends Omit<React.ComponentProps<"div">, "title">
   action?: React.ReactNode;
   /** Shows a close button. You own the state: hide the callout when this fires. */
   onDismiss?: () => void;
-  /** `inline` is a box inside content; `banner` spans the top of a page with only a bottom hairline. */
-  variant?: "inline" | "banner";
 }
 
 const ICON_TONE: Record<CalloutTone, string> = {
@@ -46,12 +44,10 @@ export function Callout({
   icon,
   action,
   onDismiss,
-  variant = "inline",
   className,
   children,
   ...props
 }: CalloutProps) {
-  const banner = variant === "banner";
   const marker = icon ? (
     <span className={cn("flex size-4 shrink-0 items-center justify-center [&_svg]:size-4", ICON_TONE[tone])}>{icon}</span>
   ) : (
@@ -67,24 +63,6 @@ export function Callout({
       </svg>
     </Button>
   ) : null;
-
-  if (banner) {
-    return (
-      <div
-        {...props}
-        data-tone={tone}
-        className={cn("flex min-h-10 w-full items-center gap-3 border-b border-line bg-panel px-4 py-2 text-ui", className)}
-      >
-        {marker}
-        <div className="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-2">
-          {title ? <span className="font-medium text-ink">{title}</span> : null}
-          {children ? <span className="text-ink-2">{children}</span> : null}
-        </div>
-        {action ? <div className="flex shrink-0 items-center gap-2">{action}</div> : null}
-        {dismiss}
-      </div>
-    );
-  }
 
   return (
     <div

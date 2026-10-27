@@ -1,6 +1,6 @@
 ---
 title: Callout
-description: A note in the page — status dot, ink title, short body, one optional action. Inline box or full-width banner. Never a coloured wash.
+description: A note in the page — status dot, ink title, short body, one optional action. Never a coloured wash.
 group: Feedback
 order: 10
 ---
@@ -71,31 +71,6 @@ export default function Example() {
 }
 ```
 
-### Banner
-
-`variant="banner"` spans the top of a page or panel with only a bottom hairline. Title and body sit on one line.
-
-```tsx live
-import { Button, Callout } from "@nils/ui";
-
-export default function Example() {
-  return (
-    <div className="w-full overflow-hidden rounded-box shadow-[0_0_0_1px_var(--ui-line)]">
-      <Callout
-        variant="banner"
-        tone="warn"
-        title="Scheduled maintenance"
-        action={<Button size="sm" variant="ghost">Details</Button>}
-        onDismiss={() => {}}
-      >
-        us-west, Sunday 02:00–03:00 UTC.
-      </Callout>
-      <div className="h-24 bg-surface" />
-    </div>
-  );
-}
-```
-
 ## Rules
 
 - **Do** keep it short: a title of a few words, one or two sentences of body.
@@ -103,7 +78,7 @@ export default function Example() {
 - **Do** put at most one action in it. Two actions means it should be a page or a dialog.
 - **Don't** tint the background, border or text with the tone. Only the dot (or icon) carries colour.
 - **Don't** use a callout to confirm something the user just did. That's a `toast`.
-- **Don't** stack more than one banner. Show the most important one.
+- **Don't** use a callout for a page-wide announcement across the top of an app. That's a `Banner`.
 
 ## Props
 
@@ -115,7 +90,6 @@ export default function Example() {
 | `icon` | `ReactNode` | — | Replaces the dot; tinted in the tone. |
 | `action` | `ReactNode` | — | One action, usually `<Button size="sm">`. |
 | `onDismiss` | `() => void` | — | Shows a close button. Hide the callout yourself. |
-| `variant` | `"inline" \| "banner"` | `"inline"` | Box in the content, or full-width strip with a bottom hairline. |
 | `...props` | `ComponentProps<"div">` | — | Passed to the root `<div>`. `className` for layout only. |
 
 ## Accessibility

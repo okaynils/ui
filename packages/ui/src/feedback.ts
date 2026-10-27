@@ -17,3 +17,5 @@ export { Code, CodeBlock } from "./components/code";
 export type { CodeProps, CodeBlockProps } from "./components/code";
 export { HoverCard, HoverCardTrigger, HoverCardContent } from "./components/hover-card";
 export type { HoverCardProps, HoverCardTriggerProps, HoverCardContentProps } from "./components/hover-card";
+export * from "./components/banner";
+export * from "./components/steps";

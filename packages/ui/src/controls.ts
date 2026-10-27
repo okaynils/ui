@@ -47,3 +47,8 @@ export { OTPField } from "./components/otp-field";
 export type { OTPFieldProps } from "./components/otp-field";
 export { FileDrop, formatBytes } from "./components/file-drop";
 export type { FileDropProps, FileRejection } from "./components/file-drop";
+export * from "./components/toggle";
+export * from "./components/checkbox-group";
+export * from "./components/search-field";
+export * from "./components/password-input";
+export * from "./components/link";

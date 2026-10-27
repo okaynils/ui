@@ -4,7 +4,7 @@ import * as React from "react";
 import { cn } from "../lib/cn";
 
 export interface RadioGroupProps<Value = string> extends Omit<BaseRadioGroup.Props<Value>, "className"> {
-  /** Visible group label, linked with `aria-labelledby`. Rendered as a `ui-label`. */
+  /** Visible group label, linked with `aria-labelledby`. Styled like a FieldLabel, so a radio group reads as one field. */
   label?: React.ReactNode;
   /** Lay radios out in a row instead of a column. */
   orientation?: "vertical" | "horizontal";
@@ -24,7 +24,7 @@ export function RadioGroup<Value = string>({
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       {label !== undefined ? (
-        <div id={id} className="ui-label">
+        <div id={id} className="text-ui font-medium text-ink select-none">
           {label}
         </div>
       ) : null}

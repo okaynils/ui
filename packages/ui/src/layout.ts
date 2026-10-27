@@ -10,3 +10,4 @@ export { EmptyState } from "./components/empty-state";
 export type { EmptyStateProps } from "./components/empty-state";
 export { CommandPalette, useCommandPaletteShortcut } from "./components/command-palette";
 export type { CommandPaletteProps, CommandGroup, CommandItem } from "./components/command-palette";
+export * from "./components/scroll-area";
