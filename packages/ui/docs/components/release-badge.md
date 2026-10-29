@@ -1,8 +1,8 @@
 ---
 title: ReleaseBadge
 description: A compact version and release date, with optional release notes in a popover and a separate release-page link.
-group: Gimmicks
-order: 100
+group: Feedback
+order: 130
 ---
 
 # ReleaseBadge

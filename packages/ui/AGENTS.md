@@ -134,6 +134,8 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | HoverCard | `HoverCard`, `HoverCardTrigger`, `HoverCardContent` | Non-essential previews of links, people or IDs. |
 | Steps | `Steps` | Progress through a fixed multi-step flow; completed steps can be revisited, failed steps say why. |
 | Banner | `Banner` | Full-width one-line announcement for the top of a page or app; dot + label tone, one action, dismiss that collapses. |
+| LinkPreview | `LinkPreview` | A bookmark preview with supplied title, image, favicon and annotation. |
+| ReleaseBadge | `ReleaseBadge` | A version label with release date and change details. |
 | **Shell** | | |
 | AppShell | `AppShell`, `SidebarTrigger` | Sidebar and main column; navigation becomes a sheet below 576px of shell width. Give it a height. |
 | Sidebar | `Sidebar`, `SidebarHeader`, `SidebarSection`, `SidebarItem`, `SidebarFooter` | App navigation with sections, counts and one active item. |
@@ -144,28 +146,31 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | Sheet | `Sheet`, `SheetTrigger`, `SheetContent`, `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetBody`, `SheetFooter`, `SheetClose` | Side panel for details or editing; swipe to dismiss. |
 | **Gimmicks** | | |
 | NowPlaying | `NowPlaying` | Listening badge: artwork, track, equaliser bars while playing, a playhead that keeps time between updates. |
-| LocalTime | `LocalTime` | A timezone clock with optional working hours and visitor time difference. |
+| LocalTime | `LocalTime` | A place's clock with a tiny analog dial that steps each minute and darkens at night; optional working hours and time difference. |
 | Availability | `Availability` | A compact availability status with optional explanation. |
-| ActivityCalendar | `ActivityCalendar` | Daily activity as a contribution-style calendar grid. |
-| CurrentlyReading | `CurrentlyReading` | Book cover, author, progress and a personal note. |
-| WeatherBadge | `WeatherBadge` | A compact weather report from app-supplied conditions. |
-| LinkPreview | `LinkPreview` | A bookmark preview with supplied title, image, favicon and annotation. |
+| ActivityCalendar | `ActivityCalendar` | A year of daily activity as a neutral grid with current/longest streaks; pointing at a streak outlines the run. |
+| CurrentlyReading | `CurrentlyReading` | The book on your nightstand: cover, a page block as thick as the book, and a bookmark ribbon at your page. |
+| WeatherBadge | `WeatherBadge` | Compact weather report with a daylight arc: the sun on its path from sunrise to sunset, and the daylight left. |
 | Webring | `Webring` | A ring of member dots marking this site, prev/next links, and a Random that shuffles before it lands. |
 | UptimeStrip | `UptimeStrip` | Daily service health with incident detail. |
-| ReleaseBadge | `ReleaseBadge` | A version label with release date and change details. |
 | Countdown | `Countdown` | Departure-board blocks whose digits roll down to an event; `inline` variant for sentences. |
-| FocusTimer | `FocusTimer` | A local focus and break timer with pause and reset. |
+| FocusTimer | `FocusTimer` | Focus/break timer on a kitchen-timer dial that drains while running; optional countdown in the tab title. |
 | Waveform | `Waveform` | An audio waveform with elapsed time and seeking. |
-| KeystrokeDisplay | `KeystrokeDisplay` | Keyboard input displayed as shortcut keys for demos and practice. |
+| KeystrokeDisplay | `KeystrokeDisplay` | Screencast key overlay: keycaps that physically press while held, older chords fade; fixed (with `pressed`) or captured on focus. |
 | BeforeAfter | `BeforeAfter` | An accessible draggable divider comparing two images. |
-| Guestbook | `Guestbook` | A message form and supplied entries; the app handles storage and moderation. |
+| Guestbook | `Guestbook` | Old-web ledger of numbered signatures, newest on top, with a sign form; a new entry lands with a change flash while the count rolls. Storage and moderation stay in the app. |
 | VisitorCounter | `VisitorCounter` | An odometer whose changed wheels roll; the app supplies the count. |
-| MiniMap | `MiniMap` | A compact location map with supplied markers; no mapping service required. |
+| MiniMap | `MiniMap` | A map readout with rulers, a crosshair on the primary place and mono coordinates; point at a marker to move the crosshair. |
 | Receipt | `Receipt` | Thermal-printer receipt with a torn edge; sums its lines and can feed out of the printer. |
 | Ticket | `Ticket` | Event ticket with a perforated stub and a real Code 128 barcode; tear the stub to check in. |
 | SplitFlap | `SplitFlap` | Departure-board text whose changed cells flip; fixed or rotating through words. |
 | Waitlist | `Waitlist` | Email sign-up that becomes your place in line; the number rolls and the queue steps forward. |
 | Stamp | `Stamp` | Rubber stamp ("Paid", "Shipped") that lands with a thunk when an action completes. |
+| DeployStamp | `DeployStamp` | Footer line "Deployed 14 min ago from a1b2c3d on main"; the age keeps counting, deploying pulses, failed says so. |
+| StarButton | `StarButton` | "Star · 1,284" split button; starring fills the star and rolls the count; optional stargazers link. |
+| SeatsLeft | `SeatsLeft` | "7 of 20 spots left" with every seat drawn; a claimed seat lights up and the count rolls down. |
+| Kudos | `Kudos` | Applause button: click or hold to give, the count rolls with a floating "+1", bursts reach the app as one batch. |
+| ScratchCard | `ScratchCard` | Scratch-off card hiding a promo code, date or invite; scratch the coating away or press Reveal. |
 <!-- components:end -->
 
 For a complete console screen composed from these parts, read `docs/examples/console.md` ([Console showcase](/examples/console) on the docs site). For a full-window app, use `<AppShell className="h-dvh">`; for a contained preview, give its parent a height.

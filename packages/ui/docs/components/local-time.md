@@ -1,13 +1,13 @@
 ---
 title: LocalTime
-description: A place's local clock, with optional working hours and a daylight-saving-aware difference from the visitor.
+description: A place's local clock with a tiny analog dial that steps each minute and goes dark at night, plus optional working hours and time difference.
 group: Gimmicks
 order: 20
 ---
 
 # LocalTime
 
-A quiet answer to “what time is it where you are?” Put it in a personal-site footer, a team directory or a contact page. It formats an IANA time zone, updates once a minute, and can show working hours and the current difference from the visitor. No location lookup or network service is involved.
+A quiet answer to “what time is it where you are?”, with a tiny analog clock beside the digits. The hands show the real local time and step forward when the minute changes; at night the dial goes dark, so a glance tells you whether it's a reasonable hour to write. Put it in a personal-site footer, a team directory or a contact page. It formats an IANA time zone, updates once a minute, and can show working hours and the current difference from the visitor. No location lookup or network service is involved.
 
 ```tsx
 import { LocalTime } from "@nils/ui";
@@ -38,7 +38,7 @@ This fixed preview is 14:30 in Stockholm on a Monday, during the configured work
 
 ### Fractional offsets and overnight hours
 
-The difference need not be a whole number of hours. Overnight shifts are attributed to the day on which they start: a Monday 22:00–06:00 shift includes early Tuesday morning.
+The difference need not be a whole number of hours. The night-shift clock reads 01:00 locally, so its dial is dark. Overnight shifts are attributed to the day on which they start: a Monday 22:00–06:00 shift includes early Tuesday morning.
 
 ```tsx live
 <div className="flex flex-col items-start gap-3">
@@ -54,7 +54,7 @@ The difference need not be a whole number of hours. Overnight shifts are attribu
 - **Do** treat working hours as informative. They are a local wall-clock schedule, not proof someone is available or online.
 - **Do** pass `at` when rendering a fixed event or a deterministic preview. It freezes the widget and starts no clock timer.
 - **Don't** infer location from the visitor's time zone. `viewerTimeZone` is used only to compare clocks.
-- **Don't** show seconds or animate the clock. Minute precision is enough for this widget.
+- **Don't** add a seconds hand or a ticking animation. Minute precision is enough, and the hands only move when the minute does.
 
 ## Props
 
@@ -73,6 +73,10 @@ The difference need not be a whole number of hours. Overnight shifts are attribu
 
 `LocalTimeProps` and `LocalTimeWorkingHours` are exported types. Invalid working-hour bounds show “Hours unavailable” without hiding the clock.
 
+## Motion
+
+The minute step is the clock's signature move. When the minute changes, the minute hand turns 6° and the hour hand creeps on, in 180ms on `ease-snap`. Hands always turn forward, so 14:59 → 15:00 is one more step rather than a lap backwards. A clock that has just mounted appears already set, with no sweep from twelve. Between minutes nothing moves. The dial is dark from 20:00 to 06:59 local time; that's a rough "night" cue, not sunset. Under `prefers-reduced-motion` the hands jump.
+
 ## Accessibility
 
-The clock is a semantic `<time>` with the full ISO instant in `dateTime`. Working-hour status is text plus a decorative dot. The clock is not a live region, so minute changes do not interrupt screen readers. A live clock shows `--:--` until mounted; server and initial client output match. The visitor's time zone is resolved after mounting unless it is supplied explicitly.
+The clock is a semantic `<time>` with the full ISO instant in `dateTime`; the analog dial is decorative and hidden from assistive technology. Working-hour status is text plus a decorative dot. The clock is not a live region, so minute changes do not interrupt screen readers. A live clock shows `--:--` until mounted; server and initial client output match. The visitor's time zone is resolved after mounting unless it is supplied explicitly.

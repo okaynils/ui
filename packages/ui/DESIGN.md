@@ -180,6 +180,19 @@ Each gimmick gets **one signature move**: a single playful detail that carries i
 | `SplitFlap` | Changed cells flip through a few characters before landing |
 | `Waitlist` | When you move up, the number rolls down and the queue steps forward |
 | `Stamp` | Lands with a short thunk when mounted as the result of an action |
+| `MiniMap` | The crosshair glides to whichever place you point at or focus, and the coordinate readout follows |
+| `LocalTime` | The analog hands step forward when the minute changes; the dial goes dark at night |
+| `WeatherBadge` | The sun moves along the daylight arc once a minute; at night it waits on the horizon |
+| `CurrentlyReading` | When the page changes, the bookmark ribbon slides along the page block and the page number rolls |
+| `FocusTimer` | The dial's arc drains and its hand sweeps while running, and holds still otherwise |
+| `ActivityCalendar` | Pointing at a day in a streak outlines every day of that run at once |
+| `Guestbook` | A new signature lands on top of the ledger with the change flash while the count rolls up |
+| `KeystrokeDisplay` | Held keys' caps sink 1px and their bottom edge flattens, springing back on release |
+| `DeployStamp` | The age keeps counting on each whole minute; the dot pulses only while a deploy is running |
+| `StarButton` | The outline star crossfades into a filled star as the count rolls up by one |
+| `SeatsLeft` | A newly claimed seat arrives in accent and settles to ink while the count rolls down |
+| `Kudos` | Press and hold to keep giving; each kudo rolls the count and floats a "+1" |
+| `ScratchCard` | The coating wipes away under the pointer; past half, the rest falls away |
 
 Rules:
 

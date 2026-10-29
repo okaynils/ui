@@ -23,10 +23,20 @@ export interface ActivityCalendarProps extends Omit<React.ComponentProps<"div">,
   formatCount?: (count: number) => string;
   /** Optional action when a day is clicked or activated with Enter/Space. */
   onDayClick?: (day: ActivityCalendarDay) => void;
+  /**
+   * The current calendar day, YYYY-MM-DD, for the current streak. Defaults to
+   * the viewer's local date after mounting; pass it for previews or to use
+   * the same "today" as your server.
+   */
+  today?: string;
+  /** Show current and longest streaks. Defaults to true. */
+  streaks?: boolean;
 }
 
 const DAY = 86_400_000;
 const LEVELS = ["bg-hover", "bg-ink-3/25", "bg-ink-3/45", "bg-ink-3/70", "bg-ink-2"] as const;
+// A streak is two or more active days in a row; one day is just a day.
+const MIN_STREAK = 2;
 
 function firstDay(year: number): number {
   const date = new Date(0);
@@ -40,7 +50,15 @@ function validDate(value: string): boolean {
   return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
 }
 
-/** A year of daily activity, encoded with four neutral intensity levels. */
+/** The viewer's own calendar date. A streak is about their day, not UTC's. */
+function localToday(): string {
+  const now = new Date();
+  return `${String(now.getFullYear()).padStart(4, "0")}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+}
+
+interface Run { start: number; end: number }
+
+/** A year of daily activity, encoded with four neutral intensity levels, with its streaks. */
 export function ActivityCalendar({
   year,
   days,
@@ -50,6 +68,8 @@ export function ActivityCalendar({
   locale = "en-GB",
   formatCount,
   onDayClick,
+  today: todayProp,
+  streaks = true,
   className,
   ...props
 }: ActivityCalendarProps) {
@@ -60,7 +80,16 @@ export function ActivityCalendar({
   const weeks = Math.ceil((offset + length) / 7);
   const [focused, setFocused] = React.useState(0);
   const [detailDate, setDetailDate] = React.useState<string | null>(null);
+  // The run being pointed at or focused. Kept apart from the detail line,
+  // which deliberately remembers the last inspected day after you leave.
+  const [inspected, setInspected] = React.useState<number | null>(null);
   const refs = React.useRef(new Map<number, HTMLButtonElement>());
+
+  // Rendered without a current streak on the server and first client pass,
+  // so a server in another timezone can't disagree about what today is.
+  const [mountedToday, setMountedToday] = React.useState<string | null>(null);
+  React.useEffect(() => { if (todayProp === undefined) setMountedToday(localToday()); }, [todayProp]);
+  const today = todayProp !== undefined && validDate(todayProp) ? todayProp : todayProp === undefined ? mountedToday : null;
 
   const counts = React.useMemo(() => {
     const result = new Map<string, number>();
@@ -71,10 +100,46 @@ export function ActivityCalendar({
     }
     return result;
   }, [days, year]);
+
+  // runOf[i] is the streak day i belongs to, if it's part of one.
+  const { runOf, longest } = React.useMemo(() => {
+    const runOf: (Run | null)[] = new Array(length).fill(null);
+    let longest: Run | null = null;
+    let runStart = -1;
+    for (let i = 0; i <= length; i++) {
+      const active = i < length && (counts.get(new Date(start + i * DAY).toISOString().slice(0, 10)) ?? 0) > 0;
+      if (active && runStart < 0) runStart = i;
+      if (!active && runStart >= 0) {
+        const run = { start: runStart, end: i - 1 };
+        if (run.end - run.start + 1 >= MIN_STREAK) {
+          for (let j = run.start; j <= run.end; j++) runOf[j] = run;
+          // Ties go to the most recent run: it's the one people remember.
+          if (!longest || run.end - run.start >= longest.end - longest.start) longest = run;
+        }
+        runStart = -1;
+      }
+    }
+    return { runOf, longest: longest as Run | null };
+  }, [counts, length, start]);
+
+  // Today hasn't happened yet until it has: a streak that reached yesterday
+  // is still alive while today is still empty.
+  const current = React.useMemo(() => {
+    if (!today || Number(today.slice(0, 4)) !== year) return null;
+    const index = Math.round((Date.parse(`${today}T00:00:00Z`) - start) / DAY);
+    const active = (i: number) => i >= 0 && (counts.get(new Date(start + i * DAY).toISOString().slice(0, 10)) ?? 0) > 0;
+    const end = active(index) ? index : active(index - 1) ? index - 1 : -1;
+    if (end < 0) return { start: index, end: index - 1 };
+    let first = end;
+    while (active(first - 1)) first--;
+    return { start: first, end };
+  }, [today, year, counts, start]);
+
   const ceiling = maxCount !== undefined && Number.isFinite(maxCount) && maxCount > 0
     ? maxCount : Math.max(1, ...counts.values());
   const amount = (count: number) => formatCount?.(count) ?? `${new Intl.NumberFormat(locale).format(count)} ${count === 1 ? "activity" : "activities"}`;
   const dateFormat = new Intl.DateTimeFormat(locale, { dateStyle: "long", timeZone: "UTC" });
+  const shortFormat = new Intl.DateTimeFormat(locale, { day: "numeric", month: "short", timeZone: "UTC" });
   const monthFormat = new Intl.DateTimeFormat(locale, { month: "short", timeZone: "UTC" });
   const weekdayFormat = new Intl.DateTimeFormat(locale, { weekday: "short", timeZone: "UTC" });
   const total = [...counts.values()].reduce((sum, count) => sum + count, 0);
@@ -82,6 +147,10 @@ export function ActivityCalendar({
   const detail = detailDate && counts.has(detailDate) ? counts.get(detailDate)! : 0;
   const detailInYear = detailDate && Number(detailDate.slice(0, 4)) === year;
   const tabStop = Math.min(focused, Math.max(0, length - 1));
+  const lit = inspected === null ? null : runOf[inspected] ?? null;
+  const spanText = (run: Run) => `${shortFormat.format(new Date(start + run.start * DAY))}–${shortFormat.format(new Date(start + run.end * DAY))}`;
+  const daysText = (n: number) => `${new Intl.NumberFormat(locale).format(n)} ${n === 1 ? "day" : "days"}`;
+  const runLength = (run: Run) => run.end - run.start + 1;
 
   function move(event: React.KeyboardEvent<HTMLButtonElement>, index: number) {
     const row = (index + offset) % 7;
@@ -110,14 +179,34 @@ export function ActivityCalendar({
     months.push({ column: Math.floor(((date.getTime() - start) / DAY + offset) / 7), text: monthFormat.format(date) });
   }
 
+  // Pointing at a streak figure lights the run it describes, the same way
+  // pointing at a day does.
+  const point = (run: Run | null) => ({
+    onMouseEnter: () => setInspected(run ? run.start : null),
+    onMouseLeave: () => setInspected(null),
+  });
+  const currentLength = current ? Math.max(0, runLength(current)) : null;
+
   return (
     <div {...props} className={cn("w-full min-w-0 space-y-2", className)}>
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <span className="text-ui font-medium text-ink">{label}</span>
-        <span className="font-mono text-xs text-ink-2 tabular-nums">{totalText} in {year}</span>
+        <span className="flex flex-wrap items-baseline gap-x-3 font-mono text-xs text-ink-2 tabular-nums">
+          {streaks && currentLength !== null ? (
+            <span {...point(currentLength >= MIN_STREAK ? current : null)} className="cursor-default">
+              Current streak <span className="text-ink">{daysText(currentLength)}</span>
+            </span>
+          ) : null}
+          {streaks ? (
+            <span {...point(longest)} className="cursor-default">
+              Longest <span className="text-ink">{longest ? daysText(runLength(longest)) : "—"}</span>
+            </span>
+          ) : null}
+          <span>{totalText} in {year}</span>
+        </span>
       </div>
       <div className="max-w-full overflow-x-auto overscroll-x-contain pb-1">
-        <div className="w-max pr-1">
+        <div className="w-max p-px pr-1">
           <div aria-hidden className="relative ml-9 mb-1 h-4 font-mono text-[11px] text-ink-3" style={{ width: weeks * 15 - 3 }}>
             {months.map((month, i) => <span key={i} className="absolute" style={{ left: month.column * 15 }}>{month.text}</span>)}
           </div>
@@ -129,7 +218,13 @@ export function ActivityCalendar({
               })}
             </div>
             <TooltipProvider delay={200}>
-              <div role="group" aria-label={`${label}, ${year}. Use arrow keys to explore days.`} className="grid grid-flow-col grid-rows-7 gap-[3px]">
+              <div
+                role="group"
+                aria-label={`${label}, ${year}. Use arrow keys to explore days.`}
+                onMouseLeave={() => setInspected(null)}
+                onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setInspected(null); }}
+                className="grid grid-flow-col grid-rows-7 gap-[3px]"
+              >
                 {Array.from({ length: weeks * 7 }, (_, cell) => {
                   const index = cell - offset;
                   if (index < 0 || index >= length) return <span key={cell} aria-hidden className="size-3" />;
@@ -137,7 +232,9 @@ export function ActivityCalendar({
                   const iso = date.toISOString().slice(0, 10);
                   const count = counts.get(iso) ?? 0;
                   const level = count === 0 ? 0 : Math.min(4, Math.max(1, Math.ceil(count / ceiling * 4)));
-                  const text = `${dateFormat.format(date)}: ${amount(count)}`;
+                  const run = runOf[index];
+                  const text = `${dateFormat.format(date)}: ${amount(count)}${run ? `, day ${index - run.start + 1} of a ${runLength(run)}-day streak` : ""}`;
+                  const inLit = lit !== null && index >= lit.start && index <= lit.end;
                   return (
                     <Tooltip key={cell} content={text}>
                       <button
@@ -145,11 +242,18 @@ export function ActivityCalendar({
                         type="button"
                         tabIndex={index === tabStop ? 0 : -1}
                         aria-label={text}
-                        onFocus={() => { setFocused(index); setDetailDate(iso); }}
-                        onMouseEnter={() => setDetailDate(iso)}
+                        data-streak={inLit || undefined}
+                        onFocus={() => { setFocused(index); setDetailDate(iso); setInspected(index); }}
+                        onMouseEnter={() => { setDetailDate(iso); setInspected(index); }}
                         onClick={() => { setDetailDate(iso); onDayClick?.({ date: iso, count }); }}
                         onKeyDown={(event) => move(event, index)}
-                        className={cn("size-3 shrink-0 cursor-default rounded-[2px] outline-none focus-visible:relative focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent", LEVELS[level])}
+                        className={cn(
+                          "size-3 shrink-0 cursor-default rounded-[2px] outline-none focus-visible:relative focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent",
+                          LEVELS[level],
+                          // The run lights up as one shape: every day of it
+                          // gets an ink hairline, instantly, with no fade.
+                          inLit && "relative z-1 shadow-[0_0_0_1px_var(--ui-ink)]",
+                        )}
                       />
                     </Tooltip>
                   );
@@ -160,7 +264,13 @@ export function ActivityCalendar({
         </div>
       </div>
       <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-ink-2">
-        <span className="min-h-4">{detailInYear ? `${dateFormat.format(new Date(`${detailDate}T00:00:00Z`))}: ${amount(detail)}` : "Hover or focus a day for details."}</span>
+        <span className="min-h-4">
+          {[
+            detailInYear && (!lit || runOf[Math.round((Date.parse(`${detailDate}T00:00:00Z`) - start) / DAY)] === lit)
+              ? `${dateFormat.format(new Date(`${detailDate}T00:00:00Z`))}: ${amount(detail)}` : null,
+            lit ? `${daysText(runLength(lit))} in a row, ${spanText(lit)}` : null,
+          ].filter(Boolean).join(" · ") || "Hover or focus a day for details."}
+        </span>
         <span aria-label="Darker cells mean more activity" className="inline-flex items-center gap-1.5">
           <span>Less</span>{LEVELS.map((level, i) => <span key={i} aria-hidden className={cn("size-3 rounded-[2px]", level)} />)}<span>More</span>
         </span>

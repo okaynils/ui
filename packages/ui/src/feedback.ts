@@ -19,3 +19,5 @@ export { HoverCard, HoverCardTrigger, HoverCardContent } from "./components/hove
 export type { HoverCardProps, HoverCardTriggerProps, HoverCardContentProps } from "./components/hover-card";
 export * from "./components/banner";
 export * from "./components/steps";
+export * from "./components/link-preview";
+export * from "./components/release-badge";

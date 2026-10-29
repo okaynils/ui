@@ -1,8 +1,8 @@
 ---
 title: LinkPreview
 description: A supplied bookmark preview with a domain, title, optional imagery and a separate personal annotation.
-group: Gimmicks
-order: 70
+group: Feedback
+order: 120
 ---
 
 # LinkPreview

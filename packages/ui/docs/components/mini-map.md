@@ -1,31 +1,32 @@
 ---
 title: MiniMap
-description: A small abstract map of supplied percentage positions, with one emphasised place, an optional link out and no mapping service.
+description: A small map readout with rulers, a crosshair on the place that matters and its coordinates; point at another place and the crosshair slides over.
 group: Gimmicks
 order: 180
 ---
 
 # MiniMap
 
-A quiet locator for a footer or contact block: a grid, a few marked places, one of them emphasised. Positions are percentages you supply, so there are no tiles, keys, geocoding or network requests. Link out to a real map when someone needs directions.
+A small map readout for a footer, contact block or office page: edge rulers, a crosshair through the place that matters, and its name and coordinates in mono, like an instrument panel. Point at another marker, or tab to it, and the crosshair glides over and the readout changes. Positions are percentages you supply and coordinates are text you supply, so there are no tiles, keys, geocoding or network requests. Link out to a real map when someone needs directions.
 
 ```tsx
 import { MiniMap } from "@nils/ui";
+import type { MiniMapMarker, MiniMapProps } from "@nils/ui";
 ```
 
 ## Examples
 
 ### A place and its neighbours
 
-Give each marker a `label` — it is shown for the primary place, available on hover for the rest, and read aloud as a summary.
+The crosshair rests on the `primary` marker. Hover the other two, or tab into the map and use the arrow keys.
 
 ```tsx live
 <MiniMap
   name="Södermalm, Stockholm"
   markers={[
-    { id: "studio", x: 44, y: 52, label: "The studio", primary: true },
-    { id: "coffee", x: 62, y: 38, label: "Coffee on Hornsgatan" },
-    { id: "park", x: 26, y: 72, label: "The park" },
+    { id: "studio", x: 44, y: 52, label: "The studio", primary: true, lat: 59.317, lng: 18.064 },
+    { id: "coffee", x: 64, y: 34, label: "Coffee on Hornsgatan", lat: 59.3186, lng: 18.0711 },
+    { id: "park", x: 24, y: 72, label: "Tantolunden", lat: 59.3121, lng: 18.0498 },
   ]}
   caption="Two minutes from the water."
 />
@@ -33,63 +34,72 @@ Give each marker a `label` — it is shown for the primary place, available on h
 
 ### A link to the real thing
 
-`href` adds a link in the header. The frame keeps only the grid it draws itself; your link owns everything beyond that.
+`href` adds a link in the header. `coordinates` prints any text in the readout instead of latitude and longitude.
 
 ```tsx live
 <MiniMap
   name="Workshop, Copenhagen"
   href="https://example.com/maps/workshop"
   markers={[
-    { id: "door", x: 58, y: 44, label: "The entrance", primary: true },
-    { id: "bike", x: 70, y: 66, label: "Bike parking" },
+    { id: "door", x: 58, y: 44, label: "The entrance", primary: true, coordinates: "Gate B, ground floor" },
+    { id: "bike", x: 74, y: 70, label: "Bike parking", coordinates: "Courtyard" },
   ]}
   caption="Nørrebro · Wednesdays 10–16"
 />
 ```
 
-### Without the grid
+### One place, no grid
 
-Drop the grid when the marker positions matter more than the sense of a map, or when the surrounding layout already has lines.
+With a single marker the map is a still picture: no controls, just the crosshair and readout. `grid={false}` drops the grid and rulers when the surrounding layout already has lines.
 
 ```tsx live
 <MiniMap
-  name="Region"
+  name="Headquarters"
   grid={false}
-  markers={[
-    { id: "hq", x: 30, y: 40, label: "Headquarters", primary: true },
-    { id: "depot", x: 74, y: 62, label: "Depot" },
-  ]}
+  markers={[{ id: "hq", x: 36, y: 46, label: "HQ", primary: true, lat: 52.52, lng: 13.405 }]}
 />
 ```
 
 ## Rules
 
-- **Do** treat `x`/`y` as a share of the frame, 0–100, not as coordinates. This map is a diagram, so place markers to read well.
-- **Do** keep one `primary` marker. It carries the label and the accent dot; a second one splits attention.
-- **Do** write marker labels as places, not addresses — “The studio”, “Bike parking”.
-- **Do** give the map a `name` that matches the caption, and link out with `href` when directions matter.
-- **Don't** embed a mapping provider or add a key. If you need real geography, render a map and use this only as a preview.
-- **Don't** use the map as navigation inside your app. Markers are reference points, not controls.
+- **Do** treat `x`/`y` as a share of the frame, 0–100. The map is a diagram, so place markers where they read well; `lat`/`lng` only label them.
+- **Do** keep one `primary` marker. It's the accent "you are here" square, and the crosshair returns to it when the pointer leaves.
+- **Do** write labels as places, not addresses: "The studio", "Bike parking".
+- **Do** link out with `href` when directions matter.
+- **Don't** pass coordinates you don't have. Without `lat`/`lng` or `coordinates`, the readout shows just the label.
+- **Don't** embed a mapping provider or add a key. If you need real geography, render a real map and use this as a preview.
+- **Don't** use markers as navigation. Pointing at one moves the crosshair; it doesn't go anywhere.
 
 ## Props
+
+### MiniMap
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `name` | `string` | Required | Name of the area, shown in the header and used as the accessible name. |
-| `markers` | `readonly MiniMapMarker[]` | Required | Places to draw. Each needs `id`, `x`, `y` and `label`; add `primary` for the emphasised one. |
-| `grid` | `boolean` | `true` | Draw the hairline grid behind the markers. |
+| `markers` | `readonly MiniMapMarker[]` | Required | Places to draw. Markers with non-finite `x`/`y` are left out. |
+| `grid` | `boolean` | `true` | Draw the hairline grid and the edge rulers. |
 | `href` | `string` | — | Destination for the header link, e.g. a full map. |
 | `linkLabel` | `ReactNode` | `"Open map"` | Text of the header link. |
 | `caption` | `ReactNode` | — | Footer line, e.g. an address or opening hours. |
 | `className` | `string` | — | Layout classes on the panel. |
 | `...props` | `ComponentProps<"div">` | — | Standard panel props, including `ref`. Children are not accepted. |
 
-Exports `MiniMapProps` and `MiniMapMarker` types.
+### MiniMapMarker
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `id` | `string` | Stable identity. |
+| `x`, `y` | `number` | Position as a percentage of the frame, 0 at the top left. Clamped to 0–100. |
+| `label` | `string` | What's here. Shown in the readout and read aloud. |
+| `primary` | `boolean` | The emphasised place; the crosshair rests on it. Without one, the first marker is home. |
+| `lat`, `lng` | `number` | Real coordinates, printed as `59.3170° N, 18.0640° E`. Both are needed. |
+| `coordinates` | `string` | Readout text instead of `lat`/`lng`, e.g. "Gate B, ground floor". |
 
 ## Motion
 
-None. Markers are placed where you put them and stay there. A map that drifts or pulses reads as a live location, and this one is a static diagram.
+The gliding crosshair is the map's signature move. Hover or focus a marker and the two hairlines slide to it in 180ms on `ease-snap`, while the readout switches to that marker's label and coordinates. When the pointer or focus leaves the map, they return to the primary marker. Nothing moves on its own or on first render. Under `prefers-reduced-motion` the crosshair jumps instead of gliding.
 
 ## Accessibility
 
-The map area is a single `role="img"` with a spoken summary of the area and every marker — “Södermalm, Stockholm. 3 places: The studio, Coffee on Hornsgatan, The park.” The dots are decorative, so no marker is a tab stop and nothing depends on hover; the primary label is visible, and the remaining labels are available on hover and in the summary. The header link is real text with its own focus ring.
+With one marker, the map is a single `role="img"` with a spoken summary of the area and the place. With more, it's a named group of buttons with one tab stop. Arrow keys (and Home/End) move between places; each button is named by its label and coordinates, e.g. "Coffee on Hornsgatan, 59.3186° N, 18.0711° E". The primary marker has `aria-current="location"`. The readout, rulers and crosshair are decorative, since the buttons already say everything. The header link is real text with its own focus ring.

@@ -31,26 +31,29 @@ import { Availability, LocalTime, NowPlaying } from "@nils/ui";
 | [NowPlaying](/components/now-playing) | Listening activity, with equaliser bars while something plays. |
 | [LocalTime](/components/local-time) | A place's clock, working hours and time difference. |
 | [Availability](/components/availability) | Personal availability with optional contact details. |
-| [ActivityCalendar](/components/activity-calendar) | Daily contributions, habits or activity. |
-| [CurrentlyReading](/components/currently-reading) | A book, reading progress and a personal note. |
-| [WeatherBadge](/components/weather-badge) | A compact local weather report. |
-| [LinkPreview](/components/link-preview) | Annotated bookmarks and shared links. |
+| [ActivityCalendar](/components/activity-calendar) | Daily activity and streaks. |
+| [CurrentlyReading](/components/currently-reading) | The book you're reading and your page. |
+| [WeatherBadge](/components/weather-badge) | Local weather with the daylight left. |
 | [Webring](/components/webring) | A ring of sites, with a shuffling Random. |
 | [UptimeStrip](/components/uptime-strip) | Daily service health and incidents. |
-| [ReleaseBadge](/components/release-badge) | A version and its release notes. |
 | [Countdown](/components/countdown) | Departure-board time until an event. |
-| [FocusTimer](/components/focus-timer) | Focus sessions and breaks. |
+| [FocusTimer](/components/focus-timer) | Focus sessions and breaks on a dial. |
 | [Waveform](/components/waveform) | Audio amplitude, elapsed time and seeking. |
-| [KeystrokeDisplay](/components/keystroke-display) | Keyboard demonstrations and shortcut practice. |
+| [KeystrokeDisplay](/components/keystroke-display) | Keyboard demos and shortcut practice. |
 | [BeforeAfter](/components/before-after) | Image comparisons with a movable divider. |
-| [Guestbook](/components/guestbook) | A message form and list of supplied entries. |
+| [Guestbook](/components/guestbook) | An old-web ledger visitors sign. |
 | [VisitorCounter](/components/visitor-counter) | An old-web odometer for an app-supplied count. |
-| [MiniMap](/components/mini-map) | A location marker on a small map. |
+| [MiniMap](/components/mini-map) | A place on a small map, with coordinates. |
 | [Receipt](/components/receipt) | Order confirmations and itemised summaries, printed. |
 | [Ticket](/components/ticket) | Event tickets and invites with a tear-off stub. |
 | [SplitFlap](/components/split-flap) | A departure-board word or code. |
 | [Waitlist](/components/waitlist) | Launch sign-ups and your place in line. |
 | [Stamp](/components/stamp) | Marking something done: paid, shipped, read. |
+| [DeployStamp](/components/deploy-stamp) | Showing what's deployed and how long ago. |
+| [StarButton](/components/star-button) | Public stars or follows with a live count. |
+| [SeatsLeft](/components/seats-left) | Limited spots, seats or tickets, shown honestly. |
+| [Kudos](/components/kudos) | Applause for a post or project. |
+| [ScratchCard](/components/scratch-card) | Promo codes, launch dates and easter eggs to scratch off. |
 
 ## Rules
 
