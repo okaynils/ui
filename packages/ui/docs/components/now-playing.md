@@ -1,6 +1,6 @@
 ---
 title: NowPlaying
-description: A listening badge with album artwork, track details, equaliser bars that move while playing, and a playhead that keeps time.
+description: A listening badge with album artwork, track details, equaliser bars that move while playing, and a playhead that keeps time; as a card, a compact row, or inline in a sentence.
 group: Gimmicks
 order: 10
 ---
@@ -11,7 +11,7 @@ A small window into what someone is listening to: artwork, track, artist and pla
 
 ```tsx
 import { NowPlaying } from "@nils/ui";
-import type { NowPlayingProps, NowPlayingTrack, NowPlayingState } from "@nils/ui";
+import type { NowPlayingProps, NowPlayingTrack, NowPlayingState, NowPlayingVariant } from "@nils/ui";
 ```
 
 ## Examples
@@ -64,6 +64,51 @@ export default function Example() {
 }
 ```
 
+### A compact row
+
+`variant="row"` fits it into one 32px line, the height of a default control, for lists, sidebars and dashboards: a small cover, title and artist, the equaliser and the elapsed time. Progress becomes a hairline along the bottom edge.
+
+```tsx live
+import { NowPlaying } from "@nils/ui";
+
+const ENO = "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ee/71/42/ee71425d-6bc9-3df8-c90b-8539f59144ab/00724386649553.rgb.jpg/200x200bb.jpg";
+const KRAFTWERK = "https://is1-ssl.mzstatic.com/image/thumb/Music1/v4/ac/34/2d/ac342dcf-8349-676f-9510-c1bd27e932d2/dj.ajlyslln.jpg/200x200bb.jpg";
+
+export default function Example() {
+  return (
+    <div className="w-full max-w-md">
+      <NowPlaying
+        variant="row"
+        track={{ title: "1/1", artist: "Brian Eno", artwork: ENO, duration: 1041 }}
+        position={312}
+      />
+      <NowPlaying
+        variant="row"
+        state="paused"
+        track={{ title: "Computer Love", artist: "Kraftwerk", artwork: KRAFTWERK, duration: 439 }}
+        position={128}
+      />
+      <NowPlaying variant="row" track={null} />
+    </div>
+  );
+}
+```
+
+### Inside a sentence
+
+`variant="inline"` sits in running text and scales with it: a small cover, the equaliser, then "title by artist". Use it on a personal site's intro or an about page.
+
+```tsx live
+<p className="max-w-md text-sm leading-6 text-ink-2">
+  Writing this page while listening to 
+  <NowPlaying
+    variant="inline"
+    track={{ title: "1/1", artist: "Brian Eno", artwork: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ee/71/42/ee71425d-6bc9-3df8-c90b-8539f59144ab/00724386649553.rgb.jpg/200x200bb.jpg" }}
+  />
+  . It's the only thing that works for long writing sessions.
+</p>
+```
+
 ### Quiet, disconnected and loading
 
 Use `track={null}` for nothing playing, and `state="offline"` when the data source is unavailable. Loading is a separate state, so a missing response never looks like confirmed silence.
@@ -86,6 +131,8 @@ Use `track={null}` for nothing playing, and `state="offline"` when the data sour
 - **Don't** infer that a person is still listening from stale data. The app should decide when a snapshot becomes offline; until it does, the playhead stops at the end of the track.
 - **Don't** pass `state="playing"` for a snapshot you can't vouch for. The bars and moving playhead say "this is happening right now".
 - **Don't** add a second moving element nearby. The equaliser is this badge's one moving part.
+- **Do** use `row` in lists and dashboards, and `inline` only inside running text. Inline has no progress or controls; it states what's playing, nothing more.
+- **Don't** stack several playing rows. One person listens to one thing; show history as plain rows with `state="paused"` or a `List`.
 
 ## Props
 
@@ -98,6 +145,7 @@ Use `track={null}` for nothing playing, and `state="offline"` when the data sour
 | `position` | `number` | — | Playback position in seconds, as last reported by the player. Clamped to the track. |
 | `advance` | `boolean` | `true` | While playing, count the position forward from the last report using the wall clock. Set `false` if your app already pushes the position every second. |
 | `loading` | `boolean` | `false` | Show artwork/text placeholders with a loading label. |
+| `variant` | `"card" \| "row" \| "inline"` | `"card"` | `card` is the standalone badge; `row` is one 32px line for lists, with elapsed time and progress as a bottom hairline; `inline` is a `<span>` that sits in a sentence and scales with its font size. |
 | `onPlaybackToggle` | `() => void` | — | Displays a pause/resume button and requests the action. Does not change state internally. Hidden when offline or without a track. |
 | `className` | `string` | — | Layout classes; defaults to full width up to `max-w-sm`. |
 | `...props` | `ComponentProps<"div">` | — | Root attributes and ref. The root defaults to a group named "Listening activity". |

@@ -19,7 +19,7 @@ import { Code, CodeBlock } from "@nils/ui";
 
 ```tsx live
 <p className="max-w-md text-sm text-ink-2">
-  Run <Code>bun add @nils/ui</Code>, then import <Code>@nils/ui/styles.css</Code> after Tailwind.
+  Run <Code>bun link @nils/ui</Code>, then import <Code>@nils/ui/styles.css</Code> after Tailwind.
 </p>
 ```
 

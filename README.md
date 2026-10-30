@@ -11,6 +11,8 @@ bun install
 bun run dev    # docs at http://localhost:5199
 ```
 
+It isn't published to npm. To use it in another project, build it here and link it in with `bun link`; [Getting started](./packages/ui/docs/getting-started.md) has the steps.
+
 See [`AGENTS.md`](./AGENTS.md) for how the repo works, [`packages/ui/AGENTS.md`](./packages/ui/AGENTS.md) for how to use the library.
 
 The [console showcase](./packages/ui/docs/examples/console.md) composes the library into a working screen with local demo data. Run the docs and open `/examples/console` to try it.

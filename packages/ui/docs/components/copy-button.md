@@ -31,7 +31,7 @@ Icon-only by default, as a small ghost button. Name what it copies in `aria-labe
 `label` adds text that turns into "Copied". The button keeps its width while it changes.
 
 ```tsx live
-<CopyButton value="bun add @nils/ui" label="Copy" variant="outline" size="md" />
+<CopyButton value="git clone https://github.com/okaynils/ui.git" label="Copy" variant="outline" size="md" />
 <CopyButton value="h100-01" label="Copy ID" copiedLabel="Copied ID" variant="outline" size="md" />
 ```
 

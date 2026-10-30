@@ -11,15 +11,44 @@ order: 2
 
 ## 1. Install
 
-```bash
-bun add @nils/ui
-```
+`@nils/ui` isn't published to npm, so `bun add @nils/ui` won't find it. You use it from a local clone of the repository, linked into your app.
 
-Until the package is published to a registry, install it from a local checkout:
+**Clone and build the library once:**
 
 ```bash
-bun add ../ui/packages/ui     # path to this repo's packages/ui
+git clone https://github.com/okaynils/ui.git
+cd ui
+bun install
+bun run --cwd packages/ui build   # builds packages/ui/dist, which isn't committed
+cd packages/ui && bun link        # registers @nils/ui on this machine
 ```
+
+**Link it into your app:**
+
+```bash
+cd ~/path/to/your-app
+bun link @nils/ui --save          # adds "@nils/ui": "link:@nils/ui" to package.json
+```
+
+Your app needs its own `react` and `react-dom` (19+) and Tailwind CSS v4 (e.g. `tailwindcss` with `@tailwindcss/vite`).
+
+**Use one copy of React.** The link is a symlink into the clone, and the clone has its own React for development. Tell your bundler to resolve React from your app, or you'll get "Invalid hook call" errors. In Vite:
+
+```ts
+// vite.config.ts
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  resolve: { dedupe: ["react", "react-dom"] },
+});
+```
+
+**Updating:** pull and rebuild in the clone; the link picks up the new build.
+
+```bash
+cd ui && git pull && bun install && bun run --cwd packages/ui build
+```
+
+While you change the library itself, `bun run --cwd packages/ui dev` rebuilds on save.
 
 ## 2. Import the styles
 

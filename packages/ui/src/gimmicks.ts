@@ -24,3 +24,4 @@ export * from "./components/star-button";
 export * from "./components/seats-left";
 export * from "./components/kudos";
 export * from "./components/scratch-card";
+export * from "./components/film-strip";

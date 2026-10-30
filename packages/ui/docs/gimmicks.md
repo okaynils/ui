@@ -54,6 +54,7 @@ import { Availability, LocalTime, NowPlaying } from "@nils/ui";
 | [SeatsLeft](/components/seats-left) | Limited spots, seats or tickets, shown honestly. |
 | [Kudos](/components/kudos) | Applause for a post or project. |
 | [ScratchCard](/components/scratch-card) | Promo codes, launch dates and easter eggs to scratch off. |
+| [FilmStrip](/components/film-strip) | Recently watched films and favourites, e.g. from Letterboxd. |
 
 ## Rules
 

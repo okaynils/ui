@@ -15,9 +15,17 @@ A small, opinionated React 19 + Tailwind CSS v4 component library, built on [Bas
 
 ## Install
 
+`@nils/ui` is **not on npm**. Don't run `bun add @nils/ui` or `npm i @nils/ui`; they fail. If `@nils/ui` isn't already in the project's `package.json`, it's used from a local clone, linked in:
+
 ```bash
-bun add @nils/ui   # or: npm i @nils/ui
+git clone https://github.com/okaynils/ui.git && cd ui
+bun install && bun run --cwd packages/ui build
+cd packages/ui && bun link
+# then, in the app:
+bun link @nils/ui --save
 ```
+
+The link is a symlink into the clone, so the bundler must resolve React once, from the app. In Vite: `resolve: { dedupe: ["react", "react-dom"] }`. Full steps: `docs/getting-started.md`.
 
 The project needs React 19+ and Tailwind CSS v4. In the CSS file that imports Tailwind, add the library's styles **after** Tailwind:
 
@@ -145,7 +153,7 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | Toolbar | `Toolbar`, `ToolbarGroup`, `ToolbarButton`, `ToolbarToggle`, `ToolbarSeparator` | Related controls with one tab stop and arrow navigation. |
 | Sheet | `Sheet`, `SheetTrigger`, `SheetContent`, `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetBody`, `SheetFooter`, `SheetClose` | Side panel for details or editing; swipe to dismiss. |
 | **Gimmicks** | | |
-| NowPlaying | `NowPlaying` | Listening badge: artwork, track, equaliser bars while playing, a playhead that keeps time between updates. |
+| NowPlaying | `NowPlaying` | Listening badge: artwork, track, equaliser bars while playing, a playhead that keeps time between updates; `variant="row"` for lists, `"inline"` inside a sentence. |
 | LocalTime | `LocalTime` | A place's clock with a tiny analog dial that steps each minute and darkens at night; optional working hours and time difference. |
 | Availability | `Availability` | A compact availability status with optional explanation. |
 | ActivityCalendar | `ActivityCalendar` | A year of daily activity as a neutral grid with current/longest streaks; pointing at a streak outlines the run. |
@@ -171,6 +179,7 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | SeatsLeft | `SeatsLeft` | "7 of 20 spots left" with every seat drawn; a claimed seat lights up and the count rolls down. |
 | Kudos | `Kudos` | Applause button: click or hold to give, the count rolls with a floating "+1", bursts reach the app as one batch. |
 | ScratchCard | `ScratchCard` | Scratch-off card hiding a promo code, date or invite; scratch the coating away or press Reveal. |
+| FilmStrip | `FilmStrip` | Recently watched films as posters on a strip of film, or a diary with dates, half-star ratings, likes and rewatches; feeds from Letterboxd RSS. |
 <!-- components:end -->
 
 For a complete console screen composed from these parts, read `docs/examples/console.md` ([Console showcase](/examples/console) on the docs site). For a full-window app, use `<AppShell className="h-dvh">`; for a contained preview, give its parent a height.

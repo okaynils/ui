@@ -193,6 +193,7 @@ Each gimmick gets **one signature move**: a single playful detail that carries i
 | `SeatsLeft` | A newly claimed seat arrives in accent and settles to ink while the count rolls down |
 | `Kudos` | Press and hold to keep giving; each kudo rolls the count and floats a "+1" |
 | `ScratchCard` | The coating wipes away under the pointer; past half, the rest falls away |
+| `FilmStrip` | A newly logged film advances the strip one frame, sprocket holes and all |
 
 Rules:
 

@@ -6,6 +6,7 @@ import { Skeleton } from "./skeleton";
 import { Status } from "./status";
 
 export type NowPlayingState = "playing" | "paused" | "offline";
+export type NowPlayingVariant = "card" | "row" | "inline";
 
 export interface NowPlayingTrack {
   title: string;
@@ -31,8 +32,13 @@ export interface NowPlayingProps extends Omit<React.ComponentProps<"div">, "chil
    */
   advance?: boolean;
   loading?: boolean;
-  /** Requests playback to toggle; update `state` once the player confirms it. */
+  /** Requests playback to toggle; update `state` once the player confirms it. Card and row only. */
   onPlaybackToggle?: () => void;
+  /**
+   * `card` is the standalone badge. `row` is one compact line for lists and
+   * sidebars. `inline` sits inside a sentence and scales with the text.
+   */
+  variant?: NowPlayingVariant;
 }
 
 function formatTime(seconds: number): string {
@@ -75,6 +81,7 @@ export function NowPlaying({
   advance = true,
   loading = false,
   onPlaybackToggle,
+  variant = "card",
   className,
   ...props
 }: NowPlayingProps) {
@@ -84,13 +91,105 @@ export function NowPlaying({
   const position = useAdvancingPosition(reported, advance && playing);
   const hasProgress = !loading && track && state !== "offline" && typeof duration === "number" && Number.isFinite(duration) && duration > 0 && typeof position === "number" && Number.isFinite(position);
   const elapsed = hasProgress ? Math.min(duration, Math.max(0, position)) : 0;
+  const dataState = loading ? "loading" : !track && state !== "offline" ? "idle" : state;
+  const toggle = onPlaybackToggle && track && state !== "offline" ? (
+    <Button icon size="sm" variant="ghost" aria-label={state === "playing" ? "Pause playback" : "Resume playback"} onClick={onPlaybackToggle}>
+      <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        {state === "playing" ? <path d="M4 3h3v10H4zm5 0h3v10H9z" /> : <path d="m5 3 8 5-8 5z" />}
+      </svg>
+    </Button>
+  ) : null;
+
+  if (variant === "inline") {
+    return (
+      <span
+        // Same attributes, rendered as a span so it can sit inside a <p>.
+        {...(props as React.ComponentProps<"span">)}
+        aria-busy={loading || undefined}
+        data-state={dataState}
+        data-variant="inline"
+        className={cn("inline-flex max-w-full items-baseline gap-[0.35em] align-baseline", className)}
+      >
+        {loading ? (
+          <Skeleton delay={0} className="inline-block h-[1em] w-24 translate-y-[0.15em]" />
+        ) : track && state !== "offline" ? (
+          <>
+            {/* Sit the art on the text's baseline area instead of the line box, so it reads as part of the line. */}
+            <Artwork key={track.artwork} src={track.artwork} className="size-[1.3em] translate-y-[0.25em] self-baseline rounded-[3px]" />
+            <span className="inline-flex h-[0.8em] items-end self-baseline"><Equaliser playing={playing} size="inline" /></span>
+            <span className="min-w-0 truncate">
+              {track.href ? (
+                <a href={track.href} className="rounded-ui font-medium text-accent underline decoration-accent/30 underline-offset-[3px] outline-none hover:decoration-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{track.title}</a>
+              ) : <span className="font-medium text-ink">{track.title}</span>}
+              <span className="text-ink-2"> by {track.artist}</span>
+              {state === "paused" ? <span className="text-ink-3"> (paused)</span> : null}
+            </span>
+          </>
+        ) : <span className="text-ink-3">{state === "offline" ? "nothing I can see right now" : "nothing at the moment"}</span>}
+      </span>
+    );
+  }
+
+  if (variant === "row") {
+    return (
+      <div
+        role="group"
+        aria-label="Listening activity"
+        {...props}
+        aria-busy={loading || undefined}
+        data-state={dataState}
+        data-variant="row"
+        className={cn("relative flex h-8 w-full min-w-0 items-center gap-2 text-ui", className)}
+      >
+        {loading ? (
+          <>
+            <Skeleton delay={0} className="size-6 shrink-0 rounded-[3px]" />
+            <Skeleton delay={0} className="h-3 w-40" />
+          </>
+        ) : (
+          <>
+            <Artwork key={track?.artwork} src={track?.artwork} className="size-6 rounded-[3px]" />
+            <div className="min-w-0 flex-1 truncate">
+              {track ? (
+                <>
+                  {track.href ? (
+                    <a href={track.href} className="rounded-ui font-medium text-ink outline-none hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{track.title}</a>
+                  ) : <span className="font-medium text-ink">{track.title}</span>}
+                  <span className="text-ink-2"> · {track.artist}</span>
+                </>
+              ) : <span className="text-ink-2">{state === "offline" ? "Listening activity is unavailable." : "Nothing playing"}</span>}
+            </div>
+            {track && state !== "offline" ? (
+              <span className="flex shrink-0 items-center gap-1.5">
+                <Equaliser playing={playing} />
+                <span className="sr-only">{label}</span>
+                {hasProgress ? (
+                  <span className="font-mono text-[11px] text-ink-3 tabular-nums" aria-label={`${formatTime(elapsed)} of ${formatTime(duration)}`}>
+                    {formatTime(elapsed)}
+                  </span>
+                ) : <span className="text-xs text-ink-2" aria-hidden="true">{label}</span>}
+              </span>
+            ) : track ? <Status tone="neutral" className="shrink-0 text-xs">{label}</Status> : null}
+            {toggle}
+            {/* The row's progress is a hairline along its bottom edge: present, never louder than the track name. */}
+            {hasProgress ? (
+              <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-line">
+                <span className="block h-full bg-ink-3 transition-[width] duration-200 ease-snap" style={{ width: `${(elapsed / duration) * 100}%` }} />
+              </span>
+            ) : null}
+          </>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div
       role="group"
       aria-label="Listening activity"
       {...props}
       aria-busy={loading || undefined}
-      data-state={loading ? "loading" : !track && state !== "offline" ? "idle" : state}
+      data-state={dataState}
       className={cn("w-full max-w-sm rounded-box border border-line-strong bg-surface p-3", className)}
     >
       <div className="mb-3 flex items-center justify-between gap-3">
@@ -114,13 +213,7 @@ export function NowPlaying({
             <div className="truncate text-xs text-ink-2">{track.artist}</div>
             {track.album ? <div className="mt-0.5 truncate text-xs text-ink-3">{track.album}</div> : null}
           </div>
-          {onPlaybackToggle && state !== "offline" ? (
-            <Button icon size="sm" variant="ghost" aria-label={state === "playing" ? "Pause playback" : "Resume playback"} onClick={onPlaybackToggle}>
-              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                {state === "playing" ? <path d="M4 3h3v10H4zm5 0h3v10H9z" /> : <path d="m5 3 8 5-8 5z" />}
-              </svg>
-            </Button>
-          ) : null}
+          {toggle}
         </div>
       ) : <p className="text-ui text-ink-2">{state === "offline" ? "Listening activity is unavailable." : "A little quiet right now."}</p>}
       {hasProgress ? (
@@ -140,10 +233,13 @@ const BARS = [
   { duration: "610ms", delay: "-200ms", rest: 0.6 },
 ];
 
-/** Three bars that bounce while playing and settle when paused: the badge's one moving part. */
-function Equaliser({ playing }: { playing: boolean }) {
+/**
+ * Three bars that bounce while playing and settle when paused: the badge's
+ * one moving part. `inline` sizes them in em so they follow the sentence.
+ */
+function Equaliser({ playing, size = "fixed" }: { playing: boolean; size?: "fixed" | "inline" }) {
   return (
-    <span aria-hidden="true" className="inline-flex h-3 items-end gap-[2px]">
+    <span aria-hidden="true" className={cn("inline-flex items-end", size === "inline" ? "h-[0.8em] gap-[0.12em] [&>span]:w-[0.18em]" : "h-3 gap-[2px]")}>
       {BARS.map((bar, i) => (
         <span
           key={i}
@@ -158,13 +254,13 @@ function Equaliser({ playing }: { playing: boolean }) {
   );
 }
 
-function Artwork({ src }: { src?: string }) {
+function Artwork({ src, className }: { src?: string; className?: string }) {
   const [failed, setFailed] = React.useState(false);
   return (
-    <div aria-hidden="true" className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-ui bg-panel text-ink-3 shadow-[inset_0_0_0_1px_var(--ui-line)]">
+    <span aria-hidden="true" className={cn("inline-flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-ui bg-panel text-ink-3 shadow-[inset_0_0_0_1px_var(--ui-line)]", className)}>
       {src && !failed ? <img src={src} alt="" className="size-full object-cover" onError={() => setFailed(true)} /> : (
-        <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 17V6l11-2v11M9 9l11-2" /><ellipse cx="6" cy="17" rx="3" ry="2.5" /><ellipse cx="17" cy="15" rx="3" ry="2.5" /></svg>
+        <svg viewBox="0 0 24 24" className="size-[45%]" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 17V6l11-2v11M9 9l11-2" /><ellipse cx="6" cy="17" rx="3" ry="2.5" /><ellipse cx="17" cy="15" rx="3" ry="2.5" /></svg>
       )}
-    </div>
+    </span>
   );
 }

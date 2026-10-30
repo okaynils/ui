@@ -29,7 +29,7 @@ export function Home() {
           Explore the console
         </Button>
         <span className="ml-2 hidden items-center gap-1.5 text-xs text-ink-3 sm:inline-flex">
-          or <code className="rounded-[3px] bg-panel px-1.5 py-0.5 font-mono text-ink-2 shadow-[inset_0_0_0_1px_var(--ui-line)]">bun add @nils/ui</code>
+          or <code className="rounded-[3px] bg-panel px-1.5 py-0.5 font-mono text-ink-2 shadow-[inset_0_0_0_1px_var(--ui-line)]">git clone github.com/okaynils/ui</code>
         </span>
       </div>
 
