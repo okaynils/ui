@@ -129,7 +129,7 @@ Loading takes precedence over the supplied data. An empty bookshelf is an ordina
 | --- | --- | --- | --- |
 | `title` | `string` | Yes | Book title. Wraps naturally in narrow layouts. |
 | `author` | `string` | Yes | Author or authors as a display string. |
-| `cover` | `string` | No | Image URL, drawn 56×84px with 4px corners. Missing or failed images show a book outline. |
+| `cover` | `string` | No | Image URL, drawn 56×84px with 5px corners. Missing or failed images show a book outline. |
 | `href` | `string` | No | Explicit title link, such as a review or book page. Without it the title is plain text. |
 | `totalPages` | `number` | No | A finite value of at least 1, rounded down. Sets the page block's thickness (3–10px, about 1px per 80 pages) and, with `page`, the bookmark's place. Invalid values hide progress. |
 

@@ -66,33 +66,33 @@ export function Waitlist({
   };
 
   return (
-    <div {...props} data-state={valid ? "joined" : "open"} className={cn("w-full max-w-sm rounded-box border border-line-strong bg-surface p-4", className)}>
+    <div {...props} data-state={valid ? "joined" : "open"} className={cn("w-full max-w-sm rounded-box bg-surface p-3 shadow-[0_0_0_1px_var(--ui-line)]", className)}>
       <div className="flex items-baseline justify-between gap-3">
-        <span className="ui-mono-label">{label}</span>
+        <span className="ui-label">{label}</span>
         {total !== undefined && Number.isFinite(total) ? (
-          <span className="font-mono text-xs text-ink-3 tabular-nums">{count.format(total)} in line</span>
+          <span className="text-xs text-ink-2"><span className="font-medium text-ink tabular-nums">{count.format(total)}</span> in line</span>
         ) : null}
       </div>
 
       {valid ? (
         <>
-          <div className="mt-2 flex items-end justify-between gap-4">
-            <NumberRoll value={place} locale={locale} prefix="#" className="font-mono text-[26px] leading-8 font-medium text-ink" />
+          <div className="mt-1 flex items-end justify-between gap-3">
+            <NumberRoll value={place} locale={locale} prefix="#" className="text-[22px] leading-7 font-medium tracking-[-0.015em] text-ink tabular-nums" />
             <Queue position={place} total={total} />
           </div>
-          <p className="mt-1 text-xs text-ink-2">
+          <p className="text-ui text-ink-2">
             {place === 1 ? "You're next." : `${count.format(place - 1)} ahead of you.`}
           </p>
           {referralUrl ? (
-            <div className="mt-4 border-t border-line pt-3">
-              <p className="text-xs text-ink-2">Share your link. Every friend who joins moves you up.</p>
+            <div className="mt-3 border-t border-line pt-3">
+              <p className="text-ui text-ink-2">Share your link. Every friend who joins moves you up.</p>
               <div className="mt-2 flex items-center gap-1">
                 <Input size="sm" readOnly value={referralUrl} aria-label="Your referral link" className="font-mono text-xs" onFocus={(event) => event.currentTarget.select()} />
                 <CopyButton value={referralUrl} aria-label="Copy referral link" />
               </div>
             </div>
           ) : null}
-          {note ? <p className="mt-3 text-xs text-ink-3">{note}</p> : null}
+          {note ? <p className="mt-3 text-ui text-ink-2">{note}</p> : null}
         </>
       ) : (
         <Form onSubmit={join} className="mt-3 gap-2">
@@ -102,7 +102,7 @@ export function Waitlist({
               <Button type="submit" variant="primary" loading={pending}>Join</Button>
             </div>
           </Field>
-          {note ? <p className="text-xs text-ink-3">{note}</p> : null}
+          {note ? <p className="text-ui text-ink-2">{note}</p> : null}
         </Form>
       )}
     </div>
@@ -133,9 +133,9 @@ function Queue({ position, total }: { position: number; total?: number }) {
   }, [position]);
 
   return (
-    <span aria-hidden="true" className="flex h-8 items-center gap-1.5 overflow-hidden pb-1">
+    <span aria-hidden="true" className="flex h-7 items-center gap-1.5 overflow-hidden pb-1">
       <span className="h-4 w-px shrink-0 bg-ink-2" />
-      {position - 1 > AHEAD ? <span className="font-mono text-[11px] leading-none text-ink-3">…</span> : null}
+      {position - 1 > AHEAD ? <span className="text-xs leading-none text-ink-3">…</span> : null}
       <span ref={strip} className="flex items-center" style={{ gap: SLOT - 8 }}>
         {Array.from({ length: ahead }, (_, i) => <span key={`a${i}`} className="size-2 rounded-[2px] bg-ink-3" />)}
         <span className="size-2 rounded-[2px] bg-accent outline-2 outline-offset-1 outline-accent/30" />

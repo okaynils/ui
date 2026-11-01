@@ -2,7 +2,7 @@ import * as React from "react";
 import { cn } from "../lib/cn";
 
 export interface KeyValueEntry {
-  /** The key, shown in the mono label voice. */
+  /** The key, shown in the quiet label voice. */
   label: React.ReactNode;
   value: React.ReactNode;
   /** Set the value in mono: IDs, hashes, regions, versions, timestamps. */
@@ -27,7 +27,7 @@ const LayoutContext = React.createContext<{ layout: KeyValueLayout; dividers: bo
 
 /**
  * A description list: the properties of one thing (a machine, an order, a
- * deploy). Keys in the mono label voice, values in ink.
+ * deploy). Keys in the quiet label voice, values in ink.
  */
 export function KeyValue({
   items,
@@ -73,7 +73,7 @@ export function KeyValueItem({ label, mono = false, className, children, ...prop
       {...props}
       className={cn(
         horizontal ? "grid grid-cols-[var(--kv-key)_minmax(0,1fr)] items-baseline gap-4" : "flex flex-col gap-1",
-        dividers ? "py-2.5" : "py-1.5",
+        dividers ? "py-2" : "py-1",
         className,
       )}
     >

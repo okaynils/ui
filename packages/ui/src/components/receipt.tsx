@@ -19,7 +19,7 @@ export interface ReceiptMeta {
 }
 
 export interface ReceiptProps extends Omit<React.ComponentProps<"figure">, "children" | "title"> {
-  /** Printed at the top in capitals, e.g. the shop or product name. */
+  /** Printed at the top, e.g. the shop or product name. */
   title: React.ReactNode;
   /** A line under the title, e.g. an address or a tagline. */
   subtitle?: React.ReactNode;
@@ -57,7 +57,7 @@ function money(locale: string, currency?: string) {
 }
 
 /**
- * A thermal-printer receipt: mono type, dashed rules, a torn bottom edge.
+ * A thermal-printer receipt: mono line items, dashed rules, a torn bottom edge.
  * Lines and amounts are supplied; the total is summed unless you pass one.
  */
 export function Receipt({
@@ -86,34 +86,34 @@ export function Receipt({
       className={cn("m-0 w-72 max-w-full", print && "overflow-hidden", className)}
     >
       <div
-        className={cn("bg-line-strong px-px pt-px pb-px", print && "animate-[ui-print_480ms_steps(8,end)]")}
+        className={cn("bg-line px-px pt-px pb-px", print && "animate-[ui-print_480ms_steps(8,end)]")}
         style={tornEdge("0")}
       >
-        <div className="bg-panel px-4 pt-4 pb-7 font-mono text-xs text-ink" style={tornEdge("-1px")}>
+        <div className="bg-panel px-3 pt-3 pb-6 text-ui text-ink" style={tornEdge("-1px")}>
           <div className="text-center">
-            <div className="text-ui font-medium tracking-[0.08em] uppercase">{title}</div>
-            {subtitle ? <div className="mt-0.5 text-ink-2">{subtitle}</div> : null}
+            <div className="font-medium">{title}</div>
+            {subtitle ? <div className="text-xs text-ink-2">{subtitle}</div> : null}
           </div>
 
           {meta?.length ? (
             <dl className={cn("mt-3 space-y-0.5 pt-3", rule)}>
               {meta.map((line, index) => (
                 <div key={index} className="flex justify-between gap-4">
-                  <dt className="text-ink-3">{line.label}</dt>
-                  <dd className="m-0 text-right tabular-nums">{line.value}</dd>
+                  <dt className="ui-label">{line.label}</dt>
+                  <dd className="m-0 text-right font-mono text-xs leading-4 tabular-nums">{line.value}</dd>
                 </div>
               ))}
             </dl>
           ) : null}
 
-          <table className={cn("mt-3 w-full border-collapse", rule)}>
+          <table className={cn("mt-3 w-full border-collapse font-mono text-xs", rule)}>
             <tbody>
               {items.map((item, index) => (
                 <tr key={index} className="align-top">
                   <td className={cn("pr-4", index === 0 ? "pt-3" : "pt-1.5")}>
                     {item.label}
-                    {item.quantity !== undefined ? <span className="text-ink-3"> ×{item.quantity}</span> : null}
-                    {item.detail ? <div className="text-ink-3">{item.detail}</div> : null}
+                    {item.quantity !== undefined ? <span className="text-ink-2"> ×{item.quantity}</span> : null}
+                    {item.detail ? <div className="text-ink-2">{item.detail}</div> : null}
                   </td>
                   <td className={cn("text-right whitespace-nowrap tabular-nums", index === 0 ? "pt-3" : "pt-1.5")}>
                     {typeof item.amount === "number" && Number.isFinite(item.amount) ? format.format(item.amount) : item.value ?? null}
@@ -124,13 +124,13 @@ export function Receipt({
           </table>
 
           {sum !== null ? (
-            <div className={cn("mt-3 flex items-baseline justify-between gap-4 pt-3 text-sm font-medium", rule)}>
-              <span className="uppercase">{totalLabel}</span>
-              <span className="tabular-nums">{format.format(sum)}</span>
+            <div className={cn("mt-3 flex items-baseline justify-between gap-4 pt-3 font-medium", rule)}>
+              <span>{totalLabel}</span>
+              <span className="font-mono tabular-nums">{format.format(sum)}</span>
             </div>
           ) : null}
 
-          {footer ? <div className={cn("mt-3 pt-3 text-center text-ink-2", rule)}>{footer}</div> : null}
+          {footer ? <div className={cn("mt-3 pt-3 text-center text-xs text-ink-2", rule)}>{footer}</div> : null}
         </div>
       </div>
     </figure>

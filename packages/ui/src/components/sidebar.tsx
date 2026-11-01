@@ -23,9 +23,9 @@ export function Sidebar({ className, "aria-label": ariaLabel = "Main", ...props 
 
 export interface SidebarHeaderProps extends React.ComponentProps<"div"> {}
 
-/** The top row (48px, the same height as a TopBar): brand on the left, maybe a version or button on the right. */
+/** The top row (44px, the same height as a TopBar): brand on the left, maybe a version or button on the right. */
 export function SidebarHeader({ className, ...props }: SidebarHeaderProps) {
-  return <div {...props} className={cn("flex h-12 shrink-0 items-center justify-between gap-2 px-4", className)} />;
+  return <div {...props} className={cn("flex h-11 shrink-0 items-center justify-between gap-2 px-4", className)} />;
 }
 
 export interface SidebarSectionProps extends Omit<React.ComponentProps<"div">, "title"> {
@@ -35,11 +35,11 @@ export interface SidebarSectionProps extends Omit<React.ComponentProps<"div">, "
   action?: React.ReactNode;
 }
 
-/** A group of items with an optional mono label. Sections are separated by space, not lines. */
+/** A group of items with an optional quiet label. Sections are separated by space, not lines. */
 export function SidebarSection({ label, action, className, children, ...props }: SidebarSectionProps) {
   const id = React.useId();
   return (
-    <div {...props} className={cn("px-2 pb-4 first:pt-1", className)}>
+    <div {...props} className={cn("px-2 pb-3 first:pt-1", className)}>
       {label !== undefined || action !== undefined ? (
         <div className="flex h-6 items-center justify-between pr-0.5 pl-2">
           {label !== undefined ? (
@@ -65,7 +65,7 @@ export interface SidebarItemProps extends Omit<useRender.ComponentProps<"button"
   /** The label. Keep it to one or two words. */
   children: React.ReactNode;
   /**
-   * Shown at the end. A number or short string renders as a mono count;
+   * Shown at the end. A number or short string renders as a quiet count;
    * anything else (a Kbd, a StatusDot) renders as-is.
    */
   trailing?: React.ReactNode;
@@ -129,7 +129,7 @@ export function SidebarItem({
             <span className="min-w-0 flex-1 truncate">{children}</span>
             {trailing !== undefined && trailing !== null ? (
               typeof trailing === "string" || typeof trailing === "number" ? (
-                <span className="shrink-0 font-mono text-[11px] text-ink-3 tabular-nums">{trailing}</span>
+                <span className="shrink-0 text-xs text-ink-3 tabular-nums">{trailing}</span>
               ) : (
                 <span className="flex shrink-0 items-center">{trailing}</span>
               )

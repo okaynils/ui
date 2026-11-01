@@ -23,7 +23,7 @@ export interface PaginationProps extends Omit<React.ComponentProps<"nav">, "chil
   onPageChange?: (page: number) => void;
   /** Pages shown on each side of the current one before an ellipsis. Defaults to 1. */
   siblings?: number;
-  /** Height 28 / 32px, matching Button `sm` / `md`. */
+  /** Height 24 / 28px, matching Button `sm` / `md`. */
   size?: PaginationSize;
   /** "Page 3 of 12" with previous/next only, for narrow places. */
   compact?: boolean;
@@ -86,8 +86,8 @@ export function Pagination({
     const className = cn(
       buttonClassName({ variant: "ghost", size, icon: options.square }),
       // Numbers keep a square footprint at one or two digits and grow for more.
-      !options.square && (size === "sm" ? "min-w-7 px-1.5" : "min-w-8 px-2"),
-      "font-mono tabular-nums",
+      !options.square && (size === "sm" ? "min-w-6 px-1.5" : "min-w-7 px-2"),
+      "tabular-nums",
       options.current && "relative bg-active font-medium text-ink hover:bg-active",
     );
     const marker = options.current ? (
@@ -132,9 +132,9 @@ export function Pagination({
           {previous}
           <span className={cn("px-1.5 tabular-nums", size === "sm" ? "text-xs" : "text-ui")}>
             <span className="text-ink-2">Page </span>
-            <span className="font-mono text-ink">{page}</span>
+            <span className="text-ink">{page}</span>
             <span className="text-ink-2"> of </span>
-            <span className="font-mono text-ink">{count}</span>
+            <span className="text-ink">{count}</span>
           </span>
           {next}
         </div>
@@ -145,7 +145,7 @@ export function Pagination({
             typeof slot === "number" ? (
               <li key={slot}>{control(slot, `Page ${slot}`, slot, { current: slot === page })}</li>
             ) : (
-              <li key={slot} aria-hidden className={cn("grid place-items-center font-mono text-ink-3 select-none", size === "sm" ? "h-6 w-5 text-xs" : "h-7 w-6 text-ui")}>…</li>
+              <li key={slot} aria-hidden className={cn("grid place-items-center text-ink-3 select-none", size === "sm" ? "h-6 w-5 text-xs" : "h-7 w-6 text-ui")}>…</li>
             ),
           )}
           <li>{next}</li>

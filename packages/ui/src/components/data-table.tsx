@@ -247,7 +247,7 @@ export function DataTable<Row>({
                     <span
                       aria-hidden
                       className={cn(
-                        "w-2.5 text-center font-mono text-[10px] normal-case",
+                        "w-2.5 text-center text-[10px]",
                         active ? "text-ink-3" : "text-ink-3 opacity-0 transition-opacity group-hover/sort:opacity-100",
                       )}
                     >
@@ -276,7 +276,7 @@ export function DataTable<Row>({
           ))
         ) : sorted.length === 0 ? (
           <tr>
-            <td colSpan={colCount} className="px-3 py-10 text-center text-ui text-ink-2">
+            <td colSpan={colCount} className="px-3 py-8 text-center text-ui text-ink-2">
               {empty}
             </td>
           </tr>

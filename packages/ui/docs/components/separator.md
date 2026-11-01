@@ -30,7 +30,7 @@ import { Separator } from "@nils/ui";
 The label sits at the start by default, or `align="center"`.
 
 ```tsx live
-<div className="flex w-full max-w-sm flex-col gap-6">
+<div className="flex w-full max-w-sm flex-col gap-5">
   <Separator label="Advanced" />
   <Separator label="or" align="center" />
 </div>
@@ -46,7 +46,7 @@ import { TextBIcon, TextItalicIcon, LinkIcon, ListBulletsIcon } from "@phosphor-
 
 export default function Example() {
   return (
-    <div className="flex h-8 items-center gap-1">
+    <div className="flex h-7 items-center gap-1">
       <Button icon size="sm" variant="ghost" aria-label="Bold"><TextBIcon /></Button>
       <Button icon size="sm" variant="ghost" aria-label="Italic"><TextItalicIcon /></Button>
       <Separator orientation="vertical" className="mx-1 my-1.5" />
@@ -60,7 +60,7 @@ export default function Example() {
 ## Rules
 
 - **Do** use a separator between groups of different kinds (a toolbar's text tools vs. its insert tools; general vs. advanced settings).
-- **Do** keep labels to one or two words. They render uppercase mono.
+- **Do** keep labels to one or two words, in sentence case. They render in the quiet `ui-label` voice.
 - **Don't** put a separator between every row. That's what `List` does.
 - **Don't** thicken it or colour it. One hairline, `line` colour.
 

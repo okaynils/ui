@@ -108,7 +108,7 @@ export function WeatherBadge({
       {...props}
       aria-busy={loading || undefined}
       data-state={loading ? "loading" : available ? "available" : "unavailable"}
-      className={cn("inline-flex max-w-full flex-col gap-2 rounded-box border border-line-strong bg-surface px-3 py-2.5 text-ui text-ink", className)}
+      className={cn("inline-flex max-w-full flex-col gap-2 rounded-box bg-surface p-3 text-ui text-ink shadow-[0_0_0_1px_var(--ui-line)]", className)}
     >
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
         <span className="min-w-0 break-words text-ink-2">{location}</span>
@@ -117,20 +117,20 @@ export function WeatherBadge({
         ) : available && reading ? (
           <>
             <WeatherIcon condition={reading.condition} />
-            <span className="font-mono font-medium tabular-nums">
-              <span aria-hidden>{formatter.format(reading.temperature)}{symbol}</span>
+            <span className="font-medium tabular-nums">
+              <span aria-hidden>{formatter.format(reading.temperature)}<span className="font-normal text-ink-2">{symbol}</span></span>
               <span className="sr-only">{formatter.format(reading.temperature)} {spokenUnit}</span>
             </span>
             <span className="text-ink-2">{reading.conditionLabel ?? LABEL[reading.condition] ?? LABEL.unknown}</span>
           </>
-        ) : <span className="text-ink-3">Weather unavailable</span>}
+        ) : <span className="text-ink-2">Weather unavailable</span>}
       </div>
       {!loading && available && reading ? (
         <>
           {Number.isFinite(reading.high) || Number.isFinite(reading.low) ? (
-            <div className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-ink-2 tabular-nums">
-              {Number.isFinite(reading.high) ? <span>High {formatter.format(reading.high!)}{symbol}</span> : null}
-              {Number.isFinite(reading.low) ? <span>Low {formatter.format(reading.low!)}{symbol}</span> : null}
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-ink-2 tabular-nums">
+              {Number.isFinite(reading.high) ? <span>High <span className="text-ink">{formatter.format(reading.high!)}</span>{symbol}</span> : null}
+              {Number.isFinite(reading.low) ? <span>Low <span className="text-ink">{formatter.format(reading.low!)}</span>{symbol}</span> : null}
             </div>
           ) : null}
           {sunrise && sunset && instant(reading.sunset)! > instant(reading.sunrise)! ? (
@@ -141,7 +141,7 @@ export function WeatherBadge({
               {sunset ? <span>Sunset <time dateTime={sunset.iso} className="font-mono tabular-nums">{sunset.text}</time></span> : null}
             </div>
           ) : null}
-          {observed ? <span className="text-xs text-ink-3">Observed <time dateTime={observed.iso}>{observed.text}</time></span> : null}
+          {observed ? <span className="text-xs text-ink-2">Observed <time dateTime={observed.iso}>{observed.text}</time></span> : null}
         </>
       ) : null}
     </div>
@@ -197,7 +197,7 @@ function Daylight({ sunrise, sunset, rise, set, now }: {
           </g>
         ) : null}
       </svg>
-      <div className="flex justify-between font-mono text-[11px] text-ink-3 tabular-nums" style={{ width: ARC.width }}>
+      <div className="flex justify-between font-mono text-[11px] text-ink-2 tabular-nums" style={{ width: ARC.width }}>
         <span><span aria-hidden="true">↑ </span><time dateTime={sunrise.iso}>{sunrise.text}</time><span className="sr-only"> sunrise</span></span>
         <span><span aria-hidden="true">↓ </span><time dateTime={sunset.iso}>{sunset.text}</time><span className="sr-only"> sunset</span></span>
       </div>
@@ -209,7 +209,7 @@ function Daylight({ sunrise, sunset, rise, set, now }: {
 function WeatherIcon({ condition }: { condition: WeatherCondition }) {
   const cloud = <path d="M5 16a4 4 0 0 1-.4-8 5.5 5.5 0 0 1 10.7-1.4A4.7 4.7 0 0 1 18 16H5Z" />;
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" className="size-5 shrink-0 text-ink-2" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" className="size-4 shrink-0 text-ink-2" aria-hidden="true">
       {condition === "clear" ? <><circle cx="12" cy="12" r="4" /><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4.2 4.2l2.1 2.1m11.4 11.4 2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" /></> :
         condition === "wind" ? <><path d="M2 8h13a3 3 0 1 0-3-3M2 12h17a3 3 0 1 1-3 3M2 16h7a3 3 0 1 1-3 3" /></> :
         condition === "fog" ? <><path d="M4 6h16M2 10h17M5 14h17M2 18h16" /></> :

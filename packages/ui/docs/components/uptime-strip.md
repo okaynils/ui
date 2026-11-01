@@ -71,7 +71,7 @@ export default function Example() {
         ]}
         onDaySelect={(day) => setSelected(day.date)}
       />
-      <p className="font-mono text-xs text-ink-2">{selected ? `Selected report: ${selected}` : "Choose a report."}</p>
+      <p className="text-xs text-ink-2">{selected ? `Selected report: ${selected}` : "Choose a report."}</p>
     </div>
   );
 }
@@ -80,7 +80,7 @@ export default function Example() {
 ### Loading and empty
 
 ```tsx live
-<div className="w-full space-y-6">
+<div className="w-full space-y-4">
   <UptimeStrip label="Fetching observations" days={[]} loading />
   <UptimeStrip label="New service" days={[]} />
 </div>

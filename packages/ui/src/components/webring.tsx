@@ -138,7 +138,7 @@ export function Webring({ members, current, name = "Webring", href, onNavigate, 
       {...props}
       aria-label={ariaLabel ?? `${name} navigation`}
       data-state={shuffle ? "shuffling" : ready ? "ready" : "unavailable"}
-      className={cn("inline-flex max-w-full flex-wrap items-center gap-x-3 gap-y-2 rounded-box border border-line-strong bg-surface py-2 pr-1.5 pl-2.5", className)}
+      className={cn("inline-flex max-w-full flex-wrap items-center gap-x-3 gap-y-2 rounded-box bg-surface py-2 pr-2 pl-3 shadow-[0_0_0_1px_var(--ui-line)]", className)}
     >
       <div className="flex min-w-0 items-center gap-2.5">
         <Ring count={sites.length} current={currentIndex} highlight={shuffle ? sites.findIndex((site) => site.id === shuffle.id) : -1} />
@@ -146,7 +146,7 @@ export function Webring({ members, current, name = "Webring", href, onNavigate, 
           {href ? (
             <a href={href} className="truncate rounded-ui text-ui font-medium text-ink underline decoration-line-strong underline-offset-[3px] outline-none hover:decoration-ink-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{name}</a>
           ) : <span className="truncate text-ui font-medium text-ink">{name}</span>}
-          <span className="truncate font-mono text-[11px] text-ink-3 tabular-nums">{status}</span>
+          <span className="truncate text-xs text-ink-2 tabular-nums">{status}</span>
         </div>
       </div>
       <div className="flex items-center gap-0.5">

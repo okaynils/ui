@@ -90,8 +90,8 @@ export function MiniMap({
   const activeText = active ? readout(active) : null;
 
   return (
-    <div {...props} className={cn("w-full max-w-sm rounded-box border border-line-strong bg-surface", className)}>
-      <div className="flex items-baseline justify-between gap-3 p-3">
+    <div {...props} className={cn("w-full max-w-sm overflow-hidden rounded-box bg-surface shadow-[0_0_0_1px_var(--ui-line)]", className)}>
+      <div className="flex min-h-11 items-center justify-between gap-3 px-3 py-2">
         <span className="text-ui font-medium text-ink">{name}</span>
         {href ? (
           <a
@@ -180,15 +180,15 @@ export function MiniMap({
         {active ? (
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute bottom-2 left-2 z-20 flex max-w-[calc(100%-1rem)] items-baseline gap-2 rounded-ui bg-surface px-1.5 py-0.5 font-mono text-[11px] whitespace-nowrap shadow-[inset_0_0_0_1px_var(--ui-line-strong)]"
+            className="pointer-events-none absolute bottom-2 left-2 z-20 flex max-w-[calc(100%-1rem)] items-baseline gap-2 rounded-ui bg-raised px-1.5 py-0.5 text-xs whitespace-nowrap shadow-[0_0_0_1px_var(--ui-line-strong)]"
           >
             <span className="truncate text-ink">{active.label}</span>
-            {activeText ? <span className="text-ink-3 tabular-nums">{activeText}</span> : null}
+            {activeText ? <span className="font-mono text-[11px] text-ink-2 tabular-nums">{activeText}</span> : null}
           </div>
         ) : null}
       </div>
 
-      {caption ? <div className="border-t border-line px-3 py-2 text-xs text-ink-3">{caption}</div> : null}
+      {caption ? <div className="border-t border-line px-3 py-2 text-ui text-ink-2">{caption}</div> : null}
     </div>
   );
 }

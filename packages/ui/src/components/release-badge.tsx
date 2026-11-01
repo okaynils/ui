@@ -42,7 +42,7 @@ export function ReleaseBadge({ version, releasedAt, notes, href, locale = "en-GB
       {release ? (
         <>
           <Badge mono className="min-w-0 max-w-full"><span className="truncate">{release}</span></Badge>
-          {date ? date.iso ? <time dateTime={date.iso} aria-label={`Released ${date.text}`} className="font-mono text-[11px] tabular-nums">{date.text}</time> : <span className="text-ink-3">{date.text}</span> : null}
+          {date ? date.iso ? <time dateTime={date.iso} aria-label={`Released ${date.text}`} className="font-mono text-[11px] tabular-nums">{date.text}</time> : <span className="text-ink-2">{date.text}</span> : null}
           {href ? <a href={href} className="rounded-ui text-accent underline decoration-accent/30 underline-offset-[3px] outline-none hover:decoration-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" aria-label={`View release ${release}`}>View release</a> : null}
           {hasNotes ? (
             <Popover>
@@ -51,13 +51,13 @@ export function ReleaseBadge({ version, releasedAt, notes, href, locale = "en-GB
               </PopoverTrigger>
               <PopoverContent align="start">
                 <PopoverTitle>Release {release}</PopoverTitle>
-                {date?.iso ? <time dateTime={date.iso} className="mt-1 block font-mono text-[11px] text-ink-3 tabular-nums">{date.text}</time> : null}
-                <PopoverDescription render={<div />} className="mt-3 text-ui text-ink-2">{notes}</PopoverDescription>
+                {date?.iso ? <time dateTime={date.iso} className="mt-0.5 block font-mono text-[11px] text-ink-2 tabular-nums">{date.text}</time> : null}
+                <PopoverDescription render={<div />} className="mt-2 text-ui text-ink-2">{notes}</PopoverDescription>
               </PopoverContent>
             </Popover>
           ) : null}
         </>
-      ) : <span className="text-ink-3">Release unavailable</span>}
+      ) : <span className="text-ink-2">Release unavailable</span>}
     </span>
   );
 }

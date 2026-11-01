@@ -29,7 +29,7 @@ function initials(name: string): string {
   return parts[0]![0]! + parts[parts.length - 1]![0]!;
 }
 
-/** A rounded square picture of a person or org, with mono initials as the fallback. */
+/** A rounded square picture of a person or org, with initials as the fallback. */
 export function Avatar({ src, name, size = 24, className, ...props }: AvatarProps) {
   return (
     <BaseAvatar.Root
@@ -52,7 +52,7 @@ export function Avatar({ src, name, size = 24, className, ...props }: AvatarProp
         delay={src ? 300 : 0}
         aria-label={src ? undefined : name}
         role={src ? undefined : "img"}
-        className="font-mono font-medium tracking-tight text-ink-2 uppercase"
+        className="font-medium text-ink-2 uppercase"
       >
         {initials(name)}
       </BaseAvatar.Fallback>
@@ -86,8 +86,8 @@ export function AvatarGroup({ max, size = 24, className, children, ...props }: A
       {rest > 0 ? (
         <span
           className={cn(
-            "inline-flex shrink-0 items-center justify-center rounded-ui bg-panel font-mono font-medium text-ink-2 tabular-nums",
-            "shadow-[inset_0_0_0_1px_var(--ui-line-strong)]",
+            // A count chip: grey fill, no ring, like a Badge.
+            "inline-flex shrink-0 items-center justify-center rounded-ui bg-hover font-medium text-ink-2 tabular-nums",
             SIZE[size],
           )}
           aria-label={`${rest} more`}

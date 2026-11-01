@@ -80,13 +80,13 @@ export function Stamp({ children, tone = "ink", date, locale = "en-GB", rotate =
       style={{ rotate: `${rotate}deg`, ...mask, ...style }}
       className={cn(
         "inline-flex shrink-0 flex-col items-center rounded-ui border-[3px] border-double border-current px-2.5 py-1 select-none",
-        "font-mono text-sm leading-5 font-semibold tracking-[0.14em] uppercase",
+        "text-[15px] leading-5 font-semibold tracking-[0.01em]",
         TONE[tone],
         className,
       )}
     >
       <span>{children}</span>
-      {stamped ? <time dateTime={stamped.iso} className="text-[10px] leading-3 tracking-[0.1em]">{stamped.text}</time> : null}
+      {stamped ? <time dateTime={stamped.iso} className="font-mono text-[10px] leading-3 font-medium tabular-nums">{stamped.text}</time> : null}
     </span>
   );
 }

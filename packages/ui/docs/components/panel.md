@@ -78,7 +78,7 @@ The footer sits on the recessed tone. Put a short hint on the left and the commi
 `flush` removes the body padding, so a `List` runs edge to edge and its hairlines meet the panel's ring.
 
 ```tsx live
-<Panel title="Nodes" actions={<span className="font-mono text-xs text-ink-3 tabular-nums">3 / 12</span>} flush className="w-full max-w-md">
+<Panel title="Nodes" actions={<span className="text-ui text-ink-2 tabular-nums">3 / 12</span>} flush className="w-full max-w-md">
   <List>
     <ListItem leading={<StatusDot tone="ok" />} title="h100-01" meta="us-west" trailing="$2.10/h" />
     <ListItem leading={<StatusDot />} title="h100-02" meta="us-west" trailing="idle" />

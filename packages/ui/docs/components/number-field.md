@@ -105,7 +105,7 @@ Extends Base UI's [NumberField Root](https://base-ui.com/react/components/number
 | `min` / `max` / `step` | `number` | — / — / `1` | Limits and step. ⇧ steps ×10 (`largeStep`), ⌥ ×0.1 (`smallStep`). |
 | `format` | `Intl.NumberFormatOptions` | — | Display formatting. |
 | `leading` | `ReactNode` | — | Short label inside the field; drag it to scrub. |
-| `unit` | `ReactNode` | — | Unit after the number, in ink-3. |
+| `unit` | `ReactNode` | — | Unit after the number, in ink-2. |
 | `steppers` | `boolean` | `false` | − / + buttons at the right edge. |
 | `scrubSensitivity` | `number` | `2` | Pixels of drag per step. |
 | `size` | `"sm" \| "md" \| "lg"` | `"md"` | 24 / 28 / 32px. |

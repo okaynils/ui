@@ -19,7 +19,7 @@ export interface SelectProps<Value> {
   onValueChange?: (value: Value | null) => void;
   /** Shown in ink-3 while nothing is selected. */
   placeholder?: React.ReactNode;
-  /** Height 28 / 32 / 36px, matching Button and Input. */
+  /** Height 24 / 28 / 32px, matching Button and Input. */
   size?: SelectSize;
   name?: string;
   disabled?: boolean;

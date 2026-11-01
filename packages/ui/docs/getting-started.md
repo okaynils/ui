@@ -65,7 +65,7 @@ This gives you:
 
 - **Fonts:** Inter Variable (`font-sans`) and JetBrains Mono Variable (`font-mono`), self-hosted.
 - **Tokens as utilities:** `bg-surface`, `bg-panel`, `text-ink-2`, `border-line`, `bg-accent`, `text-err`, `rounded-ui`, `rounded-box`, `shadow-pop`, `text-ui`, `ease-snap`, …. See [Design](/design).
-- **Two helper utilities:** `ui-label` (the quiet sentence-case label), `ui-mono-label` (the stamped mono label, for gimmicks) and `ui-press` (press-to-scale feedback for your own pressables).
+- **Two helper utilities:** `ui-label` (the quiet sentence-case label for keys, table headers and section names) and `ui-press` (press-to-scale feedback for your own pressables).
 - **Base styles:** body text, focus rings, selection colour, reduced-motion handling.
 
 ## 3. Pick a theme
@@ -125,5 +125,5 @@ Components size any `<svg>` child to 16px automatically.
 ```tsx
 import { cn } from "@nils/ui";
 
-<div className={cn("rounded-box bg-panel p-4", selected && "bg-active")} />
+<div className={cn("rounded-box bg-panel p-3", selected && "bg-active")} />
 ```

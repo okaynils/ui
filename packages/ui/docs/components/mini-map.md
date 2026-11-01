@@ -7,7 +7,7 @@ order: 180
 
 # MiniMap
 
-A small map readout for a footer, contact block or office page: edge rulers, a crosshair through the place that matters, and its name and coordinates in mono, like an instrument panel. Point at another marker, or tab to it, and the crosshair glides over and the readout changes. Positions are percentages you supply and coordinates are text you supply, so there are no tiles, keys, geocoding or network requests. Link out to a real map when someone needs directions.
+A small map readout for a footer, contact block or office page: edge rulers, a crosshair through the place that matters, and its name with coordinates in mono, like an instrument panel. Point at another marker, or tab to it, and the crosshair glides over and the readout changes. Positions are percentages you supply and coordinates are text you supply, so there are no tiles, keys, geocoding or network requests. Link out to a real map when someone needs directions.
 
 ```tsx
 import { MiniMap } from "@nils/ui";

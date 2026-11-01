@@ -57,7 +57,7 @@ export function AccordionItem({ title, meta, className, children, ...props }: Ac
       <BaseAccordion.Header className="m-0">
         <BaseAccordion.Trigger
           className={cn(
-            "group flex min-h-10 w-full cursor-default items-center gap-2 rounded-[2px] py-2 text-left text-ui font-medium text-ink",
+            "group flex min-h-9 w-full cursor-default items-center gap-2 rounded-ui py-2 text-left text-ui font-medium text-ink",
             "outline-none focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent",
             "data-disabled:opacity-45",
           )}

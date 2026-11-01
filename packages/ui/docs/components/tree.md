@@ -81,7 +81,7 @@ export default function Example() {
     <div className="flex w-full max-w-sm flex-col gap-3">
       <Tree aria-label="Environments" nodes={nodes} expanded={expanded} onExpandedChange={setExpanded} selected={selected} onSelect={setSelected} />
       <div className="flex items-center justify-between gap-3 border-t border-line pt-3">
-        <span className="font-mono text-xs text-ink-2">Selected: {selected ?? "none"}</span>
+        <span className="text-xs text-ink-2">Selected: <span className="font-mono text-ink">{selected ?? "none"}</span></span>
         <div className="flex gap-1">
           <Button size="sm" variant="ghost" onClick={() => setExpanded(["prod", "staging"])}>Expand all</Button>
           <Button size="sm" variant="ghost" onClick={() => setExpanded([])}>Collapse all</Button>
@@ -130,7 +130,7 @@ export default function Example() {
 | `textValue` | `string` | Text for type-ahead when `label` isn't a string. |
 | `children` | `readonly TreeNode[]` | Makes the node a branch. |
 | `icon` | `ReactNode` | A 14px icon before the label, rendered in `ink-2`. |
-| `meta` | `ReactNode` | Right-aligned quiet detail in mono. |
+| `meta` | `ReactNode` | Right-aligned quiet detail in `ink-3` tabular figures: a size, a count. |
 | `disabled` | `boolean` | Focusable, but can't be selected or expanded. |
 
 ## Motion

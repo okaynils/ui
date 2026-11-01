@@ -79,7 +79,7 @@ export default function Example() {
         className="max-w-none"
       />
       <div className="flex w-full items-center justify-between gap-3">
-        <span className="font-mono text-xs text-ink-3 tabular-nums">{value.toFixed(1)}% before</span>
+        <span className="text-xs text-ink-2 tabular-nums">{value.toFixed(1)}% before</span>
         <Button size="sm" onClick={() => setValue(50)}>Reset to half</Button>
       </div>
     </div>

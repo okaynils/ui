@@ -21,7 +21,7 @@ import type { PasswordInputProps, PasswordInputPurpose } from "@nils/ui";
 Type something, then click the eye: the cursor stays where it was. Turn Caps Lock on while typing to see the warning.
 
 ```tsx live
-<div className="flex w-72 flex-col gap-4">
+<div className="flex w-72 flex-col gap-3">
   <Field label="Email">
     <Input type="email" autoComplete="email" placeholder="you@example.com" />
   </Field>
@@ -54,7 +54,7 @@ import { Field, PasswordInput, Switch } from "@nils/ui";
 export default function Example() {
   const [visible, setVisible] = useState(false);
   return (
-    <div className="flex w-72 flex-col gap-4">
+    <div className="flex w-72 flex-col gap-3">
       <Field label="New password">
         <PasswordInput purpose="new" visible={visible} onVisibleChange={setVisible} />
       </Field>

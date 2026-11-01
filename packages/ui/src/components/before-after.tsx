@@ -122,7 +122,7 @@ export function BeforeAfter({
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
       className={cn(
-        "relative aspect-[4/3] w-full max-w-lg touch-none overflow-hidden rounded-box border border-line-strong bg-panel select-none",
+        "relative aspect-[4/3] w-full max-w-lg touch-none overflow-hidden rounded-box bg-panel shadow-[0_0_0_1px_var(--ui-line)] select-none",
         dragging ? "cursor-ew-resize" : "cursor-col-resize",
         className,
       )}
@@ -136,10 +136,10 @@ export function BeforeAfter({
         style={{ clipPath: `inset(0 ${100 - current}% 0 0)` }}
       />
 
-      <span className="pointer-events-none absolute top-2 left-2 rounded-ui bg-surface px-1.5 py-0.5 text-xs text-ink-2 shadow-[inset_0_0_0_1px_var(--ui-line)]">
+      <span className="pointer-events-none absolute top-2 left-2 inline-flex h-5 items-center rounded-ui bg-hover px-1.5 text-xs font-medium text-ink-2">
         {beforeLabel}
       </span>
-      <span className="pointer-events-none absolute top-2 right-2 rounded-ui bg-surface px-1.5 py-0.5 text-xs text-ink-2 shadow-[inset_0_0_0_1px_var(--ui-line)]">
+      <span className="pointer-events-none absolute top-2 right-2 inline-flex h-5 items-center rounded-ui bg-hover px-1.5 text-xs font-medium text-ink-2">
         {afterLabel}
       </span>
 
@@ -156,8 +156,8 @@ export function BeforeAfter({
           aria-valuetext={`${Math.round(current)}% before, ${Math.round(100 - current)}% after`}
           onKeyDown={handleKeyDown}
           className={cn(
-            "relative flex size-7 items-center justify-center rounded-ui bg-surface text-ink-2 outline-none",
-            "shadow-[inset_0_0_0_1px_var(--ui-line-strong)]",
+            "relative flex size-7 items-center justify-center rounded-ui bg-raised text-ink-2 shadow-control outline-none",
+            "transition-colors duration-120 hover:bg-hover hover:text-ink",
             "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
           )}
         >

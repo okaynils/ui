@@ -74,7 +74,7 @@ An input and a button on one row share a size.
 Inside a `Field`, the `error` prop marks the input invalid. Disabled inputs drop to 45% opacity.
 
 ```tsx live
-<div className="flex w-64 flex-col gap-4">
+<div className="flex w-64 flex-col gap-3">
   <Field label="Subdomain" error="Already taken — try another.">
     <Input defaultValue="nils" />
   </Field>

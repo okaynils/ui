@@ -2,7 +2,7 @@ import { Form as BaseForm } from "@base-ui/react/form";
 import { cn } from "../lib/cn";
 
 export interface FormProps extends Omit<BaseForm.Props, "className"> {
-  /** Layout classes. Defaults to a column with `gap-4` between fields. */
+  /** Layout classes. Defaults to a column with `gap-3` between fields. */
   className?: string;
 }
 
@@ -12,5 +12,5 @@ export interface FormProps extends Omit<BaseForm.Props, "className"> {
  * through `errors`.
  */
 export function Form({ className, ...props }: FormProps) {
-  return <BaseForm {...props} className={cn("flex flex-col gap-4", className)} />;
+  return <BaseForm {...props} className={cn("flex flex-col gap-3", className)} />;
 }

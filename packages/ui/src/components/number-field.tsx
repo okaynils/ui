@@ -11,13 +11,13 @@ export interface NumberFieldProps
    * icon). Drag it left/right to scrub the value — the cursor turns to ↔.
    */
   leading?: React.ReactNode;
-  /** Unit after the number, in ink-3 (e.g. "px", "GB", "%"). Display only — use `format` for currency/percent formatting. */
+  /** Unit after the number, in ink-2 (e.g. "px", "GB", "%"). Display only — use `format` for currency/percent formatting. */
   unit?: React.ReactNode;
   /** Show − / + buttons at the right edge. */
   steppers?: boolean;
   /** Pixels of drag per step while scrubbing. Lower is faster. */
   scrubSensitivity?: number;
-  /** Height 28 / 32 / 36px, matching Button and Input. */
+  /** Height 24 / 28 / 32px, matching Button and Input. */
   size?: NumberFieldSize;
   placeholder?: string;
   /** Needed when there's no visible label (no surrounding `Field`). */
@@ -36,6 +36,9 @@ const SIZE: Record<NumberFieldSize, string> = {
 const PAD_L: Record<NumberFieldSize, string> = { sm: "pl-2", md: "pl-2.5", lg: "pl-3" };
 const PAD_R: Record<NumberFieldSize, string> = { sm: "pr-2", md: "pr-2.5", lg: "pr-3" };
 
+// Square steppers: as wide as the field is tall.
+const STEPPER_W: Record<NumberFieldSize, string> = { sm: "w-6", md: "w-7", lg: "w-8" };
+
 const groupSurface = [
   "rounded-ui bg-surface text-ink",
   "shadow-[inset_0_0_0_1px_var(--ui-line-strong)] transition-shadow duration-120",
@@ -47,7 +50,7 @@ const groupSurface = [
 ].join(" ");
 
 const stepper =
-  "ui-press flex h-full w-7 shrink-0 cursor-default items-center justify-center text-ink-2 outline-none select-none hover:bg-hover hover:text-ink data-disabled:pointer-events-none data-disabled:opacity-45";
+  "ui-press flex h-full shrink-0 cursor-default items-center justify-center text-ink-2 outline-none select-none hover:bg-hover hover:text-ink data-disabled:pointer-events-none data-disabled:opacity-45";
 
 /**
  * A number input. Arrow keys step (⇧ ×10, ⌥ ×0.1), the wheel scrubs while
@@ -72,7 +75,7 @@ export function NumberField({
           <BaseNumberField.ScrubArea
             pixelSensitivity={scrubSensitivity}
             className={cn(
-              "flex shrink-0 cursor-ew-resize items-center pr-1 font-mono text-[11px] text-ink-3 select-none hover:text-ink-2 data-scrubbing:text-accent",
+              "flex shrink-0 cursor-ew-resize items-center pr-1 text-xs text-ink-2 select-none hover:text-ink data-scrubbing:text-accent",
               "[&>svg]:size-3.5",
               PAD_L[size],
             )}
@@ -93,16 +96,16 @@ export function NumberField({
           )}
         />
         {unit !== undefined ? (
-          <span className={cn("flex shrink-0 items-center text-ink-3 select-none", steppers ? "pr-2" : PAD_R[size])}>
+          <span className={cn("flex shrink-0 items-center text-ink-2 select-none", steppers ? "pr-2" : PAD_R[size])}>
             {unit}
           </span>
         ) : null}
         {steppers ? (
           <span className="flex shrink-0 border-l border-line-strong">
-            <BaseNumberField.Decrement aria-label="Decrease" className={stepper}>
+            <BaseNumberField.Decrement aria-label="Decrease" className={cn(stepper, STEPPER_W[size])}>
               <MinusIcon />
             </BaseNumberField.Decrement>
-            <BaseNumberField.Increment aria-label="Increase" className={cn(stepper, "border-l border-line")}>
+            <BaseNumberField.Increment aria-label="Increase" className={cn(stepper, STEPPER_W[size], "border-l border-line")}>
               <PlusIcon />
             </BaseNumberField.Increment>
           </span>

@@ -116,7 +116,7 @@ export default function Example() {
           { key: "id", header: "ID", mono: true },
           { key: "branch", header: "Branch", mono: true },
           { key: "author", header: "Author" },
-          { key: "age", header: "Age", align: "right", mono: true },
+          { key: "age", header: "Age", align: "right" },
         ]}
       />
     </Panel>
@@ -159,7 +159,7 @@ export default function Example() {
             sortable: true,
             render: (r) => <span className={r.status >= 500 ? "text-err" : r.status >= 400 ? "text-warn" : undefined}>{r.status}</span>,
           },
-          { key: "ms", header: "Time", align: "right", mono: true, sortable: true, render: (r) => `${r.ms} ms` },
+          { key: "ms", header: "Time", align: "right", sortable: true, render: (r) => `${r.ms} ms` },
         ]}
       />
     </Panel>

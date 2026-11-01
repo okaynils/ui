@@ -21,7 +21,7 @@ Size it with classes to match the real content.
 
 ```tsx live
 <div className="flex w-full max-w-sm items-center gap-3">
-  <Skeleton className="size-8 rounded-full" />
+  <Skeleton className="size-7 rounded-ui" />
   <div className="flex flex-1 flex-col gap-2">
     <Skeleton className="h-3.5 w-32" />
     <Skeleton className="h-3 w-48" />
@@ -50,7 +50,7 @@ export default function Example() {
     setTimeout(() => setState("done"), ms);
   };
   return (
-    <div className="flex w-full max-w-sm flex-col gap-4">
+    <div className="flex w-full max-w-sm flex-col gap-3">
       <div className="flex gap-2">
         <Button size="sm" onClick={() => load(150)}>Fast load (150ms)</Button>
         <Button size="sm" onClick={() => load(1500)}>Slow load (1.5s)</Button>
@@ -81,7 +81,7 @@ export default function Example() {
 | --- | --- | --- | --- |
 | `delay` | `number` (ms) | `300` | Stay invisible this long before showing. `0` shows immediately. |
 | `lines` | `number` | — | Render N text-like lines instead of one block. |
-| `className` | `string` | — | Size and shape: `h-4 w-40`, `size-8 rounded-full`. |
+| `className` | `string` | — | Size and shape: `h-4 w-40`, `size-7 rounded-ui`. |
 
 ## Motion
 

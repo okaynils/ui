@@ -64,8 +64,8 @@ export default function Example() {
     { key: "id", header: "Machine", mono: true, sortable: true },
     { key: "region", header: "Region", mono: true, sortable: true },
     { key: "state", header: "State", sortable: true, render: (row: typeof initial[number]) => <Status tone={row.state === "Running" ? "ok" : "neutral"}>{row.state}</Status> },
-    { key: "hours", header: "GPU-h", align: "right" as const, mono: true, sortable: true, render: (row: typeof initial[number]) => <NumberRoll value={row.hours} format={{ minimumFractionDigits: 1, maximumFractionDigits: 1 }} /> },
-    { key: "rate", header: "$/hr", align: "right" as const, mono: true, sortable: true, render: (row: typeof initial[number]) => row.rate.toFixed(2) },
+    { key: "hours", header: "GPU-h", align: "right" as const, sortable: true, render: (row: typeof initial[number]) => <NumberRoll value={row.hours} format={{ minimumFractionDigits: 1, maximumFractionDigits: 1 }} /> },
+    { key: "rate", header: "$/hr", align: "right" as const, sortable: true, render: (row: typeof initial[number]) => row.rate.toFixed(2) },
   ];
 
   return (
@@ -83,14 +83,14 @@ export default function Example() {
         }
         topBar={<TopBar start={<Breadcrumbs items={[{ label: "Personal" }, { label: "Machines" }]} />} end={<Badge>Demo</Badge>} />}
       >
-        <div className="space-y-6 p-5">
+        <div className="space-y-3 p-4">
           <PageHeader title="Machines" description="Your compute, at a glance." actions={<Button variant="primary" onClick={() => setDeploying(true)}><PlusIcon />Deploy machine</Button>} meta={<Status tone="ok">All systems operational</Status>} />
           <StatGroup>
             <Stat label="GPU hours" value={hours} format={{ minimumFractionDigits: 1, maximumFractionDigits: 1 }} caption="This month" />
             <Stat label="Spend" value={spend} format={{ style: "currency", currency: "USD" }} caption="This month" />
             <Stat label="Running" value={rows.filter((row) => row.state === "Running").length} caption={`${rows.length} machines total`} />
           </StatGroup>
-          <Panel title="Machines" flush actions={<span className="font-mono text-xs text-ink-3">{selected.length ? `${selected.length} selected` : `${visible.length} total`}</span>}>
+          <Panel title="Machines" flush actions={<span className="text-ui text-ink-2 tabular-nums">{selected.length ? `${selected.length} selected` : `${visible.length} total`}</span>}>
             <div className="flex flex-wrap items-center gap-2 border-b border-line p-3">
               <Input size="sm" leading={<MagnifyingGlassIcon />} aria-label="Filter machines" placeholder="Filter machines…" value={query} onValueChange={setQuery} className="min-w-0 flex-1" />
               <Button size="sm" onClick={refresh}><ArrowClockwiseIcon />Refresh usage</Button>
@@ -107,9 +107,9 @@ export default function Example() {
             {detail ? <KeyValue keyWidth={100} items={[
               { label: "ID", value: <span className="inline-flex items-center gap-2"><Code>{detail.id}</Code><CopyButton value={detail.id} aria-label="Copy machine ID" /></span> },
               { label: "Region", value: detail.region, mono: true },
-              { label: "GPU", value: detail.gpu, mono: true },
+              { label: "GPU", value: detail.gpu },
               { label: "State", value: <Status tone={detail.state === "Running" ? "ok" : "neutral"}>{detail.state}</Status> },
-              { label: "Usage", value: `${detail.hours.toFixed(1)} GPU-h`, mono: true },
+              { label: "Usage", value: <span className="tabular-nums">{detail.hours.toFixed(1)} <span className="text-ink-2">GPU-h</span></span> },
             ]} /> : null}
           </SheetBody>
         </SheetContent>
@@ -128,7 +128,7 @@ export default function Example() {
           }}>
             <DialogTitle>Deploy machine</DialogTitle>
             <DialogDescription>Add an H100 to your workspace. This demo makes no real purchase.</DialogDescription>
-            <div className="my-5 space-y-4">
+            <div className="my-4 space-y-3">
               <Field label="Name"><Input required pattern="[a-z0-9-]+" placeholder="training-01" value={name} onValueChange={setName} /></Field>
               <Field label="Region"><Select items={regions} value={region} onValueChange={setRegion} /></Field>
               <Field label="Replicas"><NumberField steppers min={1} max={8} required value={replicas} onValueChange={setReplicas} /></Field>

@@ -33,7 +33,7 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from "@nils/ui";
         </div>
       </div>
       <div className="mt-3 flex gap-4 border-t border-line pt-3 text-xs text-ink-2">
-        <span><span className="font-mono text-ink tabular-nums">142</span> deploys</span>
+        <span><span className="font-medium text-ink tabular-nums">142</span> deploys</span>
         <span>Joined Mar 2024</span>
       </div>
     </HoverCardContent>
@@ -56,8 +56,8 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from "@nils/ui";
       </div>
       <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-xs">
         <dt className="text-ink-3">Region</dt><dd className="text-ink">us-west</dd>
-        <dt className="text-ink-3">GPUs</dt><dd className="font-mono text-ink">8× H100</dd>
-        <dt className="text-ink-3">Uptime</dt><dd className="font-mono text-ink tabular-nums">3d 4h</dd>
+        <dt className="text-ink-3">GPUs</dt><dd className="text-ink">8× H100</dd>
+        <dt className="text-ink-3">Uptime</dt><dd className="text-ink tabular-nums">3d 4h</dd>
       </dl>
     </HoverCardContent>
   </HoverCard>

@@ -99,7 +99,7 @@ The fill stays neutral until it crosses `warn`, then amber, then red past `err`.
 | `value` | `number \| null` | — | Progress in `min`–`max`. `null` = indeterminate. |
 | `min` / `max` | `number` | `0` / `100` | Range. |
 | `label` | `ReactNode` | — | Text above the bar, left. |
-| `showValue` | `boolean` | on with a label | Mono value above the bar, right. |
+| `showValue` | `boolean` | on with a label | The value above the bar, right, in ink. |
 | `format` | `Intl.NumberFormatOptions` | percent | Value formatting. |
 | `segments` | `number` | — | Draw N discrete blocks. |
 | `aria-label` | `string` | — | Needed when there's no `label`. |

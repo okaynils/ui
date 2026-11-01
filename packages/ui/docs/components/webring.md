@@ -51,7 +51,7 @@ export default function Example() {
   return (
     <div className="flex flex-col items-start gap-3">
       <Webring name="Friends" members={members} current={current} onNavigate={(member, direction, event) => { event.preventDefault(); setCurrent(member.id); }} />
-      <p className="font-mono text-xs text-ink-2">Current site: {current}</p>
+      <p className="text-xs text-ink-2">Current site: <span className="font-mono">{current}</span></p>
     </div>
   );
 }

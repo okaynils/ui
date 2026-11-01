@@ -120,7 +120,7 @@ Pick the control by what the choice is:
 | `defaultPressed` | `boolean` | `false` | Initial pressed state when uncontrolled. |
 | `onPressedChange` | `(pressed: boolean) => void` | — | Called when the state changes. |
 | `value` | `string` | — | Identifies the toggle inside a `ToggleGroup`. |
-| `size` | `"sm" \| "md"` | `"md"` | Height 28 / 32px. Ignored inside a group, which sets it. |
+| `size` | `"sm" \| "md"` | `"md"` | Height 24 / 28px. Ignored inside a group, which sets it. |
 | `variant` | `"outline" \| "ghost"` | `"outline"` | `outline` stands alone; `ghost` sits in a row of controls. Ignored inside a group. |
 | `icon` | `boolean` | `false` | Square, icon-only. Needs `aria-label`. |
 | `disabled` | `boolean` | `false` | Ignore interaction. |

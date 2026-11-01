@@ -37,7 +37,7 @@ export default function Example() {
           setCount((current) => current + delta);
         }}
       />
-      <span className="font-mono text-xs text-ink-3">
+      <span className="text-xs text-ink-2 tabular-nums">
         {log.length ? `Batches sent: ${log.join(", ")}` : "No batches sent yet"}
       </span>
     </div>
@@ -95,7 +95,7 @@ export default function Example() {
 
 ## Motion
 
-Applause is the button's signature move. A press gives one kudo. Hold for 400ms and it keeps giving one every 120ms until you let go or reach `max`; holding Space or Enter does the same. Each kudo rolls the changed digits of the count up (`NumberRoll`, 180ms) and floats a mono "+1" 10px up out of the count while it fades (300ms, `ease-snap`). The button presses like any Button. Under `prefers-reduced-motion` the "+1" doesn't appear and digits swap instantly; the count still updates.
+Applause is the button's signature move. A press gives one kudo. Hold for 400ms and it keeps giving one every 120ms until you let go or reach `max`; holding Space or Enter does the same. Each kudo rolls the changed digits of the count up (`NumberRoll`, 180ms) and floats a small "+1" 10px up out of the count while it fades (300ms, `ease-snap`). The button presses like any Button. Under `prefers-reduced-motion` the "+1" doesn't appear and digits swap instantly; the count still updates.
 
 ## Accessibility
 

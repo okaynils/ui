@@ -259,7 +259,7 @@ export function Calendar(props: CalendarProps) {
                     onFocus={() => setFocused(d)}
                     onMouseEnter={() => setHovered(d)}
                     className={cn(
-                      "relative flex size-7 cursor-default items-center justify-center rounded-[3px] text-ui tabular-nums outline-none",
+                      "relative flex size-7 cursor-default items-center justify-center rounded-[4px] text-ui tabular-nums outline-none",
                       "transition-colors duration-120",
                       "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent",
                       "aria-disabled:cursor-not-allowed aria-disabled:opacity-40",

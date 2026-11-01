@@ -60,7 +60,7 @@ import { TextBIcon, TextItalicIcon, LinkSimpleIcon, CodeIcon } from "@phosphor-i
 export default function Example() {
   return (
     <TooltipProvider>
-      <div className="flex gap-0.5 rounded-box bg-surface p-1 shadow-[0_0_0_1px_var(--ui-line-strong)]">
+      <div className="flex gap-0.5 rounded-box bg-surface p-1 shadow-[0_0_0_1px_var(--ui-line)]">
         <Tooltip content="Bold" shortcut="⌘B"><Button variant="ghost" size="sm" icon aria-label="Bold"><TextBIcon /></Button></Tooltip>
         <Tooltip content="Italic" shortcut="⌘I"><Button variant="ghost" size="sm" icon aria-label="Italic"><TextItalicIcon /></Button></Tooltip>
         <Tooltip content="Link" shortcut="⌘K"><Button variant="ghost" size="sm" icon aria-label="Link"><LinkSimpleIcon /></Button></Tooltip>

@@ -82,7 +82,7 @@ export function Steps({
           <span
             aria-hidden="true"
             className={cn(
-              "flex size-5 shrink-0 items-center justify-center rounded-ui font-mono text-[11px] leading-none font-medium tabular-nums transition-colors duration-120",
+              "flex size-5 shrink-0 items-center justify-center rounded-ui text-[11px] leading-none font-medium tabular-nums transition-colors duration-120",
               MARKER[state],
             )}
           >
@@ -120,7 +120,7 @@ export function Steps({
 
         if (vertical) {
           return (
-            <li key={index} aria-current={state === "current" ? "step" : undefined} data-state={state} className={cn("relative", !last && "pb-5")}>
+            <li key={index} aria-current={state === "current" ? "step" : undefined} data-state={state} className={cn("relative", !last && "pb-4")}>
               {head}
               {!last ? (
                 <span

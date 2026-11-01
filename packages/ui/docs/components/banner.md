@@ -50,7 +50,7 @@ export default function Example() {
             Sunday 02:00–03:00 UTC. Deploys will queue.
           </Banner>
         ) : null}
-        <div className="p-4 text-ui text-ink-2">Page content</div>
+        <div className="p-3 text-ui text-ink-2">Page content</div>
       </div>
       {!shown ? <Button size="sm" onClick={() => setShown(true)}>Show again</Button> : null}
     </div>
@@ -81,7 +81,7 @@ export default function Example() {
         }
         topBar={<TopBar start={<span className="text-ui font-medium text-ink">Overview</span>} />}
       >
-        <div className="p-4 text-ui text-ink-2">Page content</div>
+        <div className="p-3 text-ui text-ink-2">Page content</div>
       </AppShell>
     </div>
   );

@@ -64,7 +64,7 @@ export function CurrentlyReading({
       {...props}
       aria-busy={loading || undefined}
       data-state={loading ? "loading" : book ? state : "empty"}
-      className={cn("flex w-full max-w-sm items-start gap-4", className)}
+      className={cn("flex w-full max-w-sm items-start gap-3", className)}
     >
       {loading ? (
         <>
@@ -83,10 +83,10 @@ export function CurrentlyReading({
             ) : <div className="mt-1 text-ui font-medium break-words text-ink">{book.title}</div>}
             <div className="text-xs break-words text-ink-2">{book.author}</div>
             {current !== null && total !== null ? (
-              <div className="mt-2 font-mono text-[11px] text-ink-3 tabular-nums">
+              <div className="mt-2 text-xs text-ink-2 tabular-nums">
                 <span className="sr-only">Page {current} of {total}</span>
                 <span aria-hidden="true" className="inline-flex items-baseline">
-                  p.&nbsp;<NumberRoll value={current} locale="en" format={{ useGrouping: false }} className="text-ink-2" />&nbsp;of {total}
+                  p.&nbsp;<NumberRoll value={current} locale="en" format={{ useGrouping: false }} className="font-medium text-ink" />&nbsp;of {total}
                 </span>
               </div>
             ) : null}

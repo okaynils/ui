@@ -34,7 +34,7 @@ export default function Example() {
   return (
     <div className="flex flex-col items-center gap-3">
       <Button shortcut="⌘K" onClick={() => setOpen(true)}>Search commands</Button>
-      <p className="text-xs text-ink-2">Ran: <span className="font-mono text-ink">{last}</span></p>
+      <p className="text-xs text-ink-2">Ran: <span className="text-ink">{last}</span></p>
       <CommandPalette
         open={open}
         onOpenChange={setOpen}

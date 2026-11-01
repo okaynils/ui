@@ -23,7 +23,7 @@ export interface VisitorCounterProps extends Omit<React.ComponentProps<"div">, "
 // mechanical wheel rather than a box with a number in it.
 const CELL = [
   "relative mx-px px-[5px] py-1.5 rounded-ui bg-panel text-ink",
-  "shadow-[inset_0_0_0_1px_var(--ui-line-strong)]",
+  "shadow-[inset_0_0_0_1px_var(--ui-line)]",
   "after:pointer-events-none after:absolute after:inset-x-0 after:top-1/2 after:h-px after:bg-line",
 ].join(" ");
 
@@ -56,7 +56,7 @@ export function VisitorCounter({
       data-variant={variant}
       className={cn("inline-flex max-w-full flex-col gap-1.5", className)}
     >
-      {label ? <span className="ui-mono-label">{label}</span> : null}
+      {label ? <span className="ui-label">{label}</span> : null}
       <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
         {valid ? (
           <>
@@ -68,13 +68,13 @@ export function VisitorCounter({
               locale="en"
               format={{ minimumIntegerDigits: width, useGrouping: false }}
               digitClassName={odometer ? CELL : undefined}
-              className={cn("font-mono", odometer ? "-mx-px text-xl font-medium" : "text-2xl text-ink")}
+              className={cn("font-mono", odometer ? "-mx-px text-xl font-medium" : "text-xl text-ink")}
             />
           </>
         ) : (
-          <span className="font-mono text-2xl text-ink-3">—</span>
+          <span className="font-mono text-xl text-ink-3">—</span>
         )}
-        {caption ? <span className="text-xs text-ink-3">{caption}</span> : null}
+        {caption ? <span className="text-ui text-ink-2">{caption}</span> : null}
       </div>
     </div>
   );

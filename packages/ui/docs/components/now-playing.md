@@ -66,7 +66,7 @@ export default function Example() {
 
 ### A compact row
 
-`variant="row"` fits it into one 32px line, the height of a default control, for lists, sidebars and dashboards: a small cover, title and artist, the equaliser and the elapsed time. Progress becomes a hairline along the bottom edge.
+`variant="row"` fits it into one 28px line, the height of a default control, for lists, sidebars and dashboards: a small cover, title and artist, the equaliser and the elapsed time. Progress becomes a hairline along the bottom edge.
 
 ```tsx live
 import { NowPlaying } from "@nils/ui";
@@ -125,7 +125,7 @@ Use `track={null}` for nothing playing, and `state="offline"` when the data sour
 
 - **Do** supply service or player data from the consuming app. A music service is an adapter, not a dependency of this component.
 - **Do** pass position and duration in seconds. Progress is hidden unless both are finite and duration is positive; position is clamped to the track.
-- **Do** provide `track.artwork` for a cover image and `track.href` when the title should link to the track. Artwork stays square with 4px corners; missing or broken images use a music-note fallback.
+- **Do** provide `track.artwork` for a cover image and `track.href` when the title should link to the track. Artwork stays square with 5px corners; missing or broken images use a music-note fallback.
 - **Do** use `offline` for a disconnected or failed source and `track={null}` for a confirmed idle player.
 - **Don't** show a playback control unless your app can carry out the action. Omit `onPlaybackToggle` for a passive badge.
 - **Don't** infer that a person is still listening from stale data. The app should decide when a snapshot becomes offline; until it does, the playhead stops at the end of the track.
@@ -145,7 +145,7 @@ Use `track={null}` for nothing playing, and `state="offline"` when the data sour
 | `position` | `number` | — | Playback position in seconds, as last reported by the player. Clamped to the track. |
 | `advance` | `boolean` | `true` | While playing, count the position forward from the last report using the wall clock. Set `false` if your app already pushes the position every second. |
 | `loading` | `boolean` | `false` | Show artwork/text placeholders with a loading label. |
-| `variant` | `"card" \| "row" \| "inline"` | `"card"` | `card` is the standalone badge; `row` is one 32px line for lists, with elapsed time and progress as a bottom hairline; `inline` is a `<span>` that sits in a sentence and scales with its font size. |
+| `variant` | `"card" \| "row" \| "inline"` | `"card"` | `card` is the standalone badge; `row` is one 28px line for lists, with elapsed time and progress as a bottom hairline; `inline` is a `<span>` that sits in a sentence and scales with its font size. |
 | `onPlaybackToggle` | `() => void` | — | Displays a pause/resume button and requests the action. Does not change state internally. Hidden when offline or without a track. |
 | `className` | `string` | — | Layout classes; defaults to full width up to `max-w-sm`. |
 | `...props` | `ComponentProps<"div">` | — | Root attributes and ref. The root defaults to a group named "Listening activity". |

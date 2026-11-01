@@ -1,6 +1,6 @@
 ---
 title: Badge
-description: A 20px hairline label for counts, versions, states and tags. Optional status dot, optional mono. Never filled with colour.
+description: A 20px grey label for counts, versions, states and tags. Optional status dot, optional mono. Never filled with colour.
 group: Feedback
 order: 20
 ---
@@ -58,7 +58,7 @@ export default function Example() {
 
 ## Rules
 
-- **Do** use `mono` for anything machine-ish: versions, IDs, hashes, counts.
+- **Do** use `mono` for anything machine-ish: versions, IDs, hashes. A plain count reads fine without it.
 - **Do** use `tone` for a state, so the colour is a dot and the word stays ink.
 - **Don't** fill a badge with a status colour or colour its text. There is no "red badge".
 - **Don't** make badges clickable. A filter chip is a `SegmentedControl` or a `Button size="sm"`.

@@ -129,14 +129,14 @@ export function LocalTime({
       {label ? <span className="text-ink-2">{label}</span> : null}
       {label ? <span aria-hidden className="text-ink-3">·</span> : null}
       {!invalid ? <ClockFace time={face} /> : null}
-      <time dateTime={iso} className="font-mono text-xs tabular-nums" aria-label={!date && !invalid ? "Loading local time" : undefined}>{text}</time>
+      <time dateTime={iso} className="font-mono text-xs font-medium tabular-nums" aria-label={!date && !invalid ? "Loading local time" : undefined}>{text}</time>
       {!invalid && date && workingHours ? (
         <span className="inline-flex items-center gap-1.5 text-xs text-ink-2">
           <StatusDot tone={working === true ? "ok" : "neutral"} />
           {working === null ? "Hours unavailable" : working ? "Working hours" : "Outside working hours"}
         </span>
       ) : null}
-      {difference ? <span className="text-xs text-ink-3">{difference}</span> : null}
+      {difference ? <span className="text-xs text-ink-2">{difference}</span> : null}
     </span>
   );
 }

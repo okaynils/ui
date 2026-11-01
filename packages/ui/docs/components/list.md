@@ -7,7 +7,7 @@ order: 20
 
 # List
 
-Flat rows separated by hairlines. Use it for collections: projects, nodes, files, settings entries. Each `ListItem` has slots for a leading icon or dot, a title, an inline mono `meta`, a second-line `description`, and a `trailing` value. Give a row `href`, `onClick` or `render` and **the whole row** becomes the pressable. It answers hover with tone and never scales.
+Flat rows separated by hairlines. Use it for collections: projects, nodes, files, settings entries. Each `ListItem` has slots for a leading icon or dot, a title, an inline `meta` (mono, for IDs and versions), a second-line `description`, and a `trailing` value. Give a row `href`, `onClick` or `render` and **the whole row** becomes the pressable. It answers hover with tone and never scales.
 
 ```tsx
 import { List, ListItem } from "@nils/ui";
@@ -21,7 +21,7 @@ import { List, ListItem } from "@nils/ui";
 <Panel flush className="w-full max-w-md">
   <List>
     <ListItem title="Inter Variable" description="Text, controls, titles" trailing="400–600" />
-    <ListItem title="JetBrains Mono" description="Labels, IDs, code" trailing="400" />
+    <ListItem title="JetBrains Mono" description="IDs, code, data" trailing="400" />
   </List>
 </Panel>
 ```
@@ -91,7 +91,7 @@ import { Link } from "react-router-dom";
 
 - **Do** make the whole row the pressable (`href`/`onClick`), not a small button inside it.
 - **Do** keep titles to one line. They truncate. Put a second line in `description`, not in `title`.
-- **Do** put IDs, versions and counts in `meta` or `trailing`. `meta` is mono already.
+- **Do** put IDs and versions in `meta` (it's mono already) and counts or values in `trailing`.
 - **Don't** put a `List` inside cards or give each row its own border. Rows are separated by one hairline.
 - **Don't** scale or animate rows on press. Wide things respond with tone.
 - **Don't** use `selected` for multi-select. It means "this is the one you're looking at".

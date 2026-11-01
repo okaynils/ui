@@ -121,7 +121,7 @@ export function Kudos({
     const plus = document.createElement("span");
     plus.textContent = "+1";
     plus.setAttribute("aria-hidden", "true");
-    plus.style.cssText = "position:absolute;right:0;bottom:100%;font:500 11px/1 var(--font-mono);color:var(--ui-ink-2);pointer-events:none;";
+    plus.style.cssText = "position:absolute;right:0;bottom:100%;font:500 12px/1 var(--font-sans);color:var(--ui-ink-2);pointer-events:none;";
     anchor.appendChild(plus);
     plus.animate(
       [{ transform: "translateY(2px)", opacity: 1 }, { transform: "translateY(-8px)", opacity: 0 }],
@@ -199,9 +199,9 @@ export function Kudos({
     >
       <span className={cn("flex", visitor > 0 ? "text-ink" : "text-ink-2")}>{icon ?? <Spark filled={visitor > 0} />}</span>
       <span ref={counter} className="relative">
-        <NumberRoll value={total} locale={locale} className="font-mono text-ui text-ink" />
+        <NumberRoll value={total} locale={locale} className="text-ui font-medium text-ink tabular-nums" />
       </span>
-      {done ? <span className="font-mono text-[11px] text-ink-3">Thanks</span> : null}
+      {done ? <span className="text-xs text-ink-2">Thanks</span> : null}
     </button>
     <span role="status" className="sr-only">{announcement}</span>
     </>

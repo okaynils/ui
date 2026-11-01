@@ -90,19 +90,19 @@ export function Waveform({
           onValueCommitted={(value) => onSeekCommitted?.(clamp(value))}
           className="group/waveform w-full"
         >
-          <BaseSlider.Control className="relative flex h-12 w-full touch-none items-center rounded-ui outline-none select-none has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent data-disabled:cursor-not-allowed">
-            <BaseSlider.Track className="relative h-12 w-full">
+          <BaseSlider.Control className="relative flex h-10 w-full touch-none items-center rounded-ui outline-none select-none has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent data-disabled:cursor-not-allowed">
+            <BaseSlider.Track className="relative h-10 w-full">
               {drawing}
               <BaseSlider.Thumb
                 aria-label={`Seek ${label}`}
                 getAriaValueText={(_, value) => `${formatTime(value)} of ${formatTime(total)}`}
-                className="h-12 w-0.5 bg-accent outline-none"
+                className="h-10 w-0.5 bg-accent outline-none"
               />
             </BaseSlider.Track>
           </BaseSlider.Control>
         </BaseSlider.Root>
-      ) : <div aria-hidden="true" className="relative h-12 w-full">{drawing}</div>}
-      {!available || samples.length === 0 ? <p className="text-xs text-ink-3">{!available ? "Duration unavailable" : "Waveform unavailable"}</p> : null}
+      ) : <div aria-hidden="true" className="relative h-10 w-full">{drawing}</div>}
+      {!available || samples.length === 0 ? <p className="text-xs text-ink-2">{!available ? "Duration unavailable" : "Waveform unavailable"}</p> : null}
     </div>
   );
 }

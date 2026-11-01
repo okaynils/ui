@@ -54,17 +54,17 @@ A fixed `width` keeps every row's trend on the same scale of time. `baseline` dr
     <TableRow>
       <TableCell className="font-mono">api-gateway</TableCell>
       <TableCell><Sparkline width={120} height={20} baseline={99.9} min={99.5} max={100} data={[99.98, 99.99, 100, 99.97, 99.99, 100, 100, 99.96, 99.99, 100, 99.98, 99.99, 100, 99.99]} /></TableCell>
-      <TableCell align="right" className="font-mono">99.99%</TableCell>
+      <TableCell align="right">99.99%</TableCell>
     </TableRow>
     <TableRow>
       <TableCell className="font-mono">postgres-main</TableCell>
       <TableCell><Sparkline width={120} height={20} baseline={99.9} min={99.5} max={100} data={[100, 100, 99.99, 100, 100, 100, 99.99, 100, 100, 100, 100, 100, 99.99, 100]} /></TableCell>
-      <TableCell align="right" className="font-mono">99.99%</TableCell>
+      <TableCell align="right">99.99%</TableCell>
     </TableRow>
     <TableRow>
       <TableCell className="font-mono">legacy-worker</TableCell>
       <TableCell><Sparkline width={120} height={20} baseline={99.9} min={99.5} max={100} tone="warn" data={[99.95, 99.9, 99.82, 99.88, 99.7, 99.91, 99.86, 99.6, 99.8, 99.85, 99.72, 99.9, 99.81, 99.78]} /></TableCell>
-      <TableCell align="right" className="font-mono">99.83%</TableCell>
+      <TableCell align="right">99.83%</TableCell>
     </TableRow>
   </TableBody>
 </Table>

@@ -14,9 +14,9 @@ export interface ListItemProps extends Omit<React.ComponentProps<"li">, "title" 
   title: React.ReactNode;
   /** A second line in ink-2. Truncated to one line. */
   description?: React.ReactNode;
-  /** Short value right after the title on the same line, e.g. a mono ID. */
+  /** Short value right after the title on the same line, e.g. a mono ID or version. */
   meta?: React.ReactNode;
-  /** Right-aligned content: a Kbd, a mono value, a chevron, a small ghost Button. */
+  /** Right-aligned content: a Kbd, a value, a chevron, a small ghost Button. */
   trailing?: React.ReactNode;
   /** Makes the whole row a link. */
   href?: string;

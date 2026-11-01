@@ -96,7 +96,7 @@ function Delta({ value, format, better }: { value: number; format: Intl.NumberFo
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-baseline gap-1 font-mono text-xs tabular-nums",
+        "inline-flex shrink-0 items-baseline gap-1 text-xs font-medium tabular-nums",
         good === null ? "text-ink-2" : good ? "text-ok" : "text-err",
       )}
     >

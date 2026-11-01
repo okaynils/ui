@@ -11,7 +11,7 @@ You are an agent building an interface with `@nils/ui`. This file tells you how 
 
 ## What this is
 
-A small, opinionated React 19 + Tailwind CSS v4 component library, built on [Base UI](https://base-ui.com) for accessibility. The look is a **utility console**: white and grey surfaces, hairline dividers, one saturated blue accent, Inter for text, JetBrains Mono for labels and data, 4px corners, and quick, firm motion. The library has taste baked in; your job is to compose it, not to restyle it.
+A small, opinionated React 19 + Tailwind CSS v4 component library, built on [Base UI](https://base-ui.com) for accessibility. The look is a **compact utility console**: white and grey surfaces, hairline dividers, one saturated blue accent, 13px Inter with quiet sentence-case labels, JetBrains Mono for data only, 28px controls, 5px/8px corners, and quick, firm motion. The library has taste baked in; your job is to compose it, not to restyle it.
 
 ## Install
 
@@ -204,13 +204,13 @@ These are what separates UI that belongs to this library from UI that merely imp
 4. **Only token colours.** `bg-surface`, `bg-panel`, `bg-raised`, `bg-hover`, `bg-active`, `border-line`, `border-line-strong`, `text-ink`, `text-ink-2`, `text-ink-3`, `bg-accent`, `text-ok`, `text-warn`, `text-err`. Never `gray-*`, `zinc-*`, `slate-*`, `white`, `black`, or hex values in components.
 5. **One accent per view.** At most one `variant="primary"` button visible at a time. Blue also marks the current location and links — nothing else.
 6. **Status is a dot plus a word.** Never a coloured row, coloured badge background, or coloured paragraph.
-7. **Corners:** `rounded-ui` (4px) for controls, `rounded-box` (6px) for floating surfaces and panels. Never `rounded-lg`, `rounded-xl`, `rounded-2xl`, or pill-shaped buttons.
-8. **No shadows on in-page things.** Separate with hairlines (`border-line`) and tone (`bg-panel`). `shadow-pop` and `shadow-modal` are for floating layers only, and the components already apply them.
+7. **Corners:** `rounded-ui` (5px) for controls, `rounded-box` (8px) for floating surfaces and panels. Never `rounded-lg`, `rounded-xl`, `rounded-2xl`, or pill-shaped buttons.
+8. **No shadows on in-page regions.** Separate with hairlines (`border-line`) and tone (`bg-panel`). `shadow-control` (raised pressables), `shadow-accent` (the primary button), `shadow-pop` and `shadow-modal` (floating layers) are the only shadows, and the components already apply them.
 
 ### Type
 
 9. **Text sizes:** `text-ui` / `text-sm` (13) for UI text and controls, `text-base` (14) for long-form reading, `text-xs` (12) meta, `ui-label` (12, sentence case, ink-2) for section labels, keys and table headers. Titles per DESIGN.md. Don't invent sizes.
-10. **IDs, hashes, timestamps, versions, prices in tables → `font-mono`**; changing numbers → `tabular-nums`.
+10. **IDs, hashes, timestamps, versions → `font-mono`**; numbers and prices → `tabular-nums` in sans, with the unit after them in `text-ink-2` (`$2.75` `/gpu/hr`).
 11. **Sentence case**, verbs on buttons, no exclamation marks.
 
 ### Motion

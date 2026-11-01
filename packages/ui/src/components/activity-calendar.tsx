@@ -191,15 +191,15 @@ export function ActivityCalendar({
     <div {...props} className={cn("w-full min-w-0 space-y-2", className)}>
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <span className="text-ui font-medium text-ink">{label}</span>
-        <span className="flex flex-wrap items-baseline gap-x-3 font-mono text-xs text-ink-2 tabular-nums">
+        <span className="flex flex-wrap items-baseline gap-x-3 text-xs text-ink-2 tabular-nums">
           {streaks && currentLength !== null ? (
             <span {...point(currentLength >= MIN_STREAK ? current : null)} className="cursor-default">
-              Current streak <span className="text-ink">{daysText(currentLength)}</span>
+              Current streak <span className="font-medium text-ink">{daysText(currentLength)}</span>
             </span>
           ) : null}
           {streaks ? (
             <span {...point(longest)} className="cursor-default">
-              Longest <span className="text-ink">{longest ? daysText(runLength(longest)) : "—"}</span>
+              Longest <span className="font-medium text-ink">{longest ? daysText(runLength(longest)) : "—"}</span>
             </span>
           ) : null}
           <span>{totalText} in {year}</span>
@@ -207,11 +207,11 @@ export function ActivityCalendar({
       </div>
       <div className="max-w-full overflow-x-auto overscroll-x-contain pb-1">
         <div className="w-max p-px pr-1">
-          <div aria-hidden className="relative ml-9 mb-1 h-4 font-mono text-[11px] text-ink-3" style={{ width: weeks * 15 - 3 }}>
+          <div aria-hidden className="relative ml-9 mb-1 h-4 text-[11px] leading-4 text-ink-2" style={{ width: weeks * 15 - 3 }}>
             {months.map((month, i) => <span key={i} className="absolute" style={{ left: month.column * 15 }}>{month.text}</span>)}
           </div>
           <div className="flex gap-2">
-            <div aria-hidden className="grid w-7 shrink-0 grid-rows-7 gap-[3px] font-mono text-[11px] leading-3 text-ink-3">
+            <div aria-hidden className="grid w-7 shrink-0 grid-rows-7 gap-[3px] text-[11px] leading-3 text-ink-2">
               {Array.from({ length: 7 }, (_, row) => {
                 const weekday = (row + weekStartsOn) % 7;
                 return <span key={row} className="h-3">{row % 2 === 0 ? weekdayFormat.format(new Date(Date.UTC(2024, 0, 7 + weekday))) : ""}</span>;

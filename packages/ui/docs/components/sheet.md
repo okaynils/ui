@@ -27,7 +27,7 @@ Header, a scrolling body, and a footer pinned to the bottom.
       <SheetTitle>Edit h100-01</SheetTitle>
       <SheetDescription>Changes apply on the next restart.</SheetDescription>
     </SheetHeader>
-    <SheetBody className="flex flex-col gap-4">
+    <SheetBody className="flex flex-col gap-3">
       <Field label="Name">
         <Input defaultValue="h100-01" />
       </Field>

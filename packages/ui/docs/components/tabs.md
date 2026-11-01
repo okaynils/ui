@@ -45,7 +45,7 @@ export default function Example() {
 
 ### With counts and icons
 
-Put a quiet count or an icon inside the tab. Counts are mono `ink-3`.
+Put a quiet count or an icon inside the tab. Counts are `ink-3` with tabular figures.
 
 ```tsx live
 import { Tab, Tabs, TabsList } from "@nils/ui";
@@ -55,8 +55,8 @@ export default function Example() {
   return (
     <Tabs defaultValue="all" className="w-full max-w-lg">
       <TabsList>
-        <Tab value="all"><ListIcon /> All <span className="font-mono text-xs text-ink-3">128</span></Tab>
-        <Tab value="alerts"><BellIcon /> Alerts <span className="font-mono text-xs text-ink-3">3</span></Tab>
+        <Tab value="all"><ListIcon /> All <span className="text-xs text-ink-3 tabular-nums">128</span></Tab>
+        <Tab value="alerts"><BellIcon /> Alerts <span className="text-xs text-ink-3 tabular-nums">3</span></Tab>
       </TabsList>
     </Tabs>
   );

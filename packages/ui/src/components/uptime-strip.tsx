@@ -76,7 +76,7 @@ export function UptimeStrip({ days, label = "Service health", uptime, locale = "
     <div {...props} aria-busy={loading || undefined} className={cn("w-full min-w-0 space-y-2", className)}>
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <span className="text-ui font-medium text-ink">{label}</span>
-        {!loading && validUptime ? <span className="font-mono text-xs text-ink-2 tabular-nums">{numberFormat.format(uptime)}% uptime</span> : null}
+        {!loading && validUptime ? <span className="text-ui text-ink-2 tabular-nums"><span className="font-medium text-ink">{numberFormat.format(uptime)}%</span> uptime</span> : null}
       </div>
       {loading ? <><Skeleton className="h-8 w-full" /><span className="sr-only">Loading health reports</span></> : reports.length === 0 ? <p className="text-ui text-ink-2">No health reports yet.</p> : (
         <>
@@ -107,7 +107,7 @@ export function UptimeStrip({ days, label = "Service health", uptime, locale = "
               </div>
             </TooltipProvider>
           </div>
-          <div className="flex justify-between gap-3 font-mono text-[11px] text-ink-3">
+          <div className="flex justify-between gap-3 text-xs text-ink-3 tabular-nums">
             <time dateTime={reports[0]!.date}>{formatDate(reports[0]!.date)}</time>
             <time dateTime={latest!.date}>{formatDate(latest!.date)}</time>
           </div>
@@ -117,7 +117,7 @@ export function UptimeStrip({ days, label = "Service health", uptime, locale = "
           </div>
           {detail ? (
             <div className="min-h-12 border-t border-line pt-2 text-xs text-ink-2">
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1"><time dateTime={detail.date} className="font-mono text-ink-3">{formatDate(detail.date)}</time><span className="text-ink">{STATES[detail.status].label}</span></div>
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1"><time dateTime={detail.date} className="text-ink-3 tabular-nums">{formatDate(detail.date)}</time><span className="text-ink">{STATES[detail.status].label}</span></div>
               <p className="mt-1 break-words">{detail.incident || (detail.status === "unknown" ? "No report supplied for this day." : "No incident details supplied.")}</p>
             </div>
           ) : null}

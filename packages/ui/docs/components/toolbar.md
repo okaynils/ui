@@ -75,7 +75,7 @@ export default function Example() {
       <ToolbarSeparator />
       <ToolbarToggle defaultPressed>Running</ToolbarToggle>
       <ToolbarToggle>Idle</ToolbarToggle>
-      <span className="ml-auto font-mono text-xs text-ink-3 tabular-nums">12 nodes</span>
+      <span className="ml-auto text-ui text-ink-2 tabular-nums">12 nodes</span>
     </Toolbar>
   );
 }

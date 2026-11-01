@@ -113,7 +113,7 @@ function Cell({ char, delay, flips }: { char: string; delay: number; flips: numb
       className={cn(
         "relative inline-block h-[1.4em] w-[calc(1ch+0.35em)] [perspective:400px]",
         // Hairline ring and the hinge across the middle, drawn over the halves.
-        "after:pointer-events-none after:absolute after:inset-0 after:z-10 after:rounded-ui after:shadow-[inset_0_0_0_1px_var(--ui-line-strong)]",
+        "after:pointer-events-none after:absolute after:inset-0 after:z-10 after:rounded-ui after:shadow-[inset_0_0_0_1px_var(--ui-line)]",
         "before:pointer-events-none before:absolute before:inset-x-0 before:top-1/2 before:z-10 before:h-px before:-translate-y-1/2 before:bg-line-strong",
       )}
     >

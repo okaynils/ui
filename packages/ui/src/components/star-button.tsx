@@ -25,7 +25,8 @@ export interface StarButtonProps extends Omit<React.ComponentProps<"div">, "chil
   disabled?: boolean;
 }
 
-const HEIGHT: Record<StarButtonSize, string> = { sm: "h-7 text-xs", md: "h-8 text-ui" };
+const HEIGHT: Record<StarButtonSize, string> = { sm: "h-6 text-xs", md: "h-7 text-ui" };
+const PAD: Record<StarButtonSize, string> = { sm: "px-2", md: "px-2.5" };
 const STAR = "M8 1.6l1.95 3.95 4.36.63-3.15 3.08.74 4.34L8 11.55 4.1 13.6l.74-4.34L1.7 6.18l4.36-.63L8 1.6z";
 
 /**
@@ -60,15 +61,15 @@ export function StarButton({
   };
 
   const countText = new Intl.NumberFormat(locale).format(shown);
-  const countInner = <NumberRoll value={shown} locale={locale} aria-hidden="true" className="font-mono" />;
-  const countClass = "flex h-full items-center px-2.5 text-ink tabular-nums";
+  const countInner = <NumberRoll value={shown} locale={locale} aria-hidden="true" />;
+  const countClass = cn("flex h-full items-center text-ink tabular-nums", PAD[size]);
 
   return (
     <div
       {...props}
       data-starred={starred || undefined}
       className={cn(
-        "inline-flex shrink-0 items-stretch overflow-hidden rounded-ui bg-surface font-medium shadow-[inset_0_0_0_1px_var(--ui-line-strong)]",
+        "inline-flex shrink-0 items-stretch overflow-hidden rounded-ui bg-raised font-medium shadow-control",
         HEIGHT[size],
         disabled && "opacity-45",
         className,
@@ -80,7 +81,8 @@ export function StarButton({
         disabled={disabled}
         onClick={toggle}
         className={cn(
-          "ui-press inline-flex items-center gap-1.5 rounded-l-ui px-2.5 text-ink outline-none select-none hover:bg-hover",
+          "ui-press inline-flex items-center gap-1.5 rounded-l-ui text-ink outline-none select-none hover:bg-hover active:bg-active",
+          PAD[size],
           "focus-visible:relative focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:pointer-events-none",
         )}
       >

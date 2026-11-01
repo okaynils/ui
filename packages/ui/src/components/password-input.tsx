@@ -127,7 +127,7 @@ export function PasswordInput({
             onPointerDown={(event) => event.preventDefault()}
             onClick={toggle}
             className={cn(
-              "grid shrink-0 place-items-center rounded-[2px] text-ink-3 outline-none transition-colors duration-120 hover:bg-hover hover:text-ink",
+              "grid shrink-0 place-items-center rounded-[3px] text-ink-3 outline-none transition-colors duration-120 hover:bg-hover hover:text-ink",
               "focus-visible:outline-2 focus-visible:outline-accent aria-pressed:text-ink-2",
               TOGGLE_SIZE[size],
             )}

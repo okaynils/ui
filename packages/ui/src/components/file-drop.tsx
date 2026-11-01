@@ -125,7 +125,7 @@ export function FileDrop({
         data-dragging={over || undefined}
         data-disabled={disabled || undefined}
         className={cn(
-          "relative flex cursor-default flex-col items-center justify-center gap-1 rounded-box px-4 py-6 text-center select-none",
+          "relative flex cursor-default flex-col items-center justify-center gap-1 rounded-box px-4 py-5 text-center select-none",
           // The one dashed edge in the library: the old web's "put it here".
           "border border-dashed border-line-strong bg-surface transition-colors duration-120",
           "hover:border-ink-3 hover:bg-panel",
@@ -150,7 +150,14 @@ export function FileDrop({
             add(Array.from(e.currentTarget.files ?? []));
           }}
         />
-        <UploadIcon className={cn("mb-1 size-5 transition-colors duration-120", over ? "text-accent" : "text-ink-3")} />
+        <span
+          className={cn(
+            "mb-1.5 grid size-9 place-items-center rounded-box bg-hover transition-colors duration-120",
+            over ? "text-accent" : "text-ink-2",
+          )}
+        >
+          <UploadIcon className="size-[18px]" />
+        </span>
         <div className="text-ui text-ink">
           {over ? "Drop to add" : (title ?? (
             <>
@@ -158,7 +165,7 @@ export function FileDrop({
             </>
           ))}
         </div>
-        {description !== undefined ? <div className="text-xs text-ink-3">{description}</div> : null}
+        {description !== undefined ? <div className="text-xs text-ink-2">{description}</div> : null}
       </div>
 
       {files.length > 0 ? (
@@ -167,7 +174,7 @@ export function FileDrop({
             <li key={`${file.name}-${file.size}-${file.lastModified}`} className="flex h-8 items-center gap-2 pr-1 pl-3">
               <FileIcon className="size-4 shrink-0 text-ink-3" />
               <MiddleTruncate text={file.name} className="flex-1 text-ui text-ink" />
-              <span className="shrink-0 font-mono text-[11px] text-ink-3 tabular-nums">{formatBytes(file.size)}</span>
+              <span className="shrink-0 text-xs text-ink-2 tabular-nums">{formatBytes(file.size)}</span>
               <button
                 type="button"
                 aria-label={`Remove ${file.name}`}

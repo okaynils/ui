@@ -64,7 +64,7 @@ export function AppShell({ sidebar, topBar, sidebarWidth = 220, className, style
 /** Shown when the shell has a sidebar but no TopBar: just the menu button, only while narrow. */
 function MobileBar() {
   return (
-    <div className={cn("flex h-12 shrink-0 items-center border-b border-line px-3", "@min-[36rem]/shell:hidden")}>
+    <div className={cn("flex h-11 shrink-0 items-center border-b border-line px-3", "@min-[36rem]/shell:hidden")}>
       <SidebarTrigger />
     </div>
   );
@@ -111,7 +111,7 @@ export interface TopBarProps extends Omit<React.ComponentProps<"header">, "child
 }
 
 /**
- * The 48px bar over the main column, on a hairline. Sticky by default, with
+ * The 44px bar over the main column, on a hairline. Sticky by default, with
  * the content blurring underneath it. Inside an AppShell it carries the
  * sidebar's menu button while the shell is narrow.
  */
@@ -120,7 +120,7 @@ export function TopBar({ start, center, end, sticky = true, className, children,
     <header
       {...props}
       className={cn(
-        "z-20 flex h-12 shrink-0 items-center gap-3 border-b border-line px-3",
+        "z-20 flex h-11 shrink-0 items-center gap-3 border-b border-line px-3",
         // A centre slot needs equal side columns to stay truly centred.
         center !== undefined && "grid grid-cols-[1fr_auto_1fr]",
         sticky ? "sticky top-0 bg-surface/85 backdrop-blur-md backdrop-saturate-150" : "bg-surface",

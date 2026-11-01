@@ -83,15 +83,15 @@ export function SeatsLeft({
       data-state={left === 0 && seats > 0 ? "sold-out" : "open"}
       className={cn("inline-flex max-w-full flex-col gap-2", className)}
     >
-      {label ? <span className="ui-mono-label">{label}</span> : null}
+      {label ? <span className="ui-label">{label}</span> : null}
 
       {seats === 0 ? (
-        <span className="text-ui text-ink-3">No {noun} to claim.</span>
+        <span className="text-ui text-ink-2">No {noun} to claim.</span>
       ) : left === 0 ? (
         <span className="text-ui text-ink">{soldOut ?? `All ${count.format(seats)} ${noun} are taken.`}</span>
       ) : (
         <div className="flex items-baseline gap-1.5 text-ui text-ink-2">
-          <NumberRoll value={left} locale={locale} className="font-mono text-[26px] leading-8 font-medium text-ink" />
+          <NumberRoll value={left} locale={locale} className="text-[22px] leading-7 font-medium tracking-[-0.015em] text-ink tabular-nums" />
           <span>of {count.format(seats)} {noun} left</span>
         </div>
       )}
@@ -112,7 +112,7 @@ export function SeatsLeft({
       ) : null}
 
       {grouped || caption ? (
-        <p className="m-0 text-xs text-ink-3">
+        <p className="m-0 text-ui text-ink-2">
           {grouped ? `Each square is ${Number.isInteger(perSquare) ? "" : "about "}${count.format(Math.round(perSquare))} ${noun}.` : null}
           {grouped && caption ? " " : null}
           {caption}

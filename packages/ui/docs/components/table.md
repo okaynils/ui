@@ -45,7 +45,7 @@ export default function Example() {
             <TableRow key={l.item}>
               <TableCell>{l.item}</TableCell>
               <TableCell align="right">{l.hours.toFixed(1)}</TableCell>
-              <TableCell align="right" mono>{l.rate.toFixed(2)}</TableCell>
+              <TableCell align="right">{l.rate.toFixed(2)}</TableCell>
               <TableCell align="right">{usd(l.hours * l.rate)}</TableCell>
             </TableRow>
           ))}

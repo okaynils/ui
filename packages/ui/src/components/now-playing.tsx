@@ -139,16 +139,16 @@ export function NowPlaying({
         aria-busy={loading || undefined}
         data-state={dataState}
         data-variant="row"
-        className={cn("relative flex h-8 w-full min-w-0 items-center gap-2 text-ui", className)}
+        className={cn("relative flex h-7 w-full min-w-0 items-center gap-2 text-ui", className)}
       >
         {loading ? (
           <>
-            <Skeleton delay={0} className="size-6 shrink-0 rounded-[3px]" />
+            <Skeleton delay={0} className="size-5 shrink-0 rounded-[3px]" />
             <Skeleton delay={0} className="h-3 w-40" />
           </>
         ) : (
           <>
-            <Artwork key={track?.artwork} src={track?.artwork} className="size-6 rounded-[3px]" />
+            <Artwork key={track?.artwork} src={track?.artwork} className="size-5 rounded-[3px]" />
             <div className="min-w-0 flex-1 truncate">
               {track ? (
                 <>
@@ -164,7 +164,7 @@ export function NowPlaying({
                 <Equaliser playing={playing} />
                 <span className="sr-only">{label}</span>
                 {hasProgress ? (
-                  <span className="font-mono text-[11px] text-ink-3 tabular-nums" aria-label={`${formatTime(elapsed)} of ${formatTime(duration)}`}>
+                  <span className="font-mono text-[11px] text-ink-2 tabular-nums" aria-label={`${formatTime(elapsed)} of ${formatTime(duration)}`}>
                     {formatTime(elapsed)}
                   </span>
                 ) : <span className="text-xs text-ink-2" aria-hidden="true">{label}</span>}
@@ -190,17 +190,17 @@ export function NowPlaying({
       {...props}
       aria-busy={loading || undefined}
       data-state={dataState}
-      className={cn("w-full max-w-sm rounded-box border border-line-strong bg-surface p-3", className)}
+      className={cn("w-full max-w-sm rounded-box bg-surface p-3 shadow-[0_0_0_1px_var(--ui-line)]", className)}
     >
       <div className="mb-3 flex items-center justify-between gap-3">
-        <span className="ui-mono-label">Listening</span>
+        <span className="ui-label">Listening</span>
         {loading ? <span className="text-xs text-ink-2">Loading</span> : track && state !== "offline" ? (
           <span className="inline-flex items-center gap-1.5 text-xs text-ink"><Equaliser playing={playing} />{label}</span>
         ) : <Status tone="neutral" className="text-xs">{label}</Status>}
       </div>
       {loading ? (
         <div className="flex items-center gap-3" aria-label="Loading listening activity">
-          <Skeleton delay={0} className="size-12 shrink-0 rounded-ui" />
+          <Skeleton delay={0} className="size-11 shrink-0 rounded-ui" />
           <div className="flex min-w-0 flex-1 flex-col gap-2"><Skeleton delay={0} className="h-3 w-3/4" /><Skeleton delay={0} className="h-3 w-1/2" /></div>
         </div>
       ) : track ? (
@@ -210,8 +210,8 @@ export function NowPlaying({
             {track.href ? (
               <a href={track.href} className="block truncate rounded-ui text-ui font-medium text-accent outline-none hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{track.title}</a>
             ) : <div className="truncate text-ui font-medium text-ink">{track.title}</div>}
-            <div className="truncate text-xs text-ink-2">{track.artist}</div>
-            {track.album ? <div className="mt-0.5 truncate text-xs text-ink-3">{track.album}</div> : null}
+            <div className="truncate text-ui text-ink-2">{track.artist}</div>
+            {track.album ? <div className="truncate text-xs text-ink-3">{track.album}</div> : null}
           </div>
           {toggle}
         </div>
@@ -219,7 +219,7 @@ export function NowPlaying({
       {hasProgress ? (
         <div className="mt-3">
           <Progress value={elapsed} max={duration} aria-label="Track progress" aria-valuetext={`${formatTime(elapsed)} of ${formatTime(duration)}`} />
-          <div aria-hidden="true" className="mt-1.5 flex justify-between font-mono text-[11px] text-ink-3 tabular-nums"><span>{formatTime(elapsed)}</span><span>{formatTime(duration)}</span></div>
+          <div aria-hidden="true" className="mt-1.5 flex justify-between font-mono text-[11px] text-ink-2 tabular-nums"><span>{formatTime(elapsed)}</span><span>{formatTime(duration)}</span></div>
         </div>
       ) : null}
     </div>
@@ -257,7 +257,7 @@ function Equaliser({ playing, size = "fixed" }: { playing: boolean; size?: "fixe
 function Artwork({ src, className }: { src?: string; className?: string }) {
   const [failed, setFailed] = React.useState(false);
   return (
-    <span aria-hidden="true" className={cn("inline-flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-ui bg-panel text-ink-3 shadow-[inset_0_0_0_1px_var(--ui-line)]", className)}>
+    <span aria-hidden="true" className={cn("inline-flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-ui bg-panel text-ink-3 shadow-[inset_0_0_0_1px_var(--ui-line)]", className)}>
       {src && !failed ? <img src={src} alt="" className="size-full object-cover" onError={() => setFailed(true)} /> : (
         <svg viewBox="0 0 24 24" className="size-[45%]" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 17V6l11-2v11M9 9l11-2" /><ellipse cx="6" cy="17" rx="3" ry="2.5" /><ellipse cx="17" cy="15" rx="3" ry="2.5" /></svg>
       )}

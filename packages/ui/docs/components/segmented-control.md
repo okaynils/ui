@@ -114,7 +114,7 @@ export default function Example() {
 | `value` | `string` | — | Selected value (controlled). |
 | `defaultValue` | `string` | first item | Initial value (uncontrolled). |
 | `onValueChange` | `(value) => void` | — | Fires with the new value. It never fires with "nothing". |
-| `size` | `"sm" \| "md"` | `"md"` | Height 28 / 32px. |
+| `size` | `"sm" \| "md"` | `"md"` | Height 24 / 28px. |
 | `fill` | `boolean` | `false` | Full width, equal segments. |
 | `disabled` | `boolean` | `false` | |
 | `aria-label` | `string` | — | Name for the group. |

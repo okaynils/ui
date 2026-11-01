@@ -7,7 +7,7 @@ order: 250
 
 # StarButton
 
-The split button from code forges: "Star" on the left, the count on the right. Starring turns the outline star into a filled one and rolls the count up by one on a small odometer; unstarring rolls it back down. Use it on a project page, a README-style landing page or anywhere visitors can bookmark something publicly. The count and the starring itself come from your app, e.g. the GitHub API.
+The split button from code forges: "Star" on the left, the count on the right. Starring turns the outline star into a filled one and rolls the count up by one; unstarring rolls it back down. Use it on a project page, a README-style landing page or anywhere visitors can bookmark something publicly. The count and the starring itself come from your app, e.g. the GitHub API.
 
 ```tsx
 import { StarButton } from "@nils/ui";
@@ -94,7 +94,7 @@ export default function Example() {
 | `href` | `string` | — | Makes the count a link, e.g. to stargazers. |
 | `label` | `string` | `"Star"` | Button text before starring. |
 | `starredLabel` | `string` | `"Starred"` | Button text after starring. Both share one width, so the button never shifts. |
-| `size` | `"sm" \| "md"` | `"sm"` | 28 or 32px, matching Button. |
+| `size` | `"sm" \| "md"` | `"sm"` | 24 or 28px, matching Button. |
 | `locale` | `string` | `"en-GB"` | Digit grouping of the count. |
 | `disabled` | `boolean` | `false` | Disables the button. |
 | `className` | `string` | — | Layout classes. |

@@ -143,7 +143,7 @@ export default function Example() {
 ## Rules
 
 - **Do** use it when there are more than ~10 options, or when people know what they're looking for and want to type it.
-- **Do** give `description` for a code or ID that people might search by; it's matched too, and shown in mono.
+- **Do** give `description` for a code or ID that people might search by; it's matched too, and shown in quiet ink-2 after the label.
 - **Do** use `multiple` + `creatable` for tags and labels instead of building a tag input.
 - **Don't** use it for under ~7 options that fit on screen — use `Select`, `RadioGroup` or `SegmentedControl`.
 - **Don't** use it to trigger actions; that's `Menu` or `CommandPalette`.

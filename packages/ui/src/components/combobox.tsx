@@ -12,7 +12,7 @@ export interface ComboboxItem {
   label: string;
   /** Optional icon before the label. */
   icon?: React.ReactNode;
-  /** Short secondary text after the label, in ink-3 (e.g. a code or count). */
+  /** Short secondary text after the label, in ink-2 (e.g. a code or count). */
   description?: string;
   disabled?: boolean;
 }
@@ -24,7 +24,7 @@ interface ComboboxBaseProps {
   creatable?: boolean;
   /** Shown in ink-3 while the field is empty. */
   placeholder?: string;
-  /** Height of the single-value field: 28 / 32 / 36px, matching Button and Input. */
+  /** Height of the single-value field: 24 / 28 / 32px, matching Button and Input. */
   size?: ComboboxSize;
   name?: string;
   disabled?: boolean;
@@ -148,7 +148,7 @@ export function Combobox(props: ComboboxProps) {
     <BaseCombobox.Portal>
       <BaseCombobox.Positioner sideOffset={4} className="z-50 outline-none">
         <BaseCombobox.Popup className={cn(popupSurface, "w-(--anchor-width) min-w-48 max-w-(--available-width)")}>
-          <BaseCombobox.Empty className="px-3 py-2.5 text-ui text-ink-3 empty:hidden">{emptyText}</BaseCombobox.Empty>
+          <BaseCombobox.Empty className="px-3 py-2 text-ui text-ink-2 empty:hidden">{emptyText}</BaseCombobox.Empty>
           <BaseCombobox.List
             className={cn(
               popupList,
@@ -168,7 +168,7 @@ export function Combobox(props: ComboboxProps) {
                   {item.icon}
                   <span className="min-w-0 truncate">{item.label}</span>
                   {item.description ? (
-                    <span className="ml-auto shrink-0 truncate pl-2 font-mono text-[11px] text-ink-3">{item.description}</span>
+                    <span className="ml-auto shrink-0 truncate pl-2 text-xs text-ink-2 tabular-nums">{item.description}</span>
                   ) : null}
                   <BaseCombobox.ItemIndicator className="absolute right-2 flex">
                     <CheckIcon />
@@ -269,12 +269,12 @@ export function Combobox(props: ComboboxProps) {
           aria-label={ariaLabel}
           className={cn(
             SIZE[size],
-            "w-full min-w-0 bg-transparent pr-8 text-ink outline-none placeholder:text-ink-3 disabled:cursor-not-allowed",
+            "w-full min-w-0 bg-transparent pr-7 text-ink outline-none placeholder:text-ink-3 disabled:cursor-not-allowed",
           )}
         />
         <BaseCombobox.Trigger
           aria-label="Show options"
-          className="absolute inset-y-0 right-0 flex w-8 items-center justify-center text-ink-3 outline-none hover:text-ink-2"
+          className="absolute inset-y-0 right-0 flex w-7 items-center justify-center text-ink-3 outline-none hover:text-ink-2"
         >
           <ChevronsIcon />
         </BaseCombobox.Trigger>

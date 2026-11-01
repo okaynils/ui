@@ -99,12 +99,12 @@ function PaletteBody({ groups, placeholder, onDone }: { groups: CommandGroup[]; 
       autoHighlight="always"
       keepHighlight
     >
-      <div className="flex h-12 shrink-0 items-center gap-2.5 border-b border-line px-4">
+      <div className="flex h-11 shrink-0 items-center gap-2 border-b border-line px-3">
         <SearchIcon />
         <Autocomplete.Input
           placeholder={placeholder}
           aria-describedby={hintId}
-          className="h-full w-full bg-transparent text-sm text-ink outline-none placeholder:text-ink-3"
+          className="h-full w-full bg-transparent text-ui text-ink outline-none placeholder:text-ink-3"
         />
         <Kbd className="shrink-0">Esc</Kbd>
       </div>
@@ -112,7 +112,7 @@ function PaletteBody({ groups, placeholder, onDone }: { groups: CommandGroup[]; 
 
       <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-1 [scroll-padding-block:4px]">
         <Autocomplete.Empty>
-          <p className="px-3 py-8 text-center text-ui text-ink-2">
+          <p className="px-3 py-6 text-center text-ui text-ink-2">
             No results for <span className="text-ink">“{query}”</span>.
           </p>
         </Autocomplete.Empty>
@@ -142,7 +142,7 @@ function PaletteBody({ groups, placeholder, onDone }: { groups: CommandGroup[]; 
         </Autocomplete.List>
       </div>
 
-      <div className="flex h-8 shrink-0 items-center gap-4 border-t border-line bg-panel px-3 text-xs text-ink-3">
+      <div className="flex h-9 shrink-0 items-center gap-4 border-t border-line bg-panel px-3 text-ui text-ink-2">
         <span id={hintId} className="flex items-center gap-1.5">
           <Kbd>↑</Kbd>
           <Kbd>↓</Kbd> to move

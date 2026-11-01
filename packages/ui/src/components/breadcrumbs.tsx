@@ -70,7 +70,7 @@ export function Breadcrumbs({ items, maxItems = 4, renderLink, className, ...pro
       <Menu>
         <MenuTrigger
           aria-label={`${hidden.length} more`}
-          className="rounded-[2px] px-0.5 font-mono text-ink-3 transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent data-popup-open:text-ink"
+          className="rounded-[2px] px-0.5 text-ink-3 transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent data-popup-open:text-ink"
         >
           …
         </MenuTrigger>

@@ -60,13 +60,13 @@ export function LinkPreview({
     <>
       {image ? <PreviewImage key={image} src={image} thumbnail /> : null}
       <div className="min-w-0 flex-1">
-        <div className="mb-1.5 flex min-w-0 items-center gap-1.5 text-xs text-ink-3">
+        <div className="mb-1 flex min-w-0 items-center gap-1.5 text-xs text-ink-2">
           <PreviewImage key={favicon ?? "favicon"} src={favicon} />
-          <span className="min-w-0 truncate font-mono text-[11px]">{link.label}</span>
+          <span className="min-w-0 truncate">{link.label}</span>
           {link.href && target === "_blank" ? <span className="sr-only">, opens in a new tab</span> : null}
         </div>
         <div className={cn("line-clamp-2 text-ui font-medium break-words", link.href ? "text-accent group-hover:underline" : "text-ink")}>{title || "Untitled link"}</div>
-        {description ? <p className="mt-1 line-clamp-2 text-xs leading-relaxed break-words text-ink-2">{description}</p> : null}
+        {description ? <p className="mt-0.5 line-clamp-2 text-xs break-words text-ink-2">{description}</p> : null}
       </div>
       {link.href ? <ArrowIcon /> : null}
     </>
@@ -76,12 +76,12 @@ export function LinkPreview({
     <div
       {...props}
       aria-busy={loading || undefined}
-      className={cn("w-full max-w-sm overflow-hidden rounded-box border border-line-strong bg-surface", className)}
+      className={cn("w-full max-w-sm overflow-hidden rounded-box bg-surface shadow-[0_0_0_1px_var(--ui-line)]", className)}
     >
       {loading ? (
         <div role="status" className="flex items-start gap-3 p-3">
           <span className="sr-only">Loading link preview</span>
-          {image ? <Skeleton delay={0} className="size-16 shrink-0 rounded-ui" /> : null}
+          {image ? <Skeleton delay={0} className="size-14 shrink-0 rounded-ui" /> : null}
           <div className="flex min-w-0 flex-1 flex-col gap-2 py-0.5"><Skeleton delay={0} className="h-2.5 w-24" /><Skeleton delay={0} className="h-3 w-3/4" /><Skeleton delay={0} className="h-3 w-full" /></div>
         </div>
       ) : link.href ? (
@@ -89,13 +89,13 @@ export function LinkPreview({
           href={link.href}
           target={target}
           rel={safeRel}
-          className="group flex min-w-0 items-start gap-3 p-3 outline-none transition-colors duration-120 hover:bg-panel focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent"
+          className="group flex min-w-0 items-start gap-3 p-3 outline-none transition-colors duration-120 hover:bg-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent"
         >
           {content}
         </a>
       ) : <div className="flex min-w-0 items-start gap-3 p-3">{content}</div>}
       {!loading && annotation !== undefined && annotation !== null ? (
-        <div className="border-t border-line bg-panel px-3 py-2.5 text-ui leading-relaxed break-words text-ink-2">{annotation}</div>
+        <div className="border-t border-line bg-panel px-3 py-2 text-ui break-words text-ink-2">{annotation}</div>
       ) : null}
     </div>
   );
@@ -104,7 +104,7 @@ export function LinkPreview({
 function PreviewImage({ src, thumbnail = false }: { src?: string; thumbnail?: boolean }) {
   const [failed, setFailed] = React.useState(false);
   return (
-    <span aria-hidden="true" className={cn("flex shrink-0 items-center justify-center overflow-hidden rounded-ui text-ink-3", thumbnail ? "size-16 bg-panel shadow-[inset_0_0_0_1px_var(--ui-line)]" : "size-3.5")}>
+    <span aria-hidden="true" className={cn("flex shrink-0 items-center justify-center overflow-hidden rounded-ui text-ink-3", thumbnail ? "size-14 bg-panel shadow-[inset_0_0_0_1px_var(--ui-line)]" : "size-3.5")}>
       {src && !failed ? <img src={src} alt="" loading="lazy" onError={() => setFailed(true)} className="size-full object-cover" /> : (
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" className={thumbnail ? "size-5" : "size-3.5"}>
           <path d="m6.5 9.5 3-3M5 10.5l-1 1a2.5 2.5 0 0 1-3.5-3.5l3-3A2.5 2.5 0 0 1 7 5m2 6a2.5 2.5 0 0 0 3.5 0l3-3A2.5 2.5 0 0 0 12 4.5l-1 1" transform="translate(.25 0) scale(.94)" />

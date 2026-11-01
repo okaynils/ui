@@ -22,7 +22,7 @@ export function Toolbar({ variant = "plain", className, ...props }: ToolbarProps
       className={withClass(
         cn(
           "flex items-center gap-0.5 data-[orientation=vertical]:flex-col",
-          variant === "panel" && "w-fit rounded-box bg-panel p-1 shadow-[inset_0_0_0_1px_var(--ui-line)]",
+          variant === "panel" && "w-fit rounded-box bg-panel p-1 shadow-[0_0_0_1px_var(--ui-line)]",
         ),
         className,
       )}

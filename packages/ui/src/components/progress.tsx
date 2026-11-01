@@ -16,7 +16,7 @@ const FILL: Record<BarTone, string> = {
 interface BarOptions {
   /** Text above the bar, left. */
   label?: React.ReactNode;
-  /** Show the formatted value above the bar, right, in mono. Default: on when there's a label. */
+  /** Show the formatted value above the bar, right, in ink. Default: on when there's a label. */
   showValue?: boolean;
   /**
    * Draw the bar as N discrete blocks (e.g. 20) instead of a continuous fill —
@@ -32,7 +32,7 @@ function Header({ label, value, Label, Value }: { label?: React.ReactNode; value
   return (
     <div className="mb-1.5 flex items-baseline justify-between gap-3 text-xs">
       {label !== undefined ? <Label className="truncate text-ink-2">{label}</Label> : <span />}
-      {value ? <Value className="shrink-0 font-mono text-ink tabular-nums" /> : null}
+      {value ? <Value className="shrink-0 font-medium text-ink tabular-nums" /> : null}
     </div>
   );
 }

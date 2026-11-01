@@ -73,8 +73,8 @@ export function ConfirmDialog({
         <AlertDialog.Viewport className={dialogViewport}>
           <AlertDialog.Popup className={dialogPopup("sm")} initialFocus={cancelRef}>
             <AlertDialog.Title className="text-[15px] leading-6 font-semibold tracking-[-0.01em] text-ink">{title}</AlertDialog.Title>
-            {description ? <AlertDialog.Description className="mt-1 text-sm text-ink-2">{description}</AlertDialog.Description> : null}
-            <div className="-mx-5 mt-5 -mb-5 flex items-center justify-end gap-2 rounded-b-box border-t border-line bg-panel px-5 py-3">
+            {description ? <AlertDialog.Description className="mt-1 text-ui text-ink-2">{description}</AlertDialog.Description> : null}
+            <div className="-mx-4 mt-4 -mb-4 flex items-center justify-end gap-2 rounded-b-box border-t border-line bg-panel px-4 py-3">
               <AlertDialog.Close render={<Button ref={cancelRef} disabled={pending} />}>{cancelLabel}</AlertDialog.Close>
               <Button variant={variant} loading={pending} onClick={confirm}>
                 {confirmLabel}

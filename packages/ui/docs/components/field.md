@@ -107,7 +107,7 @@ export default function Example() {
 `Field` works with `Select`, `Textarea`, `Checkbox` and `Switch` as well.
 
 ```tsx live
-<div className="flex w-72 flex-col gap-4">
+<div className="flex w-72 flex-col gap-3">
   <Field label="Region">
     <Select
       placeholder="Choose a region"
@@ -145,7 +145,7 @@ export default function Example() {
 
 - **Do** wrap every form control in a `Field`, even when the label is all you need.
 - **Do** write errors that say what to do: "Use 3+ lowercase letters", not "Invalid input".
-- **Do** stack fields with `gap-4` between them, and `gap-6` between groups.
+- **Do** stack fields with `gap-3` between them, and `gap-6` between groups.
 - **Don't** put more than one control in a `Field`. Group related fields with a heading instead.
 - **Do** wrap fields in `Form` whenever you use native validation (`required`, `type`, `pattern`) or server errors.
 - **Don't** show an error before the user has had a chance to type. Validate on submit or on blur.
@@ -174,7 +174,7 @@ Extends Base UI's [Form](https://base-ui.com/react/components/form) and every na
 | `onSubmit` | `(event) => void` | — | Runs only once every field is valid. |
 | `onFormSubmit` | `(values, details) => void` | — | Like `onSubmit`, with the values as an object. |
 | `validationMode` | `"onSubmit" \| "onBlur" \| "onChange"` | `"onSubmit"` | When fields validate. |
-| `className` | `string` | — | Layout. Defaults to `flex flex-col gap-4`. |
+| `className` | `string` | — | Layout. Defaults to `flex flex-col gap-3`. |
 
 ### Parts
 

@@ -83,7 +83,7 @@ Extends every `<div>` attribute.
 | --- | --- | --- | --- |
 | `title` | `ReactNode` | — | Required. The fact. |
 | `description` | `ReactNode` | — | One sentence of context. |
-| `icon` | `ReactNode` | — | A 16px icon in a small hairline square. |
+| `icon` | `ReactNode` | — | An 18px icon on a 36px grey tile. |
 | `children` | `ReactNode` | — | The action(s), usually one `Button`. |
 | `align` | `"start" \| "center"` | `"center"` | Alignment of the whole block. |
 

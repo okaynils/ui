@@ -32,11 +32,11 @@ export default function Example() {
     </SidebarItem>
   );
   return (
-    <div className="h-[380px] w-56 overflow-hidden rounded-box shadow-[0_0_0_1px_var(--ui-line-strong)]">
+    <div className="h-[380px] w-56 overflow-hidden rounded-box shadow-[0_0_0_1px_var(--ui-line)]">
       <Sidebar>
         <SidebarHeader>
-          <span className="font-mono text-ui font-medium">gpu.rent</span>
-          <span className="font-mono text-[11px] text-ink-3">v2</span>
+          <span className="text-ui font-medium">gpu.rent</span>
+          <span className="font-mono text-xs text-ink-3">v2</span>
         </SidebarHeader>
         <SidebarSection>
           {item("usage", "Usage", <ChartLineIcon />)}
@@ -78,11 +78,11 @@ import { HashIcon, PlusIcon } from "@phosphor-icons/react";
 
 export default function Example() {
   return (
-    <div className="w-56 overflow-hidden rounded-box shadow-[0_0_0_1px_var(--ui-line-strong)]">
+    <div className="w-56 overflow-hidden rounded-box shadow-[0_0_0_1px_var(--ui-line)]">
       <Sidebar className="pt-2">
         <SidebarSection
           label="Channels"
-          action={<Button variant="ghost" size="sm" icon aria-label="New channel" className="size-6"><PlusIcon /></Button>}
+          action={<Button variant="ghost" size="sm" icon aria-label="New channel"><PlusIcon /></Button>}
         >
           <SidebarItem icon={<HashIcon />} active>general</SidebarItem>
           <SidebarItem icon={<HashIcon />} trailing={3}>deploys</SidebarItem>
@@ -98,7 +98,7 @@ export default function Example() {
 
 - **Do** mark exactly one item `active`: the current page.
 - **Do** keep labels to one or two words, and sentence case.
-- **Do** use `trailing` for a count (a number renders in mono `ink-3`) or a `Kbd` shortcut. Pick one per sidebar, not both on every row.
+- **Do** use `trailing` for a count (a number renders as quiet `ink-3` figures) or a `Kbd` shortcut. Pick one per sidebar, not both on every row.
 - **Don't** colour icons or counts. An unread or urgent count can sit beside a `StatusDot`, not in red.
 - **Don't** nest items more than one level. If a section needs depth, it needs its own page.
 - **Don't** put primary actions ("New project") as sidebar items. Use a section `action` or the TopBar.
@@ -111,13 +111,13 @@ A `<nav aria-label="Main">`. All `<nav>` props pass through.
 
 ### SidebarHeader
 
-A 48px row (same height as `TopBar`) with space-between layout. All `<div>` props pass through.
+A 44px row (same height as `TopBar`) with space-between layout. All `<div>` props pass through.
 
 ### SidebarSection
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `label` | `ReactNode` | — | Mono uppercase label. Omit for the first group. |
+| `label` | `ReactNode` | — | Quiet sentence-case label (`ui-label`). Omit for the first group. |
 | `action` | `ReactNode` | — | A small control beside the label. |
 | `children` | `SidebarItem`s | — | The items. |
 
@@ -127,7 +127,7 @@ A 48px row (same height as `TopBar`) with space-between layout. All `<div>` prop
 | --- | --- | --- | --- |
 | `children` | `ReactNode` | — | The label. Truncates. |
 | `icon` | `ReactNode` | — | Leading 16px icon. |
-| `trailing` | `ReactNode` | — | A number or short string renders as a mono count; anything else as-is. |
+| `trailing` | `ReactNode` | — | A number or short string renders as a quiet count; anything else as-is. |
 | `active` | `boolean` | `false` | The current page: active fill, accent square, `aria-current`. |
 | `href` | `string` | — | Render as an `<a>`. |
 | `render` | `ReactElement` | — | Render as another element, e.g. a router `<Link>`. |

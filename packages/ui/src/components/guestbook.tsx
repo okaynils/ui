@@ -166,16 +166,16 @@ export function Guestbook({
   const rows = entries.map((entry, index) => ({ entry, number: entry.number ?? index + 1 })).reverse();
 
   return (
-    <div {...props} className={cn("w-full max-w-md rounded-box border border-line-strong bg-surface", className)}>
-      <div className="flex items-baseline justify-between gap-3 border-b border-line px-4 py-3">
-        <span className="ui-mono-label">{heading}</span>
-        <span className="font-mono text-xs text-ink-3">
-          <NumberRoll value={entries.length} locale="en" format={{ minimumIntegerDigits: 4, useGrouping: false }} className="text-ink" />
+    <div {...props} className={cn("w-full max-w-md overflow-hidden rounded-box bg-surface shadow-[0_0_0_1px_var(--ui-line)]", className)}>
+      <div className="flex min-h-11 items-center justify-between gap-3 border-b border-line px-3 py-2">
+        <span className="truncate text-ui font-medium text-ink">{heading}</span>
+        <span className="shrink-0 text-xs text-ink-2">
+          <NumberRoll value={entries.length} locale="en" format={{ minimumIntegerDigits: 4, useGrouping: false }} className="font-mono font-medium text-ink" />
           {" "}{entries.length === 1 ? "signature" : "signatures"}
         </span>
       </div>
 
-      <Form onSubmit={handleSubmit} aria-labelledby={formTitle} className="gap-3 border-b border-line px-4 py-4">
+      <Form onSubmit={handleSubmit} aria-labelledby={formTitle} className="gap-3 border-b border-line p-3">
         <div id={formTitle} className="text-ui font-medium text-ink">Sign the guestbook</div>
         <div className={cn("grid gap-3", fields.length ? "sm:grid-cols-2" : null)}>
           <Field label="Name" description={fields.length ? undefined : "Leave it empty to sign as anonymous."}>
@@ -203,7 +203,7 @@ export function Guestbook({
           />
         </Field>
         <div className="flex items-center justify-between gap-3">
-          <span className="font-mono text-xs text-ink-3 tabular-nums">
+          <span className="text-xs text-ink-2 tabular-nums">
             {message.length}/{maxLength}
           </span>
           <Button type="submit" variant="primary" size="sm" loading={pending}>
@@ -215,17 +215,17 @@ export function Guestbook({
             {error}
           </Callout>
         ) : null}
-        {note ? <p className="text-xs text-ink-3">{note}</p> : null}
+        {note ? <p className="text-xs text-ink-2">{note}</p> : null}
       </Form>
 
       {rows.length === 0 ? (
-        <p className="px-4 py-4 text-ui text-ink-2">{emptyMessage}</p>
+        <p className="p-3 text-ui text-ink-2">{emptyMessage}</p>
       ) : (
         <ol aria-label={`${typeof heading === "string" ? heading : "Guestbook"} entries, newest first`} className="divide-y divide-line">
           {rows.map(({ entry, number }) => {
             const date = parseDate(entry.createdAt);
             return (
-              <li key={entry.id} className={cn("flex gap-3 px-4 py-3", fresh.has(entry.id) && "ui-flash")}>
+              <li key={entry.id} className={cn("flex gap-3 px-3 py-2.5", fresh.has(entry.id) && "ui-flash")}>
                 <span className="w-11 shrink-0 pt-px font-mono text-xs text-ink-3 tabular-nums">
                   #{String(number).padStart(4, "0")}
                 </span>
@@ -243,15 +243,15 @@ export function Guestbook({
                       ) : (
                         <span className="font-medium text-ink">{entry.name}</span>
                       )}
-                      {entry.location ? <span className="text-ink-3"> from {entry.location}</span> : null}
+                      {entry.location ? <span className="text-ink-2"> from {entry.location}</span> : null}
                     </span>
                     {date ? (
-                      <time dateTime={date.toISOString()} className="shrink-0 font-mono text-xs text-ink-3">
+                      <time dateTime={date.toISOString()} className="shrink-0 text-xs text-ink-2 tabular-nums">
                         {dateFormat.format(date)}
                       </time>
                     ) : null}
                   </div>
-                  <p className="mt-1 break-words whitespace-pre-line text-sm text-ink-2">{entry.message}</p>
+                  <p className="mt-0.5 break-words whitespace-pre-line text-ui text-ink-2">{entry.message}</p>
                 </div>
               </li>
             );

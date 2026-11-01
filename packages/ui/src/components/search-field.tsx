@@ -150,7 +150,7 @@ export function SearchField({
             onPointerDown={(event) => event.preventDefault()}
             onClick={clear}
             className={cn(
-              "grid shrink-0 place-items-center rounded-[2px] text-ink-3 outline-none transition-colors duration-120 hover:bg-hover hover:text-ink",
+              "grid shrink-0 place-items-center rounded-[3px] text-ink-3 outline-none transition-colors duration-120 hover:bg-hover hover:text-ink",
               "focus-visible:outline-2 focus-visible:outline-accent",
               CLEAR_SIZE[size],
             )}

@@ -132,7 +132,7 @@ export function FilmStrip({
 
   const header = label || href ? (
     <div className="flex items-baseline justify-between gap-3">
-      {label ? <span className="ui-mono-label">{label}</span> : <span />}
+      {label ? <span className="ui-label">{label}</span> : <span />}
       {href ? (
         <a href={href} className="rounded-ui text-xs text-ink-2 underline decoration-line-strong underline-offset-[3px] outline-none hover:decoration-ink-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
           {linkLabel}
@@ -161,12 +161,12 @@ export function FilmStrip({
             const title = (
               <>
                 <span className="font-medium text-ink">{film.title}</span>
-                {film.year ? <span className="font-mono text-xs text-ink-3"> {film.year}</span> : null}
+                {film.year ? <span className="text-xs text-ink-2 tabular-nums"> {film.year}</span> : null}
               </>
             );
             return (
-              <li key={film.id} className={cn("flex h-12 items-center gap-3", arrivals.includes(film.id) && "ui-flash")}>
-                <span className="w-12 shrink-0 font-mono text-[11px] text-ink-3 tabular-nums">
+              <li key={film.id} className={cn("flex h-11 items-center gap-3", arrivals.includes(film.id) && "ui-flash")}>
+                <span className="w-12 shrink-0 text-xs text-ink-2 tabular-nums">
                   {date ? <time dateTime={date.iso} title={date.long}>{date.short}</time> : "—"}
                 </span>
                 <Poster film={film} className="h-9 w-6 rounded-[2px]" />
@@ -197,7 +197,7 @@ export function FilmStrip({
     <div {...props} data-variant="strip" className={cn("w-full max-w-md space-y-2", className)}>
       {header}
       <div
-        className="overflow-hidden rounded-ui bg-active shadow-[inset_0_0_0_1px_var(--ui-line-strong)]"
+        className="overflow-hidden rounded-box bg-active shadow-[inset_0_0_0_1px_var(--ui-line)]"
         onPointerLeave={() => setActive(null)}
         onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setActive(null); }}
       >
@@ -228,13 +228,13 @@ export function FilmStrip({
         </div>
       </div>
       {/* The readout names the frame under the pointer or focus, and the latest film otherwise. */}
-      <div className="flex min-h-5 flex-wrap items-baseline gap-x-2 text-xs text-ink-2" aria-hidden="true">
+      <div className="flex min-h-5 flex-wrap items-baseline gap-x-2 text-ui text-ink-2" aria-hidden="true">
         <span className="font-medium text-ink">{focused.title}</span>
-        {focused.year ? <span className="font-mono text-ink-3">{focused.year}</span> : null}
+        {focused.year ? <span className="tabular-nums">{focused.year}</span> : null}
         {typeof focused.rating === "number" && focused.rating > 0 ? <span className="tracking-[0.04em]">{stars(focused.rating)}</span> : null}
         {focused.liked ? <HeartIcon /> : null}
         {focused.rewatch ? <RewatchIcon /> : null}
-        {focusedDate ? <span className="text-ink-3">{focusedDate.short}</span> : null}
+        {focusedDate ? <span className="text-xs">{focusedDate.short}</span> : null}
       </div>
     </div>
   );

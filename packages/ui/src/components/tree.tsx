@@ -191,7 +191,7 @@ export function Tree({
         >
           <div
             className={cn(
-              "flex h-7 cursor-default items-center gap-1.5 rounded-[2px] pr-2 text-ui text-ink select-none",
+              "flex h-7 cursor-default items-center gap-1.5 rounded-ui pr-2 text-ui text-ink select-none",
               isSelected ? "bg-active font-medium" : "hover:bg-hover",
               // Focus follows the arrow keys, so it lands instantly: tone plus an accent edge, like a table row.
               "group-focus-visible/item:bg-hover group-focus-visible/item:shadow-[inset_2px_0_0_var(--ui-accent)]",
@@ -203,7 +203,7 @@ export function Tree({
             {branch ? <DisclosureCaret className={cn("size-3 mx-0.5", isOpen && "rotate-90")} /> : <span aria-hidden className="w-4 shrink-0" />}
             {node.icon ? <span aria-hidden className="flex shrink-0 text-ink-2 [&_svg]:size-3.5">{node.icon}</span> : null}
             <span className={cn("min-w-0 flex-1 truncate", mono && "font-mono text-xs")}>{node.label}</span>
-            {node.meta !== undefined ? <span className="shrink-0 font-mono text-[11px] text-ink-3 tabular-nums">{node.meta}</span> : null}
+            {node.meta !== undefined ? <span className="shrink-0 text-xs text-ink-3 tabular-nums">{node.meta}</span> : null}
           </div>
           {isOpen && node.children!.length > 0 ? (
             <ul role="group" className="relative m-0 list-none p-0">

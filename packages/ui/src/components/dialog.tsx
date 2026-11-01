@@ -21,7 +21,7 @@ export type DialogSize = keyof typeof SIZE;
 
 export function dialogPopup(size: DialogSize) {
   return cn(
-    "relative w-full rounded-box bg-raised p-5 text-ink shadow-modal outline-none",
+    "relative w-full rounded-box bg-raised p-4 text-ink shadow-modal outline-none",
     "transition-[opacity,scale] duration-180 ease-snap data-ending-style:duration-120",
     "data-starting-style:scale-97 data-starting-style:opacity-0 data-ending-style:scale-97 data-ending-style:opacity-0",
     SIZE[size],
@@ -60,7 +60,7 @@ export function DialogContent({ size = "md", showClose = true, className, childr
           {showClose ? (
             <BaseDialog.Close
               render={<Button variant="ghost" size="sm" icon aria-label="Close" />}
-              className="absolute top-3 right-3"
+              className="absolute top-3.5 right-3.5"
             >
               <XGlyph />
             </BaseDialog.Close>
@@ -82,7 +82,7 @@ export type DialogDescriptionProps = BaseDialog.Description.Props;
 
 /** One or two sentences under the title. */
 export function DialogDescription({ className, ...props }: DialogDescriptionProps) {
-  return <BaseDialog.Description {...props} className={withClass("mt-1 text-sm text-ink-2", className)} />;
+  return <BaseDialog.Description {...props} className={withClass("mt-1 text-ui text-ink-2", className)} />;
 }
 
 export interface DialogFooterProps extends React.ComponentProps<"div"> {}
@@ -93,7 +93,7 @@ export function DialogFooter({ className, ...props }: DialogFooterProps) {
     <div
       {...props}
       className={cn(
-        "-mx-5 mt-5 -mb-5 flex items-center justify-end gap-2 rounded-b-box border-t border-line bg-panel px-5 py-3",
+        "-mx-4 mt-4 -mb-4 flex items-center justify-end gap-2 rounded-b-box border-t border-line bg-panel px-4 py-3",
         className,
       )}
     />

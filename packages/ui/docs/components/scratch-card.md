@@ -28,7 +28,7 @@ export default function Example() {
     <ScratchCard>
       <div className="ui-label">Launch week</div>
       <div className="mt-1 flex items-center justify-center gap-1">
-        <span className="font-mono text-[17px] font-medium tracking-[0.08em]">EARLY-4F9K</span>
+        <span className="font-mono text-[15px] font-medium">EARLY-4F9K</span>
         <CopyButton value="EARLY-4F9K" aria-label="Copy promo code" />
       </div>
       <div className="mt-1 text-xs text-ink-2">30% off Pro for a year</div>
@@ -51,7 +51,7 @@ export default function Example() {
     <div className="flex flex-col items-start gap-3">
       <ScratchCard revealed={revealed} onReveal={() => setRevealed(true)} hint="Scratch for the date">
         <div className="ui-label">We launch on</div>
-        <div className="mt-1 text-[26px] leading-8 font-semibold tracking-[-0.02em]">1 November</div>
+        <div className="mt-1 text-[22px] leading-7 font-semibold tracking-[-0.015em]">1 November</div>
       </ScratchCard>
       {revealed ? <Button size="sm" variant="ghost" onClick={() => setRevealed(false)}>Cover it again</Button> : null}
     </div>
@@ -66,7 +66,7 @@ export default function Example() {
 ```tsx live
 <ScratchCard defaultRevealed>
   <div className="ui-label">Invite</div>
-  <div className="mt-1 font-mono text-[17px] font-medium">BETA-7F3K</div>
+  <div className="mt-1 font-mono text-[15px] font-medium">BETA-7F3K</div>
 </ScratchCard>
 ```
 
@@ -84,7 +84,7 @@ export default function Example() {
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `children` | `ReactNode` | Required | The hidden content. Inert and hidden from assistive technology until revealed. |
-| `hint` | `string` | `"Scratch to reveal"` | Mono text printed on the coating; it scratches away too. `""` for none. |
+| `hint` | `string` | `"Scratch to reveal"` | Sentence-case text printed on the coating; it scratches away too. `""` for none. |
 | `revealed` | `boolean` | — | Controlled revealed state. Back to `false` re-coats the card. |
 | `defaultRevealed` | `boolean` | `false` | Initial state when uncontrolled. |
 | `onReveal` | `() => void` | — | Called once per coating when the visitor reveals the card by scratching or with the button. |

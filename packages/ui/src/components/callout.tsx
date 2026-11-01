@@ -57,7 +57,7 @@ export function Callout({
   );
 
   const dismiss = onDismiss ? (
-    <Button variant="ghost" size="sm" icon aria-label="Dismiss" onClick={onDismiss} className="-my-1 -mr-1.5 text-ink-3">
+    <Button variant="ghost" size="sm" icon aria-label="Dismiss" onClick={onDismiss} className="-my-0.5 -mr-1 text-ink-3">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" aria-hidden className="size-3.5">
         <path d="M4 4l8 8M12 4l-8 8" />
       </svg>
@@ -77,7 +77,7 @@ export function Callout({
       <div className="min-w-0 flex-1">
         {title ? <div className="font-medium text-ink">{title}</div> : null}
         {children ? <div className={cn("text-ink-2 [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2", title && "mt-0.5")}>{children}</div> : null}
-        {action ? <div className="mt-2.5 flex flex-wrap items-center gap-2">{action}</div> : null}
+        {action ? <div className="mt-2 flex flex-wrap items-center gap-2">{action}</div> : null}
       </div>
       {dismiss ? <div className="flex h-5 items-center">{dismiss}</div> : null}
     </div>

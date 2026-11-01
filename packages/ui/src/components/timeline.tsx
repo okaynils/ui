@@ -149,7 +149,7 @@ export function Timeline({
       : `${dayMonth.format(date)} ${time.format(date)}`;
 
   return (
-    <div {...props} className={cn("flex w-full min-w-0 flex-col gap-4", className)}>
+    <div {...props} className={cn("flex w-full min-w-0 flex-col gap-3", className)}>
       {groups.map((group, groupIndex) => (
         <section key={`${group.key}-${groupIndex}`} aria-label={group.label ?? undefined} className="flex flex-col gap-1">
           {group.label ? <h3 className="ui-label m-0 pb-1">{group.label}</h3> : null}

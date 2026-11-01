@@ -1,13 +1,13 @@
 ---
 title: TopBar
-description: The 48px bar over the main column — breadcrumbs on the left, actions on the right, translucent and sticky.
+description: The 44px bar over the main column — breadcrumbs on the left, actions on the right, translucent and sticky.
 group: Shell
 order: 30
 ---
 
 # TopBar
 
-The 48px bar over an app's main column. It sits on a hairline, sticks to the top, and lets content blur underneath. It has three slots: `start` (usually [Breadcrumbs](/components/breadcrumbs)), an optional `center`, and `end` for a few actions. Inside an [AppShell](/components/app-shell) it also carries the ☰ button while the shell is narrow.
+The 44px bar over an app's main column. It sits on a hairline, sticks to the top, and lets content blur underneath. It has three slots: `start` (usually [Breadcrumbs](/components/breadcrumbs)), an optional `center`, and `end` for a few actions. Inside an [AppShell](/components/app-shell) it also carries the ☰ button while the shell is narrow.
 
 ```tsx
 import { TopBar } from "@nils/ui";
@@ -23,7 +23,7 @@ import { BellIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
 
 export default function Example() {
   return (
-    <div className="w-full overflow-hidden rounded-box shadow-[0_0_0_1px_var(--ui-line-strong)]">
+    <div className="w-full overflow-hidden rounded-box shadow-[0_0_0_1px_var(--ui-line)]">
       <TopBar
         start={<Breadcrumbs items={[{ label: "Projects", href: "#" }, { label: "turbine", href: "#" }, { label: "Deploys" }]} />}
         end={
@@ -49,7 +49,7 @@ export default function Example() {
 `center` stays centred whatever the sides hold. It's good for a view switch.
 
 ```tsx live
-<div className="w-full overflow-hidden rounded-box shadow-[0_0_0_1px_var(--ui-line-strong)]">
+<div className="w-full overflow-hidden rounded-box shadow-[0_0_0_1px_var(--ui-line)]">
   <TopBar
     start={<span className="text-ui font-medium">Calendar</span>}
     center={<SegmentedControl size="sm" defaultValue="week" items={[{ value: "day", label: "Day" }, { value: "week", label: "Week" }, { value: "month", label: "Month" }]} />}
@@ -62,7 +62,7 @@ export default function Example() {
 ## Rules
 
 - **Do** keep `end` to at most three controls, with the primary action last. Everything else goes in a Menu.
-- **Do** use `size="sm"` controls in the bar. Its 48px height fits 28px controls.
+- **Do** use `sm` (24px) or default `md` (28px) controls in the bar. Its 44px height fits either.
 - **Don't** put a page title here *and* in a PageHeader. Breadcrumbs in the bar, the title in the page.
 - **Don't** stack two bars. Filters and view options belong in a [Toolbar](/components/toolbar) inside the page.
 

@@ -144,7 +144,7 @@ export function FocusTimer({
   useTitleCountdown(titleCountdown && running, `${display} ${phaseLabel}`);
 
   return (
-    <div role="group" aria-label="Focus timer" {...props} data-state={state.toLowerCase()} className={cn("inline-flex max-w-full flex-wrap items-center gap-x-5 gap-y-3", className)}>
+    <div role="group" aria-label="Focus timer" {...props} data-state={state.toLowerCase()} className={cn("inline-flex max-w-full flex-wrap items-center gap-x-4 gap-y-3", className)}>
       <Dial session={session} running={running} phaseLabel={phaseLabel} display={display} />
       <div className="flex min-w-0 flex-col items-start gap-2">
         <Status tone={session.completed ? "ok" : "neutral"} className="text-xs">{state}</Status>
@@ -232,7 +232,7 @@ function Dial({ session, running, phaseLabel, display }: { session: Session; run
 
   const long = display.length > 5;
   return (
-    <div className="relative size-32 shrink-0">
+    <div className="relative size-28 shrink-0">
       <svg aria-hidden="true" viewBox="0 0 100 100" className="absolute inset-0 size-full">
         {TICKS.map((tick, i) => <line key={i} {...tick} stroke="var(--ui-ink-3)" strokeWidth={i % 3 === 0 ? 1.25 : 0.75} strokeLinecap="round" />)}
         <circle cx="50" cy="50" r={R} fill="none" stroke="var(--ui-line-strong)" strokeWidth="1" />
@@ -253,12 +253,12 @@ function Dial({ session, running, phaseLabel, display }: { session: Session; run
         {session.completed ? null : <circle ref={hand} cx={still.hand.cx} cy={still.hand.cy} r="3" fill="var(--ui-surface)" stroke={session.phase === "focus" ? "var(--ui-ink)" : "var(--ui-ink-2)"} strokeWidth="1.5" />}
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="ui-mono-label">{phaseLabel}</span>
+        <span className="ui-label">{phaseLabel}</span>
         <div
           role="timer"
           aria-live="off"
           aria-label={`${phaseLabel}: ${display} remaining`}
-          className={cn("font-mono leading-8 font-medium text-ink tabular-nums", long ? "text-[19px]" : "text-[26px]")}
+          className={cn("font-mono leading-7 font-medium text-ink tabular-nums", long ? "text-[17px]" : "text-[24px]")}
         >
           {display}
         </div>

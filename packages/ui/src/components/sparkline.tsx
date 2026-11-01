@@ -181,12 +181,12 @@ export function Sparkline({
           ) : null}
           <span
             aria-hidden
-            className="pointer-events-none absolute bottom-full z-10 mb-1.5 rounded-ui bg-raised px-1.5 py-0.5 font-mono text-[11px] whitespace-nowrap text-ink shadow-pop tabular-nums"
+            className="pointer-events-none absolute bottom-full z-10 mb-1.5 rounded-ui bg-raised px-1.5 py-0.5 text-xs font-medium whitespace-nowrap text-ink shadow-pop tabular-nums"
             // Keep the readout inside the chart's span at the edges instead of hanging off it.
             style={{ left: pct(x(hovered)), transform: `translateX(-${(x(hovered) / W) * 100}%)` }}
           >
             {fmt(data[hovered]!)}
-            {labels?.[hovered] ? <span className="ml-1.5 text-ink-3">{labels[hovered]}</span> : null}
+            {labels?.[hovered] ? <span className="ml-1.5 font-normal text-ink-2">{labels[hovered]}</span> : null}
           </span>
         </>
       ) : null}

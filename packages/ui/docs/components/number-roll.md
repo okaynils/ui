@@ -26,7 +26,7 @@ export default function Example() {
   return (
     <div className="flex items-center gap-3">
       <Button size="sm" icon aria-label="Decrease" onClick={() => setN((v) => v - 7)}>−</Button>
-      <NumberRoll value={n} className="min-w-20 justify-center text-[24px] font-medium tracking-[-0.02em]" />
+      <NumberRoll value={n} className="min-w-20 justify-center text-[20px] font-medium tracking-[-0.015em]" />
       <Button size="sm" icon aria-label="Increase" onClick={() => setN((v) => v + 13)}>+</Button>
     </div>
   );

@@ -106,7 +106,7 @@ export interface SheetHeaderProps extends React.ComponentProps<"div"> {}
 
 /** Title and description at the top, on a hairline. Leaves room for the × button. */
 export function SheetHeader({ className, ...props }: SheetHeaderProps) {
-  return <div {...props} className={cn("shrink-0 border-b border-line py-3.5 pr-12 pl-5", className)} />;
+  return <div {...props} className={cn("shrink-0 border-b border-line py-3 pr-11 pl-4", className)} />;
 }
 
 export type SheetTitleProps = BaseDrawer.Title.Props;
@@ -120,14 +120,14 @@ export type SheetDescriptionProps = BaseDrawer.Description.Props;
 
 /** One sentence under the title. */
 export function SheetDescription({ className, ...props }: SheetDescriptionProps) {
-  return <BaseDrawer.Description {...props} className={withClass("mt-0.5 text-xs text-ink-2", className)} />;
+  return <BaseDrawer.Description {...props} className={withClass("mt-0.5 text-ui text-ink-2", className)} />;
 }
 
 export interface SheetBodyProps extends React.ComponentProps<"div"> {}
 
 /** The scrolling middle. Takes the remaining height. */
 export function SheetBody({ className, ...props }: SheetBodyProps) {
-  return <div {...props} className={cn("min-h-0 flex-1 overflow-y-auto px-5 py-4", className)} />;
+  return <div {...props} className={cn("min-h-0 flex-1 overflow-y-auto p-4", className)} />;
 }
 
 export interface SheetFooterProps extends React.ComponentProps<"div"> {}
@@ -137,7 +137,7 @@ export function SheetFooter({ className, ...props }: SheetFooterProps) {
   return (
     <div
       {...props}
-      className={cn("flex shrink-0 items-center justify-end gap-2 border-t border-line bg-panel px-5 py-3", className)}
+      className={cn("flex shrink-0 items-center justify-end gap-2 border-t border-line bg-panel px-4 py-3", className)}
     />
   );
 }

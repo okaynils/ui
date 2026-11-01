@@ -30,7 +30,7 @@ const ADORNED_SIZE: Record<InputSize, string> = {
 };
 
 export interface InputProps extends Omit<BaseInput.Props, "size" | "className"> {
-  /** Height 28 / 32 / 36px, matching Button sizes. */
+  /** Height 24 / 28 / 32px, matching Button sizes. */
   size?: InputSize;
   /** Content before the text: an icon or a short unit like "$". Rendered in ink-3. */
   leading?: React.ReactNode;

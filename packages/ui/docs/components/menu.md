@@ -69,7 +69,7 @@ export default function Example() {
 
 ### Groups, checkboxes and radios
 
-`MenuGroup label` and `MenuRadioGroup label` add a mono heading. Checkbox and radio items stay open when chosen, so several can be changed at once. Plain items next to them take `inset` so the labels line up.
+`MenuGroup label` and `MenuRadioGroup label` add a quiet heading. Checkbox and radio items stay open when chosen, so several can be changed at once. Plain items next to them take `inset` so the labels line up.
 
 ```tsx live
 import { Button, Menu, MenuCheckboxItem, MenuContent, MenuGroup, MenuRadioGroup, MenuRadioItem, MenuSeparator, MenuTrigger } from "@nils/ui";
@@ -163,7 +163,7 @@ Nest a `MenuSub`. It opens on hover, click, or →, beside its item.
 | `MenuCheckboxItem` | `checked`, `onCheckedChange`, `shortcut` | Stays open when toggled. |
 | `MenuRadioGroup` | `value`, `onValueChange`, `label` | Wraps `MenuRadioItem`s. |
 | `MenuRadioItem` | `value` | Stays open when chosen. |
-| `MenuGroup` | `label` | Groups items under a mono heading. |
+| `MenuGroup` | `label` | Groups items under a quiet heading. |
 | `MenuLabel` | `inset` | A standalone heading. Prefer `MenuGroup label`. |
 | `MenuLinkItem` | `href`, `inset` | An item that navigates (renders `<a>`). |
 | `MenuSeparator` | — | A hairline. |

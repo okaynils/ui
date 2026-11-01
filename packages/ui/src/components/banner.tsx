@@ -74,7 +74,7 @@ export function Banner({
       )}
     >
       <div className="min-h-0 overflow-hidden">
-        <div className="flex min-h-10 items-center gap-3 border-b border-line bg-panel px-4 py-1.5 text-ui">
+        <div className="flex min-h-10 items-center gap-3 border-b border-line bg-panel px-3 py-1.5 text-ui">
           <span className="flex size-4 shrink-0 items-center justify-center">
             <StatusDot tone={DOT[tone]} />
           </span>
@@ -84,7 +84,7 @@ export function Banner({
           </p>
           {action ? <div className="flex shrink-0 items-center gap-2">{action}</div> : null}
           {onDismiss ? (
-            <Button variant="ghost" size="sm" icon aria-label={dismissLabel} onClick={dismiss} className="-mr-1.5 shrink-0 text-ink-3">
+            <Button variant="ghost" size="sm" icon aria-label={dismissLabel} onClick={dismiss} className="-mr-1 shrink-0 text-ink-3">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" aria-hidden className="size-3.5">
                 <path d="M4 4l8 8M12 4l-8 8" />
               </svg>

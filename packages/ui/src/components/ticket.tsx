@@ -119,8 +119,8 @@ export function Ticket({
   };
 
   const stub = (
-    <div className="flex h-full flex-col items-center justify-center gap-2 px-3 py-4">
-      <span className="ui-mono-label">Stub</span>
+    <div className="flex h-full flex-col items-center justify-center gap-2 p-3">
+      <span className="ui-label">Stub</span>
       <Barcode value={code} className="h-10 w-24" />
       <span className="font-mono text-[11px] text-ink tabular-nums">{code}</span>
     </div>
@@ -128,22 +128,22 @@ export function Ticket({
 
   return (
     <div {...props} data-torn={torn || undefined} className={cn("flex w-full max-w-md items-stretch", className)}>
-      <div className="flex min-w-0 flex-1 bg-line-strong" style={{ ...notches("right", NOTCH, { x: 0, y: 0 }), borderRadius: "var(--radius-box) 0 0 var(--radius-box)" }}>
+      <div className="flex min-w-0 flex-1 bg-line" style={{ ...notches("right", NOTCH, { x: 0, y: 0 }), borderRadius: "var(--radius-box) 0 0 var(--radius-box)" }}>
         <div
-          className={cn("flex min-w-0 flex-1 flex-col gap-3 bg-panel py-4 pr-4 pl-5", torn ? "m-px" : "my-px ml-px")}
+          className={cn("flex min-w-0 flex-1 flex-col gap-3 bg-panel py-3 pr-3 pl-4", torn ? "m-px" : "my-px ml-px")}
           style={{ ...notches("right", NOTCH + 1, { x: torn ? 1 : 0, y: 1 }), borderRadius: "5px 0 0 5px" }}
         >
           <div>
-            <span className="ui-mono-label">{eyebrow}</span>
-            <div className="mt-1 text-[17px] leading-6 font-semibold tracking-[-0.01em] text-ink">{title}</div>
-            {subtitle ? <div className="text-xs text-ink-2">{subtitle}</div> : null}
+            <span className="ui-label">{eyebrow}</span>
+            <div className="mt-0.5 text-[15px] leading-5 font-semibold tracking-[-0.01em] text-ink">{title}</div>
+            {subtitle ? <div className="text-ui text-ink-2">{subtitle}</div> : null}
           </div>
           {details?.length ? (
-            <dl className="mt-auto flex flex-wrap gap-x-5 gap-y-2">
+            <dl className="mt-auto flex flex-wrap gap-x-4 gap-y-2">
               {details.map((detail, index) => (
                 <div key={index}>
-                  <dt className="ui-mono-label">{detail.label}</dt>
-                  <dd className="m-0 font-mono text-xs text-ink tabular-nums">{detail.value}</dd>
+                  <dt className="ui-label">{detail.label}</dt>
+                  <dd className="m-0 text-ui font-medium text-ink tabular-nums">{detail.value}</dd>
                 </div>
               ))}
             </dl>
@@ -152,7 +152,7 @@ export function Ticket({
       </div>
 
       <div
-        className={cn("flex shrink-0 bg-line-strong", drag === null && "transition-transform duration-200 ease-snap")}
+        className={cn("flex shrink-0 bg-line", drag === null && "transition-transform duration-200 ease-snap")}
         style={{ ...notches("left", NOTCH, { x: 0, y: 0 }), borderRadius: "0 var(--radius-box) var(--radius-box) 0", ...stubStyle }}
       >
         <div

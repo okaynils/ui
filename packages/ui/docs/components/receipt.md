@@ -7,7 +7,7 @@ order: 190
 
 # Receipt
 
-A receipt from a thermal printer: mono type, dashed rules, a summed total and a torn bottom edge. Use it wherever a list of things and what they cost should feel like a tangible thing: an order confirmation, a pricing breakdown, "what's in Pro", or a playful year-in-review. Lines and amounts come from your app; the widget sums them unless you pass a total.
+A receipt from a thermal printer: mono line items, dashed rules, a summed total and a torn bottom edge. Use it wherever a list of things and what they cost should feel like a tangible thing: an order confirmation, a pricing breakdown, "what's in Pro", or a playful year-in-review. Lines and amounts come from your app; the widget sums them unless you pass a total.
 
 ```tsx
 import { Receipt } from "@nils/ui";
@@ -102,7 +102,7 @@ Amounts don't have to be money. Without `currency`, numbers print plainly, and `
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `title` | `ReactNode` | Required | Printed in capitals at the top. |
+| `title` | `ReactNode` | Required | Printed at the top, e.g. the shop name. |
 | `subtitle` | `ReactNode` | — | A line under the title, e.g. an address. |
 | `meta` | `readonly ReceiptMeta[]` | — | Key/value lines under the header: order number, date. |
 | `items` | `readonly ReceiptItem[]` | Required | The lines. |

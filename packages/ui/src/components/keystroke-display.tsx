@@ -167,14 +167,14 @@ export function KeystrokeDisplay({
       onBlur={recording ? () => setHeld(new Map()) : undefined}
       data-state={shown.length > 0 ? "filled" : "empty"}
       className={cn(
-        "w-full max-w-sm rounded-box border border-line-strong bg-panel p-3 outline-none",
+        "w-full max-w-sm rounded-box bg-panel p-3 shadow-[0_0_0_1px_var(--ui-line)] outline-none",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
         className,
       )}
     >
-      <div className="mb-3 ui-mono-label">{label}</div>
+      <div className="mb-2 ui-label">{label}</div>
 
-      <div className="flex min-h-9 flex-col items-start gap-2">
+      <div className="flex min-h-8 flex-col items-start gap-1.5">
         {preview ? (
           <div aria-hidden="true" className="flex items-center gap-1.5">
             {preview.map((key) => <Cap key={key} down>{key}</Cap>)}
@@ -196,7 +196,7 @@ export function KeystrokeDisplay({
           </div>
         ))}
         {shown.length === 0 && !preview ? (
-          <div className="flex h-9 items-center gap-2 text-ui text-ink-3">
+          <div className="flex h-8 items-center gap-2 text-ui text-ink-2">
             <Cap aria-hidden>—</Cap>
             <span>{hint}</span>
           </div>
@@ -220,7 +220,7 @@ function Cap({ down = false, className, ...props }: React.ComponentProps<"kbd"> 
       {...props}
       data-down={down || undefined}
       className={cn(
-        "inline-flex h-9 min-w-9 items-center justify-center rounded-ui bg-surface px-2.5 pb-[3px]",
+        "inline-flex h-8 min-w-8 items-center justify-center rounded-ui bg-raised px-2 pb-[3px]",
         "font-mono text-ui leading-none font-medium text-ink",
         "shadow-[inset_0_0_0_1px_var(--ui-line-strong),inset_0_-3px_0_var(--ui-line-strong)]",
         "transition-[translate,box-shadow,background-color,padding] duration-120 ease-snap",

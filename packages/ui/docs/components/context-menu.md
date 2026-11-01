@@ -50,7 +50,7 @@ export default function Example() {
         <ContextMenu key={name}>
           <ContextMenuTrigger
             render={<li />}
-            className="flex h-9 items-center border-b border-line px-3 font-mono text-xs text-ink last:border-b-0 data-popup-open:bg-hover"
+            className="flex h-8 items-center border-b border-line px-3 font-mono text-xs text-ink last:border-b-0 data-popup-open:bg-hover"
           >
             {name}
           </ContextMenuTrigger>

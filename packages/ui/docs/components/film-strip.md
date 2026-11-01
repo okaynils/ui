@@ -162,7 +162,7 @@ Cache it: the feed updates when you log something, so an hourly refresh is plent
 | --- | --- | --- |
 | `id` | `string` | Stable identity per entry. |
 | `title` | `string` | Film title. |
-| `year` | `number` | Release year, shown in mono. |
+| `year` | `number` | Release year, shown in secondary ink after the title. |
 | `poster` | `string` | Poster URL (2:3). Missing posters show the title on a blank frame. |
 | `href` | `string` | The film's or entry's page; makes the poster or title a link. |
 | `rating` | `number` | 0.5–5 in half steps, shown as ★★★★½. |

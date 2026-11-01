@@ -20,7 +20,7 @@ import { SplitFlap } from "@nils/ui";
 Pass `words` and the board rotates through them every `interval` milliseconds. Rotation pauses while the pointer or focus is on it, and the board is always as wide as the longest word.
 
 ```tsx live
-<p className="text-[26px] leading-10 font-semibold tracking-[-0.02em] text-ink">
+<p className="text-[22px] leading-9 font-semibold tracking-[-0.015em] text-ink">
   Tools for <SplitFlap words={["designers", "engineers", "founders"]} />
 </p>
 ```
@@ -41,7 +41,7 @@ export default function Example() {
     <div className="flex flex-col items-start gap-4">
       <div className="flex items-center gap-3">
         <span className="ui-label">Gate</span>
-        <SplitFlap value={GATES[city]} className="text-[26px]" />
+        <SplitFlap value={GATES[city]} className="text-[22px]" />
       </div>
       <SegmentedControl
         aria-label="Destination"
@@ -64,8 +64,8 @@ The board takes its size from the surrounding font size; set `text-*` on it or o
 
 ```tsx live
 <div className="flex flex-col items-start gap-3">
-  <SplitFlap value="ON TIME" className="text-sm" />
-  <SplitFlap value="DELAYED" className="text-[26px]" />
+  <SplitFlap value="On time" className="text-sm" />
+  <SplitFlap value="Delayed" className="text-[22px]" />
 </div>
 ```
 

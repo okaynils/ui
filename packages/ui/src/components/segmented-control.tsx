@@ -20,7 +20,7 @@ export interface SegmentedControlProps<Value extends string = string> {
   /** Initial value when uncontrolled. Defaults to the first item. */
   defaultValue?: Value;
   onValueChange?: (value: Value) => void;
-  /** Height 28 / 32px, matching Button `sm` / `md`. */
+  /** Height 24 / 28px, matching Button `sm` / `md`. */
   size?: SegmentedControlSize;
   disabled?: boolean;
   /** Stretch to the container and split it evenly. */
@@ -104,8 +104,8 @@ export function SegmentedControl<Value extends string = string>({
         <span
           aria-hidden="true"
           className={cn(
-            "absolute top-0.5 bottom-0.5 left-0 -z-10 rounded-[3px] bg-surface",
-            "shadow-[0_0_0_1px_var(--ui-line-strong),0_1px_2px_rgb(0_0_0/0.05)]",
+            // Raised like a Button: the chosen segment is the one that sits up.
+            "absolute top-0.5 bottom-0.5 left-0 -z-10 rounded-[3px] bg-raised shadow-control",
             animate && "transition-[translate,width] duration-180 ease-snap",
           )}
           style={{ translate: `${indicator.x}px 0`, width: indicator.w }}

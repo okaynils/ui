@@ -1,13 +1,13 @@
 ---
 title: Avatar
-description: A rounded square picture of a person or org in four sizes, with mono initials as the fallback, and an overlapping AvatarGroup.
+description: A rounded square picture of a person or org in four sizes, with initials as the fallback, and an overlapping AvatarGroup.
 group: Feedback
 order: 30
 ---
 
 # Avatar
 
-A rounded square picture of a person or an organisation. While the image loads, or if it fails, mono initials show on a grey square with 4px corners. `AvatarGroup` overlaps several, each cut out of the next by a ring in the page colour.
+A rounded square picture of a person or an organisation. While the image loads, or if it fails, initials show on a grey square with 5px corners. `AvatarGroup` overlaps several, each cut out of the next by a ring in the page colour.
 
 ```tsx
 import { Avatar, AvatarGroup } from "@nils/ui";
@@ -61,13 +61,13 @@ The image fades in when it's loaded. A broken URL falls back to initials.
 <div className="flex items-center gap-2 text-ui">
   <Avatar name="Ada Lovelace" />
   <span className="font-medium text-ink">Ada Lovelace</span>
-  <span className="text-ink-3">deployed 2m ago</span>
+  <span className="text-ink-2">deployed 2m ago</span>
 </div>
 ```
 
 ## Rules
 
-- **Do** keep the rounded square shape (`rounded-ui`, 4px), including the group’s `+N` chip.
+- **Do** keep the rounded square shape (`rounded-ui`, 5px), including the group’s grey `+N` chip.
 - **Do** always pass `name`. It's the alt text and the source of the initials.
 - **Do** use `24` in rows and `32`–`40` in headers and profile cards.
 - **Don't** add status rings, borders or coloured backgrounds. Put a `Status` beside it instead.

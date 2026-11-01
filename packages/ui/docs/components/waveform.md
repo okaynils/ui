@@ -47,7 +47,7 @@ export default function Example() {
     <div className="flex w-full max-w-sm flex-col gap-3">
       <Waveform label="Voice note" samples={peaks} duration={120} currentTime={time} onSeek={setTime} onSeekCommitted={setCommitted} />
       <div className="flex items-center justify-between gap-3">
-        <span className="font-mono text-xs text-ink-2">Committed at {Math.round(committed)}s</span>
+        <span className="text-xs text-ink-2 tabular-nums">Committed at {Math.round(committed)}s</span>
         <Button size="sm" onClick={() => setTime(0)}>Rewind</Button>
       </div>
     </div>

@@ -53,7 +53,7 @@ Rules:
 
 ## Type
 
-Inter for everything you read, JetBrains Mono for everything that's data or a label. Both load from `styles.css`.
+Inter for everything you read, JetBrains Mono for data only. Both load from `styles.css`.
 
 | Role | Classes | Size |
 | --- | --- | --- |
@@ -64,7 +64,6 @@ Inter for everything you read, JetBrains Mono for everything that's data or a la
 | Long-form reading (docs prose) | `text-base` | 14 |
 | Meta, helper text | `text-xs text-ink-2` | 12 |
 | Label (keys, table headers, section names) | `ui-label` | 12, sans, sentence case, `ink-2` |
-| Stamped label (gimmicks only) | `ui-mono-label` | 11, mono, uppercase, +6% tracking, `ink-3` |
 | IDs, hashes, timestamps, code | `font-mono` | inherit |
 
 `styles.css` pulls Tailwind's `text-xs` / `text-sm` / `text-base` down to 12/13/14px, so `text-sm` in app code lands on the same size as the components.
@@ -72,10 +71,10 @@ Inter for everything you read, JetBrains Mono for everything that's data or a la
 Rules:
 
 - **Weights: 400, 500, 600.** Body is 400, controls and row titles 500, titles 600. No 700+.
-- **Sentence case everywhere** — buttons, titles, labels, table headers. Only `ui-mono-label` is uppercase.
+- **Sentence case everywhere** — buttons, titles, labels, table headers, and gimmicks too. Nothing is set in uppercase.
 - **Numbers that change get `tabular-nums`** (counters, prices, times, tables).
 - **Values loud, units quiet.** A number is ink; its unit or rate follows in `ink-2`: `960` `GiB`, `$26.40` `/node/hr`. `Stat` does this with `unit`.
-- `ui-label` is for section labels, table headers, and key/value keys. Not for buttons and not for body text. `ui-mono-label` is for gimmicks (tickets, odometers, receipts) — never in core UI.
+- `ui-label` is for section labels, table headers, and key/value keys — in core components and gimmicks alike. Not for buttons and not for body text.
 
 ## Space and size
 
@@ -99,7 +98,7 @@ Rhythm: 4–8px inside a control group, 12px between panels and related blocks, 
 | `--radius-box` | `rounded-box` | 8px | Popovers, menus, dialogs, panels, code blocks |
 | — | `rounded-full` | — | Only status dots, switch tracks |
 
-Avatar and avatar-group overflow chips are rounded squares with `rounded-ui` (4px). Album artwork follows the same corners; book covers may keep their rectangular aspect ratio.
+Avatar and avatar-group overflow chips are rounded squares with `rounded-ui` (5px). Album artwork follows the same corners; book covers may keep their rectangular aspect ratio.
 
 No `rounded-lg`/`rounded-xl`/pill buttons. Nested corners stay concentric: inner radius = outer radius − padding. A highlighted item inside an 8px menu with 4px padding is `rounded-[4px]`.
 
@@ -210,7 +209,8 @@ Rules:
 - **Moves encode state.** Equaliser bars mean "playing", a rolling digit means "changed", a dot on the ring means "you are here". Nothing moves just to be looked at.
 - **Ambient motion is allowed only while the state is live** — playing, counting, recording — and stops the moment it isn't. Under `prefers-reduced-motion` it stops entirely and the state is still readable.
 - **Short sequences may exceed 200ms when they *are* the gimmick** (Random shuffling through names before it navigates), as long as they stay under 600ms, can't be repeated faster than they run, and are skipped under reduced motion.
-- **No second palette.** Character comes from shape, mono type and motion, not new colours. Accent still means "you are here" or "do this"; status colours still encode status.
+- **Same language as the core.** A gimmick sits in a soft `line` hairline shell at `rounded-box`, sets its text at 13px, labels with `ui-label`, uses the compact control sizes and raised `shadow-control` pressables. Mono is for the digits or characters that *are* the gimmick (odometer cells, split-flap cells, receipt lines, key caps), not for its labels.
+- **No second palette.** Character comes from shape, motion and the occasional mono digit, not new colours. Accent still means "you are here" or "do this"; status colours still encode status.
 - **Intensity is neutral tone.** Activity grids use ink steps; only an uptime timeline's narrow marks may carry `ok`/`warn`/`err`, paired with a text summary.
 - **Real data only.** Values come from the app or from the clock. Interpolating playback position between supplied updates is fine; inventing traffic, listening or service health is not.
 - Authentication, service requests, storage and moderation belong to the consuming app.

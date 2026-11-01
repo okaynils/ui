@@ -200,17 +200,6 @@
   color: var(--ui-ink-2);
 }
 
-/* Mono label: the stamped, printed voice. Reserved for gimmicks and things
-   that imitate a physical label (tickets, odometers, receipts). */
-@utility ui-mono-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  line-height: 16px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ui-ink-3);
-}
-
 /*
  * Change flash: re-add the class (or re-key the element) when a value updates
  * in place. The wash is visible on the first frame, then fades — so it marks

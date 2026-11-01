@@ -105,7 +105,7 @@ export function MenuCheckboxItem({ shortcut, className, children, closeOnClick =
 }
 
 export interface MenuRadioGroupProps extends BaseMenu.RadioGroup.Props {
-  /** Optional label shown above the options (mono, uppercase). */
+  /** Optional label shown above the options, in the quiet label voice. */
   label?: React.ReactNode;
 }
 
@@ -136,7 +136,7 @@ export function MenuRadioItem({ className, children, closeOnClick = false, ...pr
 const menuLabel = "ui-label flex h-7 items-center px-2 pt-1 select-none";
 
 export interface MenuGroupProps extends BaseMenu.Group.Props {
-  /** Optional label shown above the group (mono, uppercase). Also names the group for screen readers. */
+  /** Optional label shown above the group, in the quiet label voice. Also names the group for screen readers. */
   label?: React.ReactNode;
 }
 

@@ -1,6 +1,6 @@
 ---
 title: Slider
-description: Pick a number or a range by dragging. A firm square thumb, an accent fill, optional ticks and a mono value readout.
+description: Pick a number or a range by dragging. A firm square thumb, an accent fill, optional ticks and a value readout.
 group: Controls
 order: 120
 ---
@@ -47,7 +47,7 @@ Give an array to get two thumbs. Name each thumb with `thumbLabels`.
 
 ### Marks
 
-`marks` draws ticks; `markLabels` prints their values in mono.
+`marks` draws ticks; `markLabels` prints their values under them, in quiet 12px.
 
 ```tsx live
 <div className="w-72">

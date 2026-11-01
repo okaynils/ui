@@ -36,7 +36,7 @@ export default function Example() {
   return (
     <div className="flex w-full max-w-xs flex-col gap-3">
       <FocusTimer focusSeconds={5} breakSeconds={3} label="A short demo" onComplete={() => setCompleted((value) => value + 1)} />
-      <p className="font-mono text-xs text-ink-2">Completed phases: {completed}</p>
+      <p className="text-xs text-ink-2 tabular-nums">Completed phases: {completed}</p>
     </div>
   );
 }

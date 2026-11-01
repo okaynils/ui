@@ -39,12 +39,12 @@ export default function Example() {
   const [page, setPage] = useState("inbox");
   const current = NAV.find((n) => n.id === page) ?? { label: page };
   return (
-    <div className="h-[440px] w-full overflow-hidden rounded-box shadow-[0_0_0_1px_var(--ui-line-strong)]">
+    <div className="h-[440px] w-full overflow-hidden rounded-box shadow-[0_0_0_1px_var(--ui-line)]">
       <AppShell
         sidebar={
           <Sidebar>
             <SidebarHeader>
-              <span className="flex items-center gap-2 font-mono text-ui font-medium">
+              <span className="flex items-center gap-2 text-ui font-medium">
                 <span className="size-2.5 bg-accent" /> console
               </span>
               <Kbd>⌘K</Kbd>
@@ -56,7 +56,7 @@ export default function Example() {
                 </SidebarItem>
               ))}
             </SidebarSection>
-            <SidebarSection label="Projects" action={<Button variant="ghost" size="sm" icon aria-label="New project" className="size-6"><PlusIcon /></Button>}>
+            <SidebarSection label="Projects" action={<Button variant="ghost" size="sm" icon aria-label="New project"><PlusIcon /></Button>}>
               <SidebarItem icon={<CubeIcon />} active={page === "turbine"} onClick={() => setPage("turbine")}>turbine</SidebarItem>
               <SidebarItem icon={<CubeIcon />} active={page === "ui"} onClick={() => setPage("ui")}>ui</SidebarItem>
             </SidebarSection>
@@ -72,9 +72,9 @@ export default function Example() {
           />
         }
       >
-        <div className="px-6 py-6">
+        <div className="p-5">
           <PageHeader title={current.label} description="Everything that needs you, newest first." />
-          <Panel flush className="mt-6">
+          <Panel flush className="mt-4">
             <List>
               <ListItem leading={<StatusDot tone="warn" />} title="Review deploy plan" meta="turbine" trailing="2m" />
               <ListItem leading={<StatusDot tone="ok" />} title="Invoice paid" meta="billing" trailing="1h" />
@@ -117,7 +117,7 @@ Leave out `topBar` and the shell shows a slim bar with only the ☰ button, and 
 ## Rules
 
 - **Do** give the shell a height: `className="h-dvh"` at the root, or a parent with a fixed height.
-- **Do** keep page padding inside the page (`px-6 py-6` on a wrapper). The shell adds none.
+- **Do** keep page padding inside the page (`p-5` on a wrapper). The shell adds none.
 - **Do** use one shell per app, at the root. Nested shells fight over the sidebar sheet.
 - **Don't** put `position: fixed` bars inside the main column. Use `TopBar`, which is sticky inside the shell's scroll area.
 - **Don't** hide the sidebar with your own media queries. The shell already folds it based on its own width.

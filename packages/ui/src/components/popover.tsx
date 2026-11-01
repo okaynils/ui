@@ -43,7 +43,7 @@ export function PopoverContent({
       <BasePopover.Positioner side={side} align={align} sideOffset={sideOffset} alignOffset={alignOffset} className="z-50 outline-none">
         <BasePopover.Popup
           {...props}
-          className={withClass(`${popupSurface} w-72 max-w-[calc(100vw-2rem)] p-4 text-sm`, className)}
+          className={withClass(`${popupSurface} w-72 max-w-[calc(100vw-2rem)] p-3 text-ui`, className)}
         />
       </BasePopover.Positioner>
     </BasePopover.Portal>
@@ -57,7 +57,7 @@ export function PopoverTitle({ className, ...props }: PopoverTitleProps) {
   return (
     <BasePopover.Title
       {...props}
-      className={withClass("text-sm font-semibold text-ink", className)}
+      className={withClass("text-ui font-medium text-ink", className)}
     />
   );
 }

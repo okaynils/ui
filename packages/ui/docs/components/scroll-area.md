@@ -73,8 +73,8 @@ export default function Example() {
                 <TableCell>{r.gpus}</TableCell>
                 <TableCell>{r.region}</TableCell>
                 <TableCell mono>{r.started}</TableCell>
-                <TableCell mono>{r.duration}</TableCell>
-                <TableCell mono>{r.cost}</TableCell>
+                <TableCell>{r.duration}</TableCell>
+                <TableCell className="tabular-nums">{r.cost}</TableCell>
                 <TableCell>{r.status}</TableCell>
               </TableRow>
             ))}

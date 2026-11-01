@@ -8,7 +8,7 @@ export type ToggleSize = "sm" | "md";
 export type ToggleVariant = "outline" | "ghost";
 
 export interface ToggleProps extends Omit<BaseToggle.Props, "className" | "onPressedChange"> {
-  /** Height 28 / 32px, matching Button `sm` / `md`. Inside a ToggleGroup, the group decides. */
+  /** Height 24 / 28px, matching Button `sm` / `md`. Inside a ToggleGroup, the group decides. */
   size?: ToggleSize;
   /** `outline` stands alone; `ghost` sits in a row of controls. Inside a ToggleGroup, the group decides. */
   variant?: ToggleVariant;
@@ -45,10 +45,10 @@ export function Toggle({ size, variant, icon = false, onPressedChange, className
       className={cn(
         group?.variant === "outline"
           // Inside a framed group the tiles fill its height, with corners
-          // concentric to the frame (4px − 2px padding).
+          // concentric to the frame (5px − 2px padding).
           ? cn(
               buttonClassName({ variant: "ghost", size: resolvedSize, icon }),
-              "h-full rounded-[2px]",
+              "h-full rounded-[3px]",
               icon ? "aspect-square size-auto" : resolvedSize === "sm" ? "px-2" : "px-2.5",
             )
           : buttonClassName({ variant: group ? "ghost" : (variant ?? "outline"), size: resolvedSize, icon }),
@@ -62,7 +62,7 @@ export function Toggle({ size, variant, icon = false, onPressedChange, className
 export type ToggleGroupVariant = "plain" | "outline";
 
 export interface ToggleGroupProps extends Omit<BaseToggleGroup.Props, "className"> {
-  /** Height of every toggle in the group, 28 / 32px. */
+  /** Height of every toggle in the group, 24 / 28px. */
   size?: ToggleSize;
   /** `plain` is a loose row of ghost toggles, like a toolbar group; `outline` frames them as one control. */
   variant?: ToggleGroupVariant;
@@ -85,7 +85,7 @@ export function ToggleGroup({ size = "md", variant = "plain", className, ...prop
         className={cn(
           "inline-flex items-center gap-0.5 data-[orientation=vertical]:flex-col",
           variant === "outline" && cn(
-            "items-stretch rounded-ui bg-surface p-0.5 shadow-[inset_0_0_0_1px_var(--ui-line-strong)]",
+            "items-stretch rounded-ui bg-raised p-0.5 shadow-control",
             size === "sm" ? "h-6" : "h-7",
           ),
           className,

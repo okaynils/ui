@@ -69,7 +69,7 @@ export default function Example() {
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `children` | `ReactNode` | Required | The word on the stamp. Printed in capitals. |
+| `children` | `ReactNode` | Required | The word on the stamp, in sentence case: "Paid". |
 | `tone` | `"ink" \| "accent" \| "ok" \| "err"` | `"ink"` | Ink colour. |
 | `date` | `Date \| string \| number` | — | Adds a date line, formatted in UTC. Invalid dates are left out. |
 | `locale` | `string` | `"en-GB"` | Date formatting locale. |

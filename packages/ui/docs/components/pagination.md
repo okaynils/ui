@@ -61,7 +61,7 @@ export default function Example() {
         </TableBody>
       </Table>
       <div className="flex items-center justify-between gap-3 border-t border-line px-3 py-2">
-        <span className="font-mono text-xs text-ink-3 tabular-nums">
+        <span className="text-ui text-ink-2 tabular-nums">
           {(page - 1) * PER_PAGE + 1}–{Math.min(page * PER_PAGE, RUNS.length)} of {RUNS.length}
         </span>
         <Pagination size="sm" pageCount={Math.ceil(RUNS.length / PER_PAGE)} page={page} onPageChange={setPage} />
@@ -125,7 +125,7 @@ For a sidebar, a card or a phone layout: previous, next and where you are.
 | `defaultPage` | `number` | `1` | Initial page when uncontrolled. |
 | `onPageChange` | `(page: number) => void` | — | Called with the new page from a click on a number or an arrow. Also fires for links. |
 | `siblings` | `number` | `1` | Pages shown on each side of the current page. |
-| `size` | `"sm" \| "md"` | `"md"` | Height 28 / 32px, matching Button. |
+| `size` | `"sm" \| "md"` | `"md"` | Height 24 / 28px, matching Button. |
 | `compact` | `boolean` | `false` | Show "Page 3 of 12" with arrows only. |
 | `getHref` | `(page: number) => string` | — | Render pages as links to these URLs. |
 | `renderLink` | `(props: PaginationLinkProps) => ReactElement` | — | With `getHref`, render each link yourself (router links). Spread all props onto it. |

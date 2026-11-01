@@ -154,7 +154,7 @@ function ToastList() {
     const dot = t.type ? DOT[t.type] : undefined;
     return (
       <BaseToast.Root key={t.id} toast={t} className={rootClass}>
-        <BaseToast.Content className="flex items-start gap-3 overflow-hidden py-3 pr-2 pl-3.5 transition-opacity duration-150 data-behind:opacity-0 data-expanded:opacity-100">
+        <BaseToast.Content className="flex items-start gap-3 overflow-hidden py-3 pr-2 pl-3 transition-opacity duration-150 data-behind:opacity-0 data-expanded:opacity-100">
           <div className="min-w-0 flex-1">
             <BaseToast.Title className="flex items-center gap-2 text-ui font-medium text-ink">
               {t.type === "loading" ? <Spinner /> : dot ? <span className={cn("size-1.5 shrink-0 rounded-full", dot)} aria-hidden /> : null}
@@ -165,7 +165,7 @@ function ToastList() {
             ) : null}
           </div>
           {t.actionProps ? <BaseToast.Action className={cn(buttonClassName({ size: "sm" }), "-my-0.5")} /> : null}
-          <BaseToast.Close className={cn(buttonClassName({ variant: "ghost", size: "sm", icon: true }), "-my-0.5 size-6")} aria-label="Dismiss">
+          <BaseToast.Close className={cn(buttonClassName({ variant: "ghost", size: "sm", icon: true }), "-my-0.5")} aria-label="Dismiss">
             <XGlyph className="size-3.5" />
           </BaseToast.Close>
         </BaseToast.Content>

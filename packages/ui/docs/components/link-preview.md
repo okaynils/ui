@@ -75,7 +75,7 @@ Extends `<div>` props except `title` and `children`; root attributes and `ref` a
 | `title` | `string` | Required | Visible link title. Empty text falls back to “Untitled link”. |
 | `description` | `string` | — | Site-supplied summary, shown in up to two lines. |
 | `favicon` | `string` | — | Small site icon URL. Missing or failed icons use a link outline. |
-| `image` | `string` | — | Optional 64px square thumbnail. A failed image shows a link outline in its place. |
+| `image` | `string` | — | Optional 56px square thumbnail. A failed image shows a link outline in its place. |
 | `annotation` | `ReactNode` | — | Your note, shown outside the anchor in a separate footer. |
 | `target` | `HTMLAttributeAnchorTarget` | — | Anchor target. `_blank` adds `noopener noreferrer` and a screen-reader hint. |
 | `rel` | `string` | — | Anchor relationship tokens. `_blank` preserves supplied tokens except `opener` and adds safe new-tab tokens. |

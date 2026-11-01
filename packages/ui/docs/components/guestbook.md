@@ -106,7 +106,7 @@ export default function Example() {
 | `entries` | `readonly GuestbookEntry[]` | Required | Signatures, oldest first. The ledger shows them newest first. |
 | `onSubmit` | `(entry: GuestbookSigned) => void \| Promise<void>` | — | Receives each signature. The name is trimmed, or `"Anonymous"` when empty. Return a promise to show pending; throw an `Error` to show its message. |
 | `fields` | `readonly ("homepage" \| "location")[]` | `[]` | Extra fields to ask for. Filled-in values arrive as `homepage` and `location`. |
-| `heading` | `ReactNode` | `"Guestbook"` | Label at the top of the ledger. |
+| `heading` | `ReactNode` | `"Guestbook"` | Title of the ledger's header row, beside the signature count. |
 | `maxLength` | `number` | `280` | Message limit, applied to the field and shown in the counter. |
 | `note` | `ReactNode` | — | Line under the form, e.g. how entries are reviewed. |
 | `emptyMessage` | `ReactNode` | `"No signatures yet. Be the first."` | Shown in place of the ledger when `entries` is empty. |

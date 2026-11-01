@@ -20,7 +20,7 @@ export interface DatePickerProps {
   weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   /** Locale for the calendar's month/weekday names and the weekday hint. */
   locale?: string;
-  /** Height 28 / 32 / 36px, matching Button and Input. */
+  /** Height 24 / 28 / 32px, matching Button and Input. */
   size?: DatePickerSize;
   /** Submitted with the form as `YYYY-MM-DD`. */
   name?: string;

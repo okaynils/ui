@@ -95,5 +95,5 @@ export interface TabsPanelProps extends Omit<BaseTabs.Panel.Props, "className"> 
 
 /** The content for one tab value. Swaps instantly — no fade, nothing to wait for. */
 export function TabsPanel({ className, ...props }: TabsPanelProps) {
-  return <BaseTabs.Panel {...props} className={cn("pt-4 outline-none", className)} />;
+  return <BaseTabs.Panel {...props} className={cn("pt-3 outline-none", className)} />;
 }

@@ -3,7 +3,7 @@ import { cn } from "../lib/cn";
 
 export interface SliderProps
   extends Omit<BaseSlider.Root.Props<number | readonly number[]>, "className" | "children" | "render" | "style"> {
-  /** Show the current value (formatted with `format`) in mono at the right. */
+  /** Show the current value (formatted with `format`) at the right, in ink. */
   showValue?: boolean;
   /** Values to draw tick marks at, e.g. `[0, 25, 50, 75, 100]`. */
   marks?: readonly number[];
@@ -80,7 +80,7 @@ export function Slider({
           </BaseSlider.Track>
         </BaseSlider.Control>
         {showValue ? (
-          <BaseSlider.Value className="min-w-[4ch] shrink-0 text-right font-mono text-xs text-ink-2 tabular-nums" />
+          <BaseSlider.Value className="min-w-[4ch] shrink-0 text-right text-ui font-medium text-ink tabular-nums" />
         ) : null}
       </div>
       {marks && markLabels ? (
@@ -88,7 +88,7 @@ export function Slider({
           {marks.map((mark) => (
             <span
               key={mark}
-              className="absolute -translate-x-1/2 font-mono text-[11px] text-ink-3 tabular-nums"
+              className="absolute -translate-x-1/2 text-xs text-ink-2 tabular-nums"
               style={{ left: `${percent(mark)}%` }}
             >
               {mark}

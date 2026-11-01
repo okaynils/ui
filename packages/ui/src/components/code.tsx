@@ -70,20 +70,20 @@ export function CodeBlock({
       {header ? (
         <div className="flex h-8 items-center gap-3 border-b border-line pr-1 pl-3">
           {filename !== undefined ? <span className="truncate font-mono text-xs text-ink-2">{filename}</span> : null}
-          {lang !== undefined ? <span className="ui-mono-label ml-auto">{lang}</span> : <span className="ml-auto" />}
+          {lang !== undefined ? <span className="ui-label ml-auto">{lang}</span> : <span className="ml-auto" />}
           {copyButton}
         </div>
       ) : copyButton ? (
         <div className="absolute top-1.5 right-1.5 z-10">{copyButton}</div>
       ) : null}
       <div className="overflow-x-auto">
-        <pre className={cn("py-3.5 text-[12.5px] leading-[20px] [font-variant-ligatures:none]", numbered ? "grid w-max min-w-full grid-cols-[auto_1fr]" : "w-max min-w-full px-4", !header && copy && "pr-12")}>
+        <pre className={cn("py-3 text-[12.5px] leading-[20px] [font-variant-ligatures:none]", numbered ? "grid w-max min-w-full grid-cols-[auto_1fr]" : "w-max min-w-full px-3", !header && copy && "pr-12")}>
           {numbered ? (
             <>
-              <span aria-hidden className="sticky left-0 bg-panel pr-4 pl-4 text-right text-ink-3 select-none tabular-nums">
+              <span aria-hidden className="sticky left-0 bg-panel pr-3 pl-3 text-right text-ink-3 select-none tabular-nums">
                 {lines.map((_, i) => i + 1).join("\n")}
               </span>
-              <code className="pr-4">{text}</code>
+              <code className="pr-3">{text}</code>
             </>
           ) : html !== undefined ? (
             <code dangerouslySetInnerHTML={{ __html: html }} />

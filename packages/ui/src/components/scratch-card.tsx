@@ -132,9 +132,8 @@ export function ScratchCard({
       }
       ctx.stroke();
       if (hint) {
-        const text = hint.toUpperCase();
-        ctx.font = `500 11px ${style.fontFamily}`;
-        (ctx as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing = "0.66px";
+        const text = hint;
+        ctx.font = `500 12px ${style.fontFamily}`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         const padded = ctx.measureText(text).width + 20;
@@ -242,7 +241,7 @@ export function ScratchCard({
         className={cn(
           "relative isolate min-w-60 max-w-full overflow-hidden rounded-box bg-panel",
           // The hairline is drawn above the coating, so the edge stays crisp while it's scratched.
-          "after:pointer-events-none after:absolute after:inset-0 after:z-20 after:rounded-box after:shadow-[inset_0_0_0_1px_var(--ui-line-strong)]",
+          "after:pointer-events-none after:absolute after:inset-0 after:z-20 after:rounded-box after:shadow-[inset_0_0_0_1px_var(--ui-line)]",
         )}
       >
         <div
@@ -250,7 +249,7 @@ export function ScratchCard({
           tabIndex={-1}
           aria-hidden={!revealed || undefined}
           inert={!revealed}
-          className="px-5 py-6 text-center text-ink outline-none"
+          className="px-4 py-5 text-center text-ui text-ink outline-none"
         >
           {children}
         </div>
@@ -272,7 +271,7 @@ export function ScratchCard({
             />
           </>
         ) : null}
-        <span ref={probe} aria-hidden="true" className="hidden border-line-strong bg-active font-mono text-ink-2" />
+        <span ref={probe} aria-hidden="true" className="hidden border-line-strong bg-active font-sans text-ink-2" />
       </div>
       {!revealed ? (
         <Button
