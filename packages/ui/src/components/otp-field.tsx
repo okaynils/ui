@@ -41,7 +41,7 @@ export function OTPField({ length = 6, groups, className, ...props }: OTPFieldPr
                 key={i}
                 aria-label={i === 0 ? undefined : `Character ${i + 1} of ${length}`}
                 className={cn(
-                  "size-9 shrink-0 rounded-ui bg-surface p-0 text-center font-mono text-base text-ink caret-accent outline-none",
+                  "size-8 shrink-0 rounded-ui bg-surface p-0 text-center font-mono text-base text-ink caret-accent outline-none",
                   "shadow-[inset_0_0_0_1px_var(--ui-line-strong)] transition-shadow duration-120",
                   "hover:shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--ui-line-strong),var(--ui-ink)_12%)]",
                   "focus:shadow-[inset_0_0_0_1px_var(--ui-accent),0_0_0_3px_color-mix(in_oklab,var(--ui-accent)_18%,transparent)]",

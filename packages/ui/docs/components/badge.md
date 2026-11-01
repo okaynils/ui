@@ -7,7 +7,7 @@ order: 20
 
 # Badge
 
-A small label: a count, a version, a state, a tag. It's a hairline outline with ink-2 text and **no fill**, so a column full of them stays quiet. A state gets a leading status dot via `tone`.
+A small label: a count, a version, a state, a tag. It's a faint grey tile with ink-2 text and **no colour**, so a column full of them stays quiet. A state gets a leading status dot via `tone`.
 
 ```tsx
 import { Badge } from "@nils/ui";
@@ -60,7 +60,7 @@ export default function Example() {
 
 - **Do** use `mono` for anything machine-ish: versions, IDs, hashes, counts.
 - **Do** use `tone` for a state, so the colour is a dot and the word stays ink.
-- **Don't** fill a badge with colour or colour its text. There is no "red badge".
+- **Don't** fill a badge with a status colour or colour its text. There is no "red badge".
 - **Don't** make badges clickable. A filter chip is a `SegmentedControl` or a `Button size="sm"`.
 - **Don't** put a sentence in a badge. One or two words.
 

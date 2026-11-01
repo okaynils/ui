@@ -46,6 +46,18 @@ export default function Example() {
 }
 ```
 
+### Units
+
+`unit` follows the value in secondary ink, so the number carries the weight. A unit that starts with `/` (a rate) sits flush against the value.
+
+```tsx live
+<StatGroup className="w-full">
+  <Stat label="Memory" value={960} unit="GiB" />
+  <Stat label="Price" value={2.75} format={{ style: "currency", currency: "USD" }} unit="/gpu/hr" caption="Contracted $2.60/gpu/hr" />
+  <Stat label="Idle" value={0} unit="node-hrs" />
+</StatGroup>
+```
+
 ### Small, inside a panel
 
 `size="sm"` for side panels. Inside a `Panel`, use `StatGroup flush` so there's one frame, not two.
@@ -73,14 +85,15 @@ export default function Example() {
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `label` | `ReactNode` | — | Mono label above the value. |
+| `label` | `ReactNode` | — | Quiet sentence-case label above the value. |
 | `value` | `number \| string \| null` | — | A number rolls when it changes. A string renders as-is. `null` shows a quiet "—". |
 | `format` | `Intl.NumberFormatOptions` | — | Formatting for a numeric value (currency, percent, compact…). |
+| `unit` | `ReactNode` | — | Unit after the value in `ink-2`: `"GiB"`, `"/gpu/hr"`. A string starting with `/` has no gap. |
 | `delta` | `number` | — | Change as a fraction. `0.12` → "▲ 12%". |
 | `deltaFormat` | `Intl.NumberFormatOptions` | percent, ≤1 decimal | Formatting for the delta. |
 | `better` | `"up" \| "down" \| "none"` | `"up"` | Which direction is good news. `none` keeps the delta in ink. |
 | `caption` | `ReactNode` | — | Small text under the value. |
-| `size` | `"sm" \| "md"` | `"md"` | Value at 17px or 24px. |
+| `size` | `"sm" \| "md"` | `"md"` | Value at 15px or 20px. |
 
 ### StatGroup
 

@@ -83,7 +83,7 @@ export function SeatsLeft({
       data-state={left === 0 && seats > 0 ? "sold-out" : "open"}
       className={cn("inline-flex max-w-full flex-col gap-2", className)}
     >
-      {label ? <span className="ui-label">{label}</span> : null}
+      {label ? <span className="ui-mono-label">{label}</span> : null}
 
       {seats === 0 ? (
         <span className="text-ui text-ink-3">No {noun} to claim.</span>

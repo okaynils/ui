@@ -119,7 +119,7 @@ export default function Example() {
 | `isDateDisabled` | `(date: Date) => boolean` | — | Disable specific days. |
 | `weekStartsOn` | `0 … 6` | `1` | First weekday in the calendar. |
 | `locale` | `string` | browser | Calendar names and the weekday hint. |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | 28 / 32 / 36px. |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | 24 / 28 / 32px. |
 | `name` | `string` | — | Submits `YYYY-MM-DD`. |
 | `required` / `disabled` | `boolean` | — | As on any input. |
 | `placeholder` | `string` | `"YYYY-MM-DD"` | Shown while empty. |

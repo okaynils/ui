@@ -6,9 +6,9 @@ import { fieldSurface } from "../lib/surfaces";
 export type InputSize = "sm" | "md" | "lg";
 
 const SIZE: Record<InputSize, string> = {
-  sm: "h-7 px-2 text-xs",
-  md: "h-8 px-2.5 text-ui",
-  lg: "h-9 px-3 text-sm",
+  sm: "h-6 px-2 text-xs",
+  md: "h-7 px-2.5 text-ui",
+  lg: "h-8 px-2.5 text-ui",
 };
 
 // The adorned variant draws the field on a wrapper, so the ring follows the
@@ -24,9 +24,9 @@ const adornedSurface = [
 ].join(" ");
 
 const ADORNED_SIZE: Record<InputSize, string> = {
-  sm: "h-7 gap-1.5 px-2 text-xs",
-  md: "h-8 gap-2 px-2.5 text-ui",
-  lg: "h-9 gap-2 px-3 text-sm",
+  sm: "h-6 gap-1.5 px-2 text-xs",
+  md: "h-7 gap-2 px-2.5 text-ui",
+  lg: "h-8 gap-2 px-2.5 text-ui",
 };
 
 export interface InputProps extends Omit<BaseInput.Props, "size" | "className"> {

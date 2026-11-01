@@ -68,6 +68,18 @@
     0 0 0 1px var(--ui-line-strong),
     0 2px 4px light-dark(rgb(16 16 18 / 0.05), rgb(0 0 0 / 0.5)),
     0 24px 64px -16px light-dark(rgb(16 16 18 / 0.24), rgb(0 0 0 / 0.7));
+  /* Controls sit a hair above the page: the hairline contains them, the 1px
+     drop says "pressable" without turning them into cards. Inset hairline so
+     the box never shifts between variants. */
+  --ui-shadow-control:
+    inset 0 0 0 1px var(--ui-line-strong),
+    0 1px 2px light-dark(rgb(16 16 18 / 0.06), rgb(0 0 0 / 0.4));
+  /* The accent fill gets a lit top edge and a shaded bottom edge, so the one
+     primary action reads as a physical key rather than a coloured rectangle. */
+  --ui-shadow-accent:
+    inset 0 1px 0 rgb(255 255 255 / 0.18),
+    inset 0 -1px 0 rgb(0 0 0 / 0.16),
+    0 1px 2px light-dark(rgb(16 16 18 / 0.16), rgb(0 0 0 / 0.5));
 }
 
 :root[data-theme="light"] { color-scheme: light; }
@@ -95,18 +107,29 @@
 
   --shadow-pop: var(--ui-shadow-pop);
   --shadow-modal: var(--ui-shadow-modal);
+  --shadow-control: var(--ui-shadow-control);
+  --shadow-accent: var(--ui-shadow-accent);
 
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* Type: 13px is the control size, 14px body, 12px meta. */
+  /* Type: a dense console scale. 13px is what most of a screen is set in
+     (controls, rows, prose in panels), 12px is meta, 14px is reserved for
+     long-form reading. Tailwind's xs/sm/base are pulled down a step to match,
+     so `text-sm` in your own code lands on the same 13px the components use. */
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+  --text-sm: 13px;
+  --text-sm--line-height: 18px;
+  --text-base: 14px;
+  --text-base--line-height: 20px;
   --text-ui: 13px;
-  --text-ui--line-height: 20px;
+  --text-ui--line-height: 18px;
 
-  /* Corners: firm. Controls 4px, floating surfaces 6px. Nothing pill-shaped
-     except dots and switches. */
-  --radius-ui: 4px;
-  --radius-box: 6px;
+  /* Corners: firm but not sharp. Controls 5px, panels and floating surfaces
+     8px. Nothing pill-shaped except dots and switches. */
+  --radius-ui: 5px;
+  --radius-box: 8px;
 
   /* Motion. One curve for everything that responds to the user: it starts
      fast and settles, so feedback lands on the frame you act. */
@@ -166,8 +189,20 @@
   }
 }
 
-/* Mono label: the console voice. Small caps-ish uppercase, wide tracking. */
+/* Label: the quiet voice for keys, table headers and section names. Plain
+   sentence case in secondary ink, so a dense screen reads as one calm block
+   and the values — not the labels — carry the weight. */
 @utility ui-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: var(--ui-ink-2);
+}
+
+/* Mono label: the stamped, printed voice. Reserved for gimmicks and things
+   that imitate a physical label (tickets, odometers, receipts). */
+@utility ui-mono-label {
   font-family: var(--font-mono);
   font-size: 11px;
   line-height: 16px;

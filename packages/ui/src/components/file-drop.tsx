@@ -164,7 +164,7 @@ export function FileDrop({
       {files.length > 0 ? (
         <ul className="divide-y divide-line rounded-box shadow-[0_0_0_1px_var(--ui-line)]" aria-label="Chosen files">
           {files.map((file, i) => (
-            <li key={`${file.name}-${file.size}-${file.lastModified}`} className="flex h-9 items-center gap-2 pr-1 pl-3">
+            <li key={`${file.name}-${file.size}-${file.lastModified}`} className="flex h-8 items-center gap-2 pr-1 pl-3">
               <FileIcon className="size-4 shrink-0 text-ink-3" />
               <MiddleTruncate text={file.name} className="flex-1 text-ui text-ink" />
               <span className="shrink-0 font-mono text-[11px] text-ink-3 tabular-nums">{formatBytes(file.size)}</span>
@@ -173,7 +173,7 @@ export function FileDrop({
                 aria-label={`Remove ${file.name}`}
                 disabled={disabled}
                 onClick={() => set(files.filter((_, j) => j !== i))}
-                className="ui-press flex size-7 shrink-0 cursor-default items-center justify-center rounded-ui text-ink-3 outline-none hover:bg-hover hover:text-ink focus-visible:outline-2 focus-visible:outline-accent disabled:pointer-events-none"
+                className="ui-press flex size-6 shrink-0 cursor-default items-center justify-center rounded-ui text-ink-3 outline-none hover:bg-hover hover:text-ink focus-visible:outline-2 focus-visible:outline-accent disabled:pointer-events-none"
               >
                 <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true">
                   <path d="m4.5 4.5 7 7m0-7-7 7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />

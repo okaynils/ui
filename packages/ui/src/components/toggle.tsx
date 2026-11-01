@@ -86,7 +86,7 @@ export function ToggleGroup({ size = "md", variant = "plain", className, ...prop
           "inline-flex items-center gap-0.5 data-[orientation=vertical]:flex-col",
           variant === "outline" && cn(
             "items-stretch rounded-ui bg-surface p-0.5 shadow-[inset_0_0_0_1px_var(--ui-line-strong)]",
-            size === "sm" ? "h-7" : "h-8",
+            size === "sm" ? "h-6" : "h-7",
           ),
           className,
         )}

@@ -129,7 +129,7 @@ function PaletteBody({ groups, placeholder, onDone }: { groups: CommandGroup[]; 
                     value={item}
                     disabled={item.disabled}
                     onClick={() => run(item)}
-                    className={cn(popupItem, "h-9 [scroll-margin-block:4px]")}
+                    className={cn(popupItem, "h-8 [scroll-margin-block:4px]")}
                   >
                     {item.icon !== undefined ? <span className="flex shrink-0 items-center">{item.icon}</span> : null}
                     <span className="min-w-0 flex-1 truncate">{item.label}</span>
@@ -142,7 +142,7 @@ function PaletteBody({ groups, placeholder, onDone }: { groups: CommandGroup[]; 
         </Autocomplete.List>
       </div>
 
-      <div className="flex h-9 shrink-0 items-center gap-4 border-t border-line bg-panel px-3 text-xs text-ink-3">
+      <div className="flex h-8 shrink-0 items-center gap-4 border-t border-line bg-panel px-3 text-xs text-ink-3">
         <span id={hintId} className="flex items-center gap-1.5">
           <Kbd>↑</Kbd>
           <Kbd>↓</Kbd> to move

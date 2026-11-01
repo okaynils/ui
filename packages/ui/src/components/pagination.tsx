@@ -145,7 +145,7 @@ export function Pagination({
             typeof slot === "number" ? (
               <li key={slot}>{control(slot, `Page ${slot}`, slot, { current: slot === page })}</li>
             ) : (
-              <li key={slot} aria-hidden className={cn("grid place-items-center font-mono text-ink-3 select-none", size === "sm" ? "h-7 w-5 text-xs" : "h-8 w-6 text-ui")}>…</li>
+              <li key={slot} aria-hidden className={cn("grid place-items-center font-mono text-ink-3 select-none", size === "sm" ? "h-6 w-5 text-xs" : "h-7 w-6 text-ui")}>…</li>
             ),
           )}
           <li>{next}</li>

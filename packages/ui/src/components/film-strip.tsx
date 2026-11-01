@@ -132,7 +132,7 @@ export function FilmStrip({
 
   const header = label || href ? (
     <div className="flex items-baseline justify-between gap-3">
-      {label ? <span className="ui-label">{label}</span> : <span />}
+      {label ? <span className="ui-mono-label">{label}</span> : <span />}
       {href ? (
         <a href={href} className="rounded-ui text-xs text-ink-2 underline decoration-line-strong underline-offset-[3px] outline-none hover:decoration-ink-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
           {linkLabel}

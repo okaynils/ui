@@ -1,13 +1,13 @@
 ---
 title: PageHeader
-description: The top of a page — title, one-sentence description, actions on the right, and a mono row of facts.
+description: The top of a page — title, one-sentence description, actions on the right, and a row of facts.
 group: Shell
 order: 50
 ---
 
 # PageHeader
 
-The top of a page. It has the title (26px, the page's `<h1>`), an optional one-sentence description, actions on the right, and a `meta` row of facts in mono: IDs, status, dates. Breadcrumbs can sit above it when the TopBar doesn't already carry them.
+The top of a page. It has the title (20px, the page's `<h1>`), an optional one-sentence description, actions on the right, and a `meta` row of facts: status, IDs, dates (IDs in `font-mono`). Breadcrumbs can sit above it when the TopBar doesn't already carry them.
 
 ```tsx
 import { PageHeader } from "@nils/ui";
@@ -74,7 +74,7 @@ Put each fact in its own element. They wrap on narrow screens. Status is a dot p
 | `description` | `ReactNode` | — | One sentence under the title. |
 | `breadcrumbs` | `ReactNode` | — | A `<Breadcrumbs>` above the title. |
 | `actions` | `ReactNode` | — | Buttons on the right. Wrap under the title when narrow. |
-| `meta` | `ReactNode` | — | A mono row of facts. One element per fact. |
+| `meta` | `ReactNode` | — | A row of facts in secondary ink. One element per fact; IDs in `font-mono`. |
 | `bordered` | `boolean` | `false` | Hairline under the header, for pages that open with a list or table. |
 
 All `<header>` props pass through.

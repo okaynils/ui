@@ -7,7 +7,7 @@ order: 20
 
 # Table
 
-The table parts that [DataTable](/components/data-table) is built from. They're plain `<table>` elements with the console look: mono label headers on the panel tone, hairlines between rows, 36px rows, tabular figures on right-aligned cells. Use them when you need markup DataTable doesn't produce, such as a totals footer, merged cells or grouped rows. Otherwise use DataTable.
+The table parts that [DataTable](/components/data-table) is built from. They're plain `<table>` elements with the console look: quiet sentence-case headers, hairlines between rows, 36px rows, tabular figures on right-aligned cells. Use them when you need markup DataTable doesn't produce, such as a totals footer, merged cells or grouped rows. Otherwise use DataTable.
 
 ```tsx
 import { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell } from "@nils/ui";

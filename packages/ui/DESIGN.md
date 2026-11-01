@@ -13,12 +13,12 @@ This is the whole visual contract of `@nils/ui`. When something here disagrees w
 
 Four words, in priority order when they conflict.
 
-1. **Firm.** Things feel solid. Hairlines instead of soft shadows, 4px corners instead of pills, controls that give a little under the finger and snap back. Nothing wobbles, bounces or floats.
+1. **Firm.** Things feel solid. Hairlines instead of soft shadows, 5px corners instead of pills, controls that give a little under the finger and snap back. Nothing wobbles, bounces or floats.
 2. **Swift.** Feedback lands on the frame you act. Hover is 120ms, overlays open in under 200ms and close faster than they open. Nothing makes you wait to see what happened.
-3. **Simple.** Judged by how it feels to use, not by how empty it looks. Fewer kinds of things on a screen, each one plain about what it is.
+3. **Simple.** Judged by how it feels to use, not by how empty it looks. Fewer kinds of things on a screen, each one plain about what it is. Dense is fine — a console shows a lot at 13px — as long as the eye knows where to land.
 4. **Delightful.** In the details: a copy icon that turns into a check, a menu that grows from its trigger, a keyboard hint where you'd want one. Never as decoration.
 
-The mood is a **utility console** with the old web's honesty: white, grey, one blue; mono labels; tables and keyboard hints; colour only where it encodes something.
+The mood is a **compact utility console**: white, grey, one blue; quiet sentence-case labels and heavier values; panels with a title row and a recessed footer; tables and keyboard hints; colour only where it encodes something. Mono is for data (IDs, hashes, code) and for gimmicks that imitate printed things.
 
 ## Colour
 
@@ -57,20 +57,25 @@ Inter for everything you read, JetBrains Mono for everything that's data or a la
 
 | Role | Classes | Size |
 | --- | --- | --- |
-| Page title | `text-[26px] leading-8 font-semibold tracking-[-0.02em]` | 26 |
-| Section title | `text-[17px] leading-6 font-semibold tracking-[-0.01em]` | 17 |
-| Body | `text-sm` | 14 |
-| Controls (buttons, inputs, menu items) | `text-ui` | 13 |
+| Page title | `text-[20px] leading-7 font-semibold tracking-[-0.015em]` | 20 |
+| Metric value | `text-[20px] leading-7 font-medium tabular-nums` | 20 |
+| Panel / section title | `text-ui font-medium` | 13 |
+| UI text: controls, rows, panel prose | `text-ui` / `text-sm` | 13 |
+| Long-form reading (docs prose) | `text-base` | 14 |
 | Meta, helper text | `text-xs text-ink-2` | 12 |
-| Label (the console voice) | `ui-label` | 11, mono, uppercase, +6% tracking, `ink-3` |
+| Label (keys, table headers, section names) | `ui-label` | 12, sans, sentence case, `ink-2` |
+| Stamped label (gimmicks only) | `ui-mono-label` | 11, mono, uppercase, +6% tracking, `ink-3` |
 | IDs, hashes, timestamps, code | `font-mono` | inherit |
+
+`styles.css` pulls Tailwind's `text-xs` / `text-sm` / `text-base` down to 12/13/14px, so `text-sm` in app code lands on the same size as the components.
 
 Rules:
 
 - **Weights: 400, 500, 600.** Body is 400, controls and row titles 500, titles 600. No 700+.
-- **Sentence case everywhere** except `ui-label`, which is uppercase by design.
+- **Sentence case everywhere** — buttons, titles, labels, table headers. Only `ui-mono-label` is uppercase.
 - **Numbers that change get `tabular-nums`** (counters, prices, times, tables).
-- `ui-label` is for section labels, table headers, and key/value keys. Not for buttons and not for body text.
+- **Values loud, units quiet.** A number is ink; its unit or rate follows in `ink-2`: `960` `GiB`, `$26.40` `/node/hr`. `Stat` does this with `unit`.
+- `ui-label` is for section labels, table headers, and key/value keys. Not for buttons and not for body text. `ui-mono-label` is for gimmicks (tickets, odometers, receipts) — never in core UI.
 
 ## Space and size
 
@@ -78,36 +83,40 @@ A 4px grid. Controls come in three heights, and everything on a row shares one.
 
 | Size | Height | Use |
 | --- | --- | --- |
-| `sm` | 28px (`h-7`) | Toolbars, dense tables, inline actions |
-| `md` | 32px (`h-8`) | Default for every control |
-| `lg` | 36px (`h-9`) | Primary call-to-action on a sparse page, touch-first screens |
+| `sm` | 24px (`h-6`) | Panel headers and footers, dense tables, inline actions |
+| `md` | 28px (`h-7`) | Default for every control |
+| `lg` | 32px (`h-8`) | Primary call-to-action on a sparse page, touch-first screens |
 
-Rhythm: 4–8px inside a control group, 12–16px between related blocks, 32–48px between sections. A page's content column is at most ~760px for reading, wider only for tables and canvases.
+Rhythm: 4–8px inside a control group, 12px between panels and related blocks, 24–32px between sections. Panels pad 12px. A page's content column is at most ~760px for reading, wider only for dashboards, tables and canvases.
+
+**Panels are the unit of a dashboard.** A panel has a title row (13px medium title, optional one-line description, `sm` actions on the right), a body, and optionally a recessed footer band carrying a hint and the follow-up action. Dashboards are a grid of panels with 12px gaps.
 
 ## Corners
 
 | Token | Tailwind | Value | Use |
 | --- | --- | --- | --- |
-| `--radius-ui` | `rounded-ui` | 4px | Buttons, inputs, menu items, chips, avatars |
-| `--radius-box` | `rounded-box` | 6px | Popovers, menus, dialogs, panels, code blocks |
+| `--radius-ui` | `rounded-ui` | 5px | Buttons, inputs, menu items, chips, avatars |
+| `--radius-box` | `rounded-box` | 8px | Popovers, menus, dialogs, panels, code blocks |
 | — | `rounded-full` | — | Only status dots, switch tracks |
 
 Avatar and avatar-group overflow chips are rounded squares with `rounded-ui` (4px). Album artwork follows the same corners; book covers may keep their rectangular aspect ratio.
 
-No `rounded-lg`/`rounded-xl`/pill buttons. Nested corners stay concentric: inner radius = outer radius − padding. A highlighted item inside a 6px menu with 4px padding is `rounded-[2px]`.
+No `rounded-lg`/`rounded-xl`/pill buttons. Nested corners stay concentric: inner radius = outer radius − padding. A highlighted item inside an 8px menu with 4px padding is `rounded-[4px]`.
 
 ## Elevation
 
-Flat by default. Things on the page are separated by **hairlines and tone**, never by shadows. Only floating layers get a shadow, and there are exactly two:
+Flat by default. Regions on the page are separated by **hairlines and tone**, never by shadows: panels carry a `line` ring, nothing more. Pressable things and floating layers get a shadow, and there are exactly four:
 
 | Token | Tailwind | Use |
 | --- | --- | --- |
+| `--ui-shadow-control` | `shadow-control` | Outline buttons, select triggers: a hairline and a 1px drop |
+| `--ui-shadow-accent` | `shadow-accent` | The primary button: lit top edge, shaded bottom edge |
 | `--ui-shadow-pop` | `shadow-pop` | Popovers, menus, tooltips, select lists, toasts |
 | `--ui-shadow-modal` | `shadow-modal` | Dialogs, command palette |
 
-Both already include a 1px `line-strong` ring, so a floating surface needs no border. Never add `shadow-sm/md/lg` to cards; there are no cards — use a `Panel` or a hairline.
+All four include their hairline, so nothing needs a border. Never add `shadow-sm/md/lg` to cards; there are no cards — use a `Panel` or a hairline.
 
-Outlines on controls are drawn as **inset box-shadow hairlines** (`shadow-[inset_0_0_0_1px_var(--ui-line-strong)]`), not borders, so a control's content box never shifts by a pixel when variants change.
+Outlines on controls are drawn as **inset box-shadow hairlines** (`shadow-[inset_0_0_0_1px_var(--ui-line-strong)]`, or `shadow-control` for pressables), not borders, so a control's content box never shifts by a pixel when variants change. Text fields stay flat: you type into them, you don't press them.
 
 ## Motion
 

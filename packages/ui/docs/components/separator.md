@@ -1,13 +1,13 @@
 ---
 title: Separator
-description: A hairline between groups of content, horizontal or vertical, with an optional mono label set into the line.
+description: A hairline between groups of content, horizontal or vertical, with an optional label set into the line.
 group: Layout
 order: 40
 ---
 
 # Separator
 
-A 1px hairline in `line` colour. It separates groups of content inside a panel, a toolbar or a page section. It can carry a short mono label.
+A 1px hairline in `line` colour. It separates groups of content inside a panel, a toolbar or a page section. It can carry a short label.
 
 ```tsx
 import { Separator } from "@nils/ui";

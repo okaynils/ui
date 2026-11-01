@@ -1,13 +1,13 @@
 ---
 title: KeyValue
-description: A description list for the properties of one thing (keys in the mono label voice, values in ink), as a key column or stacked.
+description: A description list for the properties of one thing (keys in the quiet label voice, values in ink), as a key column or stacked.
 group: Data
 order: 50
 ---
 
 # KeyValue
 
-The properties of one thing (a machine, an order, a deploy) as label/value rows. Keys use the mono label voice and values are ink, with hairlines between rows. Use `layout="stacked"` in narrow spaces like a sidebar or a popover.
+The properties of one thing (a machine, an order, a deploy) as label/value rows. Keys use the quiet label voice and values are ink, with hairlines between rows. Use `layout="stacked"` in narrow spaces like a sidebar or a popover.
 
 ```tsx
 import { KeyValue, KeyValueItem } from "@nils/ui";

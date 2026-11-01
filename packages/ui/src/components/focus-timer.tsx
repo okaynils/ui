@@ -253,7 +253,7 @@ function Dial({ session, running, phaseLabel, display }: { session: Session; run
         {session.completed ? null : <circle ref={hand} cx={still.hand.cx} cy={still.hand.cy} r="3" fill="var(--ui-surface)" stroke={session.phase === "focus" ? "var(--ui-ink)" : "var(--ui-ink-2)"} strokeWidth="1.5" />}
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="ui-label">{phaseLabel}</span>
+        <span className="ui-mono-label">{phaseLabel}</span>
         <div
           role="timer"
           aria-live="off"

@@ -172,7 +172,7 @@ export function KeystrokeDisplay({
         className,
       )}
     >
-      <div className="mb-3 ui-label">{label}</div>
+      <div className="mb-3 ui-mono-label">{label}</div>
 
       <div className="flex min-h-9 flex-col items-start gap-2">
         {preview ? (

@@ -9,27 +9,27 @@ export type ButtonSize = "sm" | "md" | "lg";
 
 const VARIANT: Record<ButtonVariant, string> = {
   // The one action a screen wants you to take. At most one per view.
-  primary: "bg-accent text-on-accent hover:bg-accent-hover",
+  primary: "bg-accent bg-linear-to-b from-white/10 to-transparent text-on-accent shadow-accent hover:bg-accent-hover",
   // A committing action that isn't *the* action (e.g. inside a dialog next to primary-less flows).
   solid: "bg-ink text-surface hover:bg-ink/85",
-  // The default. A hairline contains it without adding weight.
-  outline: "bg-surface text-ink shadow-[inset_0_0_0_1px_var(--ui-line-strong)] hover:bg-hover",
+  // The default. A hairline and a 1px drop: it sits on the page, ready to press.
+  outline: "bg-raised text-ink shadow-control hover:bg-hover active:bg-active",
   // Toolbars, rows, inline actions. No fill until hover.
   ghost: "text-ink-2 hover:bg-hover hover:text-ink",
   // Destructive. Red text on a hairline; red only says "this deletes".
-  danger: "bg-surface text-err shadow-[inset_0_0_0_1px_var(--ui-line-strong)] hover:bg-err/8",
+  danger: "bg-raised text-err shadow-control hover:bg-err/8",
 };
 
 const SIZE: Record<ButtonSize, string> = {
-  sm: "h-7 gap-1.5 px-2.5 text-xs",
-  md: "h-8 gap-2 px-3 text-ui",
-  lg: "h-9 gap-2 px-3.5 text-sm",
+  sm: "h-6 gap-1.5 px-2 text-xs",
+  md: "h-7 gap-1.5 px-2.5 text-ui",
+  lg: "h-8 gap-2 px-3 text-ui",
 };
 
 const ICON_SIZE: Record<ButtonSize, string> = {
-  sm: "size-7",
-  md: "size-8",
-  lg: "size-9",
+  sm: "size-6",
+  md: "size-7",
+  lg: "size-8",
 };
 
 export interface ButtonStyleOptions {

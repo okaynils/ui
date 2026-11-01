@@ -168,7 +168,7 @@ export function Guestbook({
   return (
     <div {...props} className={cn("w-full max-w-md rounded-box border border-line-strong bg-surface", className)}>
       <div className="flex items-baseline justify-between gap-3 border-b border-line px-4 py-3">
-        <span className="ui-label">{heading}</span>
+        <span className="ui-mono-label">{heading}</span>
         <span className="font-mono text-xs text-ink-3">
           <NumberRoll value={entries.length} locale="en" format={{ minimumIntegerDigits: 4, useGrouping: false }} className="text-ink" />
           {" "}{entries.length === 1 ? "signature" : "signatures"}

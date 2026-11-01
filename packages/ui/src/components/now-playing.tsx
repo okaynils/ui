@@ -193,7 +193,7 @@ export function NowPlaying({
       className={cn("w-full max-w-sm rounded-box border border-line-strong bg-surface p-3", className)}
     >
       <div className="mb-3 flex items-center justify-between gap-3">
-        <span className="ui-label">Listening</span>
+        <span className="ui-mono-label">Listening</span>
         {loading ? <span className="text-xs text-ink-2">Loading</span> : track && state !== "offline" ? (
           <span className="inline-flex items-center gap-1.5 text-xs text-ink"><Equaliser playing={playing} />{label}</span>
         ) : <Status tone="neutral" className="text-xs">{label}</Status>}

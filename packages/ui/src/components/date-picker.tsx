@@ -48,9 +48,9 @@ export function parseISODate(text: string): Date | null {
 }
 
 const SIZE: Record<DatePickerSize, string> = {
-  sm: "h-7 pl-2 text-xs",
-  md: "h-8 pl-2.5 text-ui",
-  lg: "h-9 pl-3 text-sm",
+  sm: "h-6 pl-2 text-xs",
+  md: "h-7 pl-2.5 text-ui",
+  lg: "h-8 pl-2.5 text-ui",
 };
 
 const groupSurface = [
@@ -166,7 +166,7 @@ export function DatePicker({
             "mr-0.5 flex shrink-0 cursor-default items-center justify-center rounded-[3px] text-ink-3 outline-none",
             "hover:bg-hover hover:text-ink-2 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent",
             "data-popup-open:bg-active data-popup-open:text-ink disabled:pointer-events-none",
-            size === "sm" ? "size-6" : "size-7",
+            size === "sm" ? "size-5" : "size-6",
           )}
         >
           <CalendarIcon />

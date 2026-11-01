@@ -89,7 +89,7 @@ Extends [`Input`](/components/input) props, except `type` and `trailing`, which 
 | `visible` | `boolean` | — | Controlled visibility. |
 | `defaultVisible` | `boolean` | `false` | Initial visibility when uncontrolled. |
 | `onVisibleChange` | `(visible: boolean) => void` | — | Fires when the toggle is pressed, and with `false` when the form submits. |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Height 28 / 32 / 36px. |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Height 24 / 28 / 32px. |
 | `ref` | `Ref<HTMLInputElement>` | — | The `<input>`. |
 
 ## Accessibility

@@ -129,7 +129,7 @@ export function Countdown({
         className,
       )}
     >
-      {label ? <span className={blocks ? "ui-label" : "text-ink-2"}>{label}</span> : null}
+      {label ? <span className={blocks ? "ui-mono-label" : "text-ink-2"}>{label}</span> : null}
       {!valid ? <span className="text-ink-3">Countdown unavailable</span> : remaining === null ? (
         <span className={cn("font-mono tabular-nums text-ink-3", blocks ? "text-[26px] leading-8" : "text-xs")}><span aria-hidden>--:--</span><span className="sr-only">Loading countdown</span></span>
       ) : remaining === 0 ? <span>{finished}</span> : display ? blocks ? time(
@@ -148,7 +148,7 @@ export function Countdown({
                     format={{ minimumIntegerDigits: 2, useGrouping: false }}
                     className="rounded-ui bg-panel px-2 py-1.5 font-mono text-[26px] leading-8 font-medium text-ink shadow-[inset_0_0_0_1px_var(--ui-line-strong)]"
                   />
-                  <span className="ui-label">{part.unit === "day" ? "days" : part.unit === "hour" ? "hrs" : part.unit === "minute" ? "min" : "sec"}</span>
+                  <span className="ui-mono-label">{part.unit === "day" ? "days" : part.unit === "hour" ? "hrs" : part.unit === "minute" ? "min" : "sec"}</span>
                 </span>
               </React.Fragment>
             ))}

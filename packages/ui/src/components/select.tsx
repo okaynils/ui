@@ -80,9 +80,9 @@ export function SelectRoot<Value>(props: SelectRootProps<Value>) {
 }
 
 const TRIGGER_SIZE: Record<SelectSize, string> = {
-  sm: "h-7 gap-1.5 pl-2 pr-1.5 text-xs",
-  md: "h-8 gap-2 pl-2.5 pr-2 text-ui",
-  lg: "h-9 gap-2 pl-3 pr-2 text-sm",
+  sm: "h-6 gap-1.5 pl-2 pr-1.5 text-xs",
+  md: "h-7 gap-1.5 pl-2.5 pr-1.5 text-ui",
+  lg: "h-8 gap-2 pl-2.5 pr-2 text-ui",
 };
 
 export interface SelectTriggerProps extends Omit<BaseSelect.Trigger.Props, "className" | "children"> {
@@ -100,6 +100,8 @@ export function SelectTrigger({ size = "md", placeholder, className, ...props }:
       className={cn(
         fieldSurface,
         TRIGGER_SIZE[size],
+        // A trigger is pressed, not typed into, so it sits raised like a Button.
+        "bg-raised shadow-control hover:bg-hover",
         "flex w-full min-w-0 cursor-default items-center justify-between text-left select-none",
         "focus-visible:outline-none data-popup-open:shadow-[inset_0_0_0_1px_var(--ui-accent),0_0_0_3px_color-mix(in_oklab,var(--ui-accent)_18%,transparent)]",
         className,

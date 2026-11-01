@@ -29,7 +29,7 @@ Always give an input a label: a surrounding `Field`, or `aria-label` when the co
 
 ### Sizes
 
-Heights match `Button`: `sm` 28px, `md` 32px (default), `lg` 36px. Controls on one row share one size.
+Heights match `Button`: `sm` 24px, `md` 28px (default), `lg` 32px. Controls on one row share one size.
 
 ```tsx live
 <div className="flex w-full max-w-md items-center gap-2">
@@ -99,7 +99,7 @@ Extends Base UI's [Input](https://base-ui.com/react/components/input) and every 
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Height 28 / 32 / 36px. |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Height 24 / 28 / 32px. |
 | `leading` | `ReactNode` | — | Icon or unit before the text, in `ink-3`. |
 | `trailing` | `ReactNode` | — | Unit, `Kbd` or icon after the text, in `ink-3`. |
 | `value` / `defaultValue` | `string` | — | Controlled / uncontrolled value. |

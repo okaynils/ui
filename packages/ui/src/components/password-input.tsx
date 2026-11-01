@@ -17,7 +17,7 @@ export interface PasswordInputProps extends Omit<InputProps, "type" | "trailing"
   onVisibleChange?: (visible: boolean) => void;
 }
 
-const TOGGLE_SIZE: Record<InputSize, string> = { sm: "size-5 -mr-1", md: "size-6 -mr-1.5", lg: "size-7 -mr-2" };
+const TOGGLE_SIZE: Record<InputSize, string> = { sm: "size-4 -mr-1", md: "size-5 -mr-1.5", lg: "size-6 -mr-1.5" };
 
 /**
  * A password field with a show/hide toggle and a Caps Lock warning. Toggling

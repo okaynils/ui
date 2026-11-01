@@ -20,7 +20,7 @@ export const popupList = "min-w-40 p-1";
  * transition) — it follows the keyboard, and lag there reads as sluggishness.
  */
 export const popupItem = [
-  "relative flex h-8 cursor-default select-none items-center gap-2 rounded-[2px] px-2 text-ui text-ink outline-none",
+  "relative flex h-7 cursor-default select-none items-center gap-2 rounded-[4px] px-2 text-ui text-ink outline-none",
   "data-highlighted:bg-hover data-disabled:pointer-events-none data-disabled:opacity-45",
   "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:text-ink-2",
 ].join(" ");

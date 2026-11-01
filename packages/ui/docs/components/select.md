@@ -59,7 +59,7 @@ export default function Example() {
 
 ### Sizes
 
-Matches `Button` and `Input`: `sm` 28px, `md` 32px, `lg` 36px.
+Matches `Button` and `Input`: `sm` 24px, `md` 28px, `lg` 32px.
 
 ```tsx live
 <div className="flex items-center gap-2">

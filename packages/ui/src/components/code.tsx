@@ -68,9 +68,9 @@ export function CodeBlock({
       className={cn("group/code relative rounded-box bg-panel text-ink shadow-[inset_0_0_0_1px_var(--ui-line)]", className)}
     >
       {header ? (
-        <div className="flex h-9 items-center gap-3 border-b border-line pr-1.5 pl-4">
+        <div className="flex h-8 items-center gap-3 border-b border-line pr-1 pl-3">
           {filename !== undefined ? <span className="truncate font-mono text-xs text-ink-2">{filename}</span> : null}
-          {lang !== undefined ? <span className="ui-label ml-auto">{lang}</span> : <span className="ml-auto" />}
+          {lang !== undefined ? <span className="ui-mono-label ml-auto">{lang}</span> : <span className="ml-auto" />}
           {copyButton}
         </div>
       ) : copyButton ? (

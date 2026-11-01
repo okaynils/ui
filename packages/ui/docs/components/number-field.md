@@ -108,7 +108,7 @@ Extends Base UI's [NumberField Root](https://base-ui.com/react/components/number
 | `unit` | `ReactNode` | — | Unit after the number, in ink-3. |
 | `steppers` | `boolean` | `false` | − / + buttons at the right edge. |
 | `scrubSensitivity` | `number` | `2` | Pixels of drag per step. |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | 28 / 32 / 36px. |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | 24 / 28 / 32px. |
 | `placeholder` | `string` | — | Shown while empty. |
 | `aria-label` | `string` | — | Needed without a surrounding `Field` label. |
 | `className` | `string` | — | Layout only (width). |

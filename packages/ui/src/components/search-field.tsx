@@ -44,7 +44,7 @@ function isEditable(target: EventTarget | null): boolean {
   return target.isContentEditable || target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT";
 }
 
-const CLEAR_SIZE: Record<InputSize, string> = { sm: "size-5 -mr-1", md: "size-6 -mr-1.5", lg: "size-7 -mr-2" };
+const CLEAR_SIZE: Record<InputSize, string> = { sm: "size-4 -mr-1", md: "size-5 -mr-1.5", lg: "size-6 -mr-1.5" };
 
 /**
  * A search input: magnifier, clear button, Escape to clear, and an optional

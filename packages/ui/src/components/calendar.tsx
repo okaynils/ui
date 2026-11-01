@@ -235,7 +235,7 @@ export function Calendar(props: CalendarProps) {
                   role="gridcell"
                   aria-selected={isSelected || between || undefined}
                   className={cn(
-                    "relative flex h-8 items-center justify-center",
+                    "relative flex h-7 items-center justify-center",
                     // The range band runs edge to edge between start and end.
                     between && "bg-active",
                     between && preview && "bg-hover",
@@ -259,7 +259,7 @@ export function Calendar(props: CalendarProps) {
                     onFocus={() => setFocused(d)}
                     onMouseEnter={() => setHovered(d)}
                     className={cn(
-                      "relative flex size-8 cursor-default items-center justify-center rounded-[3px] text-ui tabular-nums outline-none",
+                      "relative flex size-7 cursor-default items-center justify-center rounded-[3px] text-ui tabular-nums outline-none",
                       "transition-colors duration-120",
                       "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent",
                       "aria-disabled:cursor-not-allowed aria-disabled:opacity-40",
@@ -291,7 +291,7 @@ function NavButton({ label, disabled, onClick, children }: { label: string; disa
       aria-label={label}
       disabled={disabled}
       onClick={onClick}
-      className="ui-press flex size-7 cursor-default items-center justify-center rounded-ui text-ink-2 outline-none hover:bg-hover hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent disabled:pointer-events-none disabled:opacity-45"
+      className="ui-press flex size-6 cursor-default items-center justify-center rounded-ui text-ink-2 outline-none hover:bg-hover hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent disabled:pointer-events-none disabled:opacity-45"
     >
       <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         {children}

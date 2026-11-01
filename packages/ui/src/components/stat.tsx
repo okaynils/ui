@@ -3,12 +3,17 @@ import { cn } from "../lib/cn";
 import { NumberRoll } from "./number-roll";
 
 export interface StatProps extends Omit<React.ComponentProps<"div">, "children"> {
-  /** What the number is, in the mono label voice: "GPU hours". */
+  /** What the number is, in the quiet label voice: "Delivered compute". */
   label: React.ReactNode;
   /** A number rolls when it changes; a string renders as-is; `null` shows a quiet "—". */
   value: number | string | null;
   /** `Intl.NumberFormat` options for a numeric `value`. */
   format?: Intl.NumberFormatOptions;
+  /**
+   * Unit after the value, set in secondary ink so the number carries the
+   * weight: `"GiB"`, `"/gpu/hr"`. Starts with `/` → no gap before it.
+   */
+  unit?: React.ReactNode;
   /**
    * Change against a reference period, as a fraction: `0.12` is +12%.
    * Rendered as an arrow and a number, coloured by whether it's good news.
@@ -37,6 +42,7 @@ export function Stat({
   label,
   value,
   format,
+  unit,
   delta,
   deltaFormat = DEFAULT_DELTA,
   better = "up",
@@ -46,13 +52,13 @@ export function Stat({
   ...props
 }: StatProps) {
   return (
-    <div {...props} className={cn("flex min-w-0 flex-col gap-1", className)}>
+    <div {...props} className={cn("flex min-w-0 flex-col gap-0.5", className)}>
       <div className="ui-label truncate">{label}</div>
       <div className="flex min-w-0 items-baseline gap-2.5">
         <div
           className={cn(
-            "truncate font-medium tracking-[-0.02em] text-ink tabular-nums",
-            size === "md" ? "text-[24px] leading-8" : "text-[17px] leading-6",
+            "truncate font-medium tracking-[-0.015em] text-ink tabular-nums",
+            size === "md" ? "text-[20px] leading-7" : "text-[15px] leading-5",
           )}
         >
           {value === null ? (
@@ -62,10 +68,21 @@ export function Stat({
           ) : (
             value
           )}
+          {unit !== undefined && value !== null ? (
+            <span
+              className={cn(
+                "font-normal tracking-normal text-ink-2",
+                size === "md" ? "text-ui" : "text-xs",
+                !(typeof unit === "string" && unit.startsWith("/")) && "ml-1",
+              )}
+            >
+              {unit}
+            </span>
+          ) : null}
         </div>
         {delta !== undefined && Number.isFinite(delta) ? <Delta value={delta} format={deltaFormat} better={better} /> : null}
       </div>
-      {caption !== undefined ? <div className="truncate text-xs text-ink-3">{caption}</div> : null}
+      {caption !== undefined ? <div className="truncate text-ui text-ink-2">{caption}</div> : null}
     </div>
   );
 }
@@ -105,12 +122,12 @@ export function StatGroup({ flush = false, className, children, ...props }: Stat
   return (
     <div
       {...props}
-      className={cn("overflow-hidden", !flush && "rounded-box shadow-[0_0_0_1px_var(--ui-line-strong)]", className)}
+      className={cn("overflow-hidden", !flush && "rounded-box shadow-[0_0_0_1px_var(--ui-line)]", className)}
     >
       {/* The -1px margins tuck the first column's and first row's dividers out
           of sight. Flex (not grid) so a stat that wraps alone stretches the full
           width and its divider spans the row. */}
-      <div className="-mt-px -ml-px flex flex-wrap [&>*]:flex-[1_1_168px] [&>*]:border-t [&>*]:border-l [&>*]:border-line [&>*]:px-4 [&>*]:py-3.5">
+      <div className="-mt-px -ml-px flex flex-wrap [&>*]:flex-[1_1_168px] [&>*]:border-t [&>*]:border-l [&>*]:border-line [&>*]:px-3 [&>*]:py-3">
         {children}
       </div>
     </div>

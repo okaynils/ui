@@ -238,7 +238,7 @@ export default function Example() {
 | Field | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | Column id, and the field read from the row by default. |
-| `header` | `ReactNode` | Header text (rendered in the mono label voice). |
+| `header` | `ReactNode` | Header text (rendered in the quiet label voice). |
 | `align` | `"left" \| "right" \| "center"` | `right` for numbers. |
 | `mono` | `boolean` | Mono cell text. |
 | `width` | `number \| string` | Fixed width (`120` px or `"20%"`). |

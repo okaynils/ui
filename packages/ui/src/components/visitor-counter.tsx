@@ -56,7 +56,7 @@ export function VisitorCounter({
       data-variant={variant}
       className={cn("inline-flex max-w-full flex-col gap-1.5", className)}
     >
-      {label ? <span className="ui-label">{label}</span> : null}
+      {label ? <span className="ui-mono-label">{label}</span> : null}
       <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
         {valid ? (
           <>

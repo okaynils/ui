@@ -10,29 +10,29 @@ export interface PageHeaderProps extends Omit<React.ComponentProps<"header">, "t
   breadcrumbs?: React.ReactNode;
   /** Buttons on the right, primary last. Wraps under the title when space runs out. */
   actions?: React.ReactNode;
-  /** A row of facts under the title: IDs, status, dates. Put each fact in its own element. */
+  /** A row of facts under the title: status, IDs, dates. Put each fact in its own element; set IDs in `font-mono`. */
   meta?: React.ReactNode;
   /** A hairline under the header, for pages whose content starts with a list or table. */
   bordered?: boolean;
 }
 
 /**
- * The top of a page: optional breadcrumbs, the title (26px), a description,
- * actions on the right, and a mono meta row of facts.
+ * The top of a page: optional breadcrumbs, the title (20px), a description,
+ * actions on the right, and a meta row of facts.
  */
 export function PageHeader({ title, description, breadcrumbs, actions, meta, bordered = false, className, ...props }: PageHeaderProps) {
   return (
-    <header {...props} className={cn("flex flex-col gap-3", bordered && "border-b border-line pb-5", className)}>
+    <header {...props} className={cn("flex flex-col gap-3", bordered && "border-b border-line pb-4", className)}>
       {breadcrumbs}
       <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
         <div className="min-w-0 flex-1 basis-64">
-          <h1 className="text-[26px] leading-8 font-semibold tracking-[-0.02em] text-balance text-ink">{title}</h1>
-          {description !== undefined ? <p className="mt-1.5 max-w-[60ch] text-sm text-ink-2">{description}</p> : null}
+          <h1 className="text-[20px] leading-7 font-semibold tracking-[-0.015em] text-balance text-ink">{title}</h1>
+          {description !== undefined ? <p className="mt-0.5 max-w-[60ch] text-ui text-ink-2">{description}</p> : null}
         </div>
-        {actions !== undefined ? <div className="flex shrink-0 flex-wrap items-center gap-2 pt-0.5">{actions}</div> : null}
+        {actions !== undefined ? <div className="flex shrink-0 flex-wrap items-center gap-2 ">{actions}</div> : null}
       </div>
       {meta !== undefined ? (
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs text-ink-2 [&>*]:flex [&>*]:items-center [&>*]:gap-1.5">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-ui text-ink-2 [&>*]:flex [&>*]:items-center [&>*]:gap-1.5">
           {meta}
         </div>
       ) : null}

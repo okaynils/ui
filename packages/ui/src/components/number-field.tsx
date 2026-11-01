@@ -27,9 +27,9 @@ export interface NumberFieldProps
 }
 
 const SIZE: Record<NumberFieldSize, string> = {
-  sm: "h-7 text-xs",
-  md: "h-8 text-ui",
-  lg: "h-9 text-sm",
+  sm: "h-6 text-xs",
+  md: "h-7 text-ui",
+  lg: "h-8 text-ui",
 };
 
 // Spelled out per side so Tailwind sees every class.

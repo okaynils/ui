@@ -63,6 +63,31 @@ export default function Example() {
 }
 ```
 
+### Pill
+
+`variant="pill"` drops the hairline and puts the active tab on a grey fill. Use it when the tab row shares a toolbar with filters and actions, like the top of a usage page.
+
+```tsx live
+import { Button, Tab, Tabs, TabsList } from "@nils/ui";
+import { DownloadSimpleIcon } from "@phosphor-icons/react";
+
+export default function Example() {
+  return (
+    <Tabs defaultValue="overview" className="w-full">
+      <div className="flex items-center justify-between gap-3">
+        <TabsList variant="pill">
+          <Tab value="overview">Overview</Tab>
+          <Tab value="utilization">Utilization</Tab>
+          <Tab value="spend">Spend</Tab>
+          <Tab value="transactions">Transactions</Tab>
+        </TabsList>
+        <Button><DownloadSimpleIcon /> Export</Button>
+      </div>
+    </Tabs>
+  );
+}
+```
+
 ## Rules
 
 - **Do** use Tabs for 2–6 sibling views of one object or page section.
@@ -76,7 +101,7 @@ export default function Example() {
 | Part | Props |
 | --- | --- |
 | `Tabs` | `defaultValue`, `value`, `onValueChange(value)`, `orientation`. Base UI [Tabs.Root](https://base-ui.com/react/components/tabs). |
-| `TabsList` | `activateOnFocus` (default `false`: arrows move focus, Enter/Space activates), `loopFocus`. Includes the sliding indicator. |
+| `TabsList` | `variant`: `"line"` (default, hairline + sliding underline) or `"pill"` (grey fill behind the active tab, no hairline). `activateOnFocus` (default `false`: arrows move focus, Enter/Space activates), `loopFocus`. Includes the sliding indicator. |
 | `Tab` | `value` (required), `disabled`. |
 | `TabsPanel` | `value` (required), `keepMounted` to preserve state of hidden panels. |
 

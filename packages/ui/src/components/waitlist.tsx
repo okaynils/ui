@@ -68,7 +68,7 @@ export function Waitlist({
   return (
     <div {...props} data-state={valid ? "joined" : "open"} className={cn("w-full max-w-sm rounded-box border border-line-strong bg-surface p-4", className)}>
       <div className="flex items-baseline justify-between gap-3">
-        <span className="ui-label">{label}</span>
+        <span className="ui-mono-label">{label}</span>
         {total !== undefined && Number.isFinite(total) ? (
           <span className="font-mono text-xs text-ink-3 tabular-nums">{count.format(total)} in line</span>
         ) : null}

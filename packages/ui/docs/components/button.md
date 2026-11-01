@@ -29,7 +29,7 @@ import { Button } from "@nils/ui";
 
 ### Sizes
 
-`md` (32px) is the default. Controls on one row share one size.
+`md` (28px) is the default. Controls on one row share one size.
 
 ```tsx live
 <Button size="sm">Small</Button>
@@ -141,7 +141,7 @@ Extends Base UI's [Button](https://base-ui.com/react/components/button) props an
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `variant` | `"primary" \| "solid" \| "outline" \| "ghost" \| "danger"` | `"outline"` | Visual weight. See above. |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Height 28 / 32 / 36px. |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Height 24 / 28 / 32px. |
 | `icon` | `boolean` | `false` | Square, icon-only. Requires `aria-label`. |
 | `loading` | `boolean` | `false` | Spinner, keeps width, blocks interaction, stays focusable. |
 | `shortcut` | `string` | — | Keyboard hint shown at the end, e.g. `"⌘S"`. Display only. |

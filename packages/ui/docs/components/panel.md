@@ -7,7 +7,7 @@ order: 10
 
 # Panel
 
-A grouped region: one hairline ring, 6px corners, no shadow. It optionally has a header row (a mono label plus actions) and a footer row on the opposite tone. This is the library's answer to "cards". Use it to group related settings or a list, not to decorate every block of content.
+A grouped region: one hairline ring, 8px corners, no shadow. It optionally has a header row (a title, a one-line description, and actions) and a footer row on the opposite tone. This is the library's answer to "cards". Use it to group related settings or a list, not to decorate every block of content.
 
 ```tsx
 import { Panel } from "@nils/ui";
@@ -22,6 +22,30 @@ import { Panel } from "@nils/ui";
   <p className="text-sm text-ink-2">
     Pay as you go. Next invoice on <span className="font-mono text-ink">2026-11-01</span>.
   </p>
+</Panel>
+```
+
+### Title, description and a footer action
+
+The dashboard shape: a title with its scope underneath, an `sm` action on the right, and a footer band that carries a hint and the follow-up action.
+
+```tsx live
+<Panel
+  title="Usage history"
+  description="Hourly · Nov 1 (UTC)"
+  actions={<Button size="sm">Export as CSV</Button>}
+  footer={
+    <>
+      <span>Preemptible compute doesn’t count toward this limit.</span>
+      <Button size="sm">Request increase</Button>
+    </>
+  }
+  className="w-full max-w-lg"
+>
+  <StatGroup flush className="-m-3">
+    <Stat label="Delivered compute" value={1284} unit="node-hrs" />
+    <Stat label="Estimated price" value="$2.75" unit="/gpu/hr" />
+  </StatGroup>
 </Panel>
 ```
 
@@ -76,7 +100,8 @@ The footer sits on the recessed tone. Put a short hint on the left and the commi
 ## Rules
 
 - **Do** use a Panel to group things that belong together: a settings section, a list, a summary.
-- **Do** keep the title short and noun-like ("Billing", "Nodes"). It renders as a mono uppercase label.
+- **Do** keep the title short and noun-like ("Billing", "Nodes"), in sentence case. Put scope or period ("All pools · Nov 1") in `description`, not in the title.
+- **Do** use `size="sm"` buttons in the header and footer, so the rows stay compact.
 - **Don't** nest panels. Inside a panel, separate content with `Separator` or a `List`.
 - **Don't** add shadows, thicker borders or rounded-xl to make a panel "pop". Flat is the point.
 - **Don't** wrap every block of a page in a panel. Plain sections with headings and hairlines are usually enough.
@@ -87,8 +112,9 @@ Extends every `<section>` attribute.
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `title` | `ReactNode` | — | Header label, rendered as `ui-label`. |
-| `actions` | `ReactNode` | — | Right side of the header. Small (`size="sm"`) ghost buttons, a count. |
+| `title` | `ReactNode` | — | Header title, 13px medium ink. |
+| `description` | `ReactNode` | — | One quiet line under the title: scope, period, units. |
+| `actions` | `ReactNode` | — | Right side of the header. Small (`size="sm"`) buttons, a count. |
 | `footer` | `ReactNode` | — | Bottom row on the opposite tone. Space-between layout. |
 | `tone` | `"surface" \| "panel"` | `"surface"` | White or recessed grey. |
 | `flush` | `boolean` | `false` | No body padding, for lists and tables. |

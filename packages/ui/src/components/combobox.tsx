@@ -62,9 +62,9 @@ interface Entry extends ComboboxItem {
 const CREATE_PREFIX = "\u0000create:";
 
 const SIZE: Record<ComboboxSize, string> = {
-  sm: "h-7 px-2 text-xs",
-  md: "h-8 px-2.5 text-ui",
-  lg: "h-9 px-3 text-sm",
+  sm: "h-6 px-2 text-xs",
+  md: "h-7 px-2.5 text-ui",
+  lg: "h-8 px-2.5 text-ui",
 };
 
 // The field is drawn on the input group, so the ring follows the inner
@@ -212,7 +212,7 @@ export function Combobox(props: ComboboxProps) {
         <BaseCombobox.InputGroup
           className={cn(
             groupSurface,
-            "flex min-h-8 w-full min-w-0 cursor-text flex-wrap items-center gap-1 px-1 py-1 text-ui",
+            "flex min-h-7 w-full min-w-0 cursor-text flex-wrap items-center gap-1 px-1 py-1 text-ui",
             className,
           )}
         >
@@ -222,7 +222,7 @@ export function Combobox(props: ComboboxProps) {
                 key={entry.value}
                 aria-label={entry.label}
                 className={cn(
-                  "flex h-6 max-w-full cursor-default items-center gap-1 rounded-[3px] bg-active pr-0.5 pl-1.5 text-xs text-ink outline-none select-none",
+                  "flex h-5 max-w-full cursor-default items-center gap-1 rounded-[3px] bg-active pr-0.5 pl-1.5 text-xs text-ink outline-none select-none",
                   "focus-within:bg-ink focus-within:text-surface data-highlighted:bg-ink data-highlighted:text-surface",
                 )}
               >
@@ -230,7 +230,7 @@ export function Combobox(props: ComboboxProps) {
                 <span className="min-w-0 truncate">{entry.label}</span>
                 <BaseCombobox.ChipRemove
                   aria-label={`Remove ${entry.label}`}
-                  className="flex size-5 shrink-0 items-center justify-center rounded-[2px] text-current opacity-60 hover:bg-ink/10 hover:opacity-100"
+                  className="flex size-4 shrink-0 items-center justify-center rounded-[2px] text-current opacity-60 hover:bg-ink/10 hover:opacity-100"
                 >
                   <XIcon />
                 </BaseCombobox.ChipRemove>
@@ -246,7 +246,7 @@ export function Combobox(props: ComboboxProps) {
                 commit(selected.slice(0, -1));
               }
             }}
-            className="h-6 min-w-16 flex-1 bg-transparent px-1.5 text-ui text-ink outline-none placeholder:text-ink-3 disabled:cursor-not-allowed"
+            className="h-5 min-w-16 flex-1 bg-transparent px-1.5 text-ui text-ink outline-none placeholder:text-ink-3 disabled:cursor-not-allowed"
           />
         </BaseCombobox.InputGroup>
         {list}

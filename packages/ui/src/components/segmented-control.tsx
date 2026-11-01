@@ -31,8 +31,8 @@ export interface SegmentedControlProps<Value extends string = string> {
 }
 
 const SIZE: Record<SegmentedControlSize, string> = {
-  sm: "h-7 text-xs",
-  md: "h-8 text-ui",
+  sm: "h-6 text-xs",
+  md: "h-7 text-ui",
 };
 
 /**

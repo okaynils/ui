@@ -55,7 +55,7 @@ Press `/` anywhere on this page (outside other fields) to jump into the field. T
 
 ### Sizes
 
-Heights match `Input` and `Button`: `sm` 28px, `md` 32px, `lg` 36px.
+Heights match `Input` and `Button`: `sm` 24px, `md` 28px, `lg` 32px.
 
 ```tsx live
 <div className="flex w-72 flex-col gap-2">
@@ -85,7 +85,7 @@ Extends [`Input`](/components/input) props, except `type`, `leading` and `traili
 | `onValueChange` | `(value: string) => void` | — | Fires on every change, including `""` when cleared by the button or Escape. |
 | `shortcut` | `string` | — | Key that focuses the field from anywhere: `"/"`, `"⌘K"`, `"⇧⌘F"`. Symbols: `⌘` (Meta or Ctrl), `⌃`, `⌥`, `⇧`. Shown as a `Kbd` hint while empty and unfocused. |
 | `clearLabel` | `string` | `"Clear search"` | Accessible name of the clear button. |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Height 28 / 32 / 36px. |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Height 24 / 28 / 32px. |
 | `placeholder` | `string` | `"Search"` | Placeholder text. Not a label. |
 | `ref` | `Ref<HTMLInputElement>` | — | The `<input>`. |
 

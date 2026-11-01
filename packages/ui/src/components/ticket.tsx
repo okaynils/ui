@@ -120,7 +120,7 @@ export function Ticket({
 
   const stub = (
     <div className="flex h-full flex-col items-center justify-center gap-2 px-3 py-4">
-      <span className="ui-label">Stub</span>
+      <span className="ui-mono-label">Stub</span>
       <Barcode value={code} className="h-10 w-24" />
       <span className="font-mono text-[11px] text-ink tabular-nums">{code}</span>
     </div>
@@ -134,7 +134,7 @@ export function Ticket({
           style={{ ...notches("right", NOTCH + 1, { x: torn ? 1 : 0, y: 1 }), borderRadius: "5px 0 0 5px" }}
         >
           <div>
-            <span className="ui-label">{eyebrow}</span>
+            <span className="ui-mono-label">{eyebrow}</span>
             <div className="mt-1 text-[17px] leading-6 font-semibold tracking-[-0.01em] text-ink">{title}</div>
             {subtitle ? <div className="text-xs text-ink-2">{subtitle}</div> : null}
           </div>
@@ -142,7 +142,7 @@ export function Ticket({
             <dl className="mt-auto flex flex-wrap gap-x-5 gap-y-2">
               {details.map((detail, index) => (
                 <div key={index}>
-                  <dt className="ui-label">{detail.label}</dt>
+                  <dt className="ui-mono-label">{detail.label}</dt>
                   <dd className="m-0 font-mono text-xs text-ink tabular-nums">{detail.value}</dd>
                 </div>
               ))}

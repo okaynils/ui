@@ -80,6 +80,7 @@ Each component page has: what it's for, the import, live examples (` ```tsx live
 | --- | --- | --- |
 | **Controls** | | |
 | Button | `Button`, `buttonClassName` | Every pressable action. One `primary` per view. |
+| ButtonGroup | `ButtonGroup` | Buttons joined into one control: split buttons, small sets of related actions. |
 | Kbd | `Kbd` | Keyboard shortcut hints. |
 | Link | `Link` | Inline text link, always underlined; `quiet` for ink links, `external` adds ↗ and a new tab; `render` for router links. |
 | Field | `Field`, `Form`, `FieldRoot`, `FieldLabel`, `FieldDescription`, `FieldError` | Label + control + help/error for every form control; `Form` for native and server validation. |
@@ -208,7 +209,7 @@ These are what separates UI that belongs to this library from UI that merely imp
 
 ### Type
 
-9. **Text sizes:** `text-sm` (14) body, `text-ui` (13) controls, `text-xs` (12) meta, `ui-label` (11 mono uppercase) for section labels and table headers. Titles per DESIGN.md. Don't invent sizes.
+9. **Text sizes:** `text-ui` / `text-sm` (13) for UI text and controls, `text-base` (14) for long-form reading, `text-xs` (12) meta, `ui-label` (12, sentence case, ink-2) for section labels, keys and table headers. Titles per DESIGN.md. Don't invent sizes.
 10. **IDs, hashes, timestamps, versions, prices in tables → `font-mono`**; changing numbers → `tabular-nums`.
 11. **Sentence case**, verbs on buttons, no exclamation marks.
 

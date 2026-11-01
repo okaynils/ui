@@ -236,9 +236,9 @@ export function DataTable<Row>({
                     type="button"
                     onClick={() => cycleSort(column.key)}
                     className={cn(
-                      "group/sort flex h-8 w-full cursor-default items-center gap-1 px-3 uppercase outline-none transition-colors",
-                      "hover:text-ink-2 focus-visible:text-ink-2 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent",
-                      active && "text-ink-2",
+                      "group/sort flex h-7 w-full cursor-default items-center gap-1 px-3 outline-none transition-colors",
+                      "hover:text-ink focus-visible:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent",
+                      active && "text-ink",
                       column.align === "right" && "flex-row-reverse",
                       column.align === "center" && "justify-center",
                     )}

@@ -23,7 +23,7 @@ export interface TableProps extends React.ComponentProps<"table"> {
 }
 
 /**
- * A console table: mono labels in the header, hairlines between rows,
+ * A console table: quiet sentence-case headers, hairlines between rows,
  * numbers right-aligned in tabular figures. No outer frame — put it in a
  * `<Panel flush>` or let it sit on the page.
  */
@@ -93,7 +93,7 @@ export function TableHead({ align = "left", className, ...props }: TableHeadProp
       scope="col"
       {...props}
       className={cn(
-        "ui-label sticky top-0 z-1 h-8 bg-panel px-3 font-normal whitespace-nowrap",
+        "sticky top-0 z-1 h-7 bg-surface px-3 text-ui font-normal whitespace-nowrap text-ink-2",
         // Sticky cells lose collapsed borders, so the hairline is a shadow.
         "shadow-[inset_0_-1px_0_var(--ui-line)]",
         ALIGN[align],
